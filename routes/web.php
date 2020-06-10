@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route de testes temporários
+// Route princial de testes temporários (/teste)
 Route::get('/teste','MembersController@membros');
 Route::get('/teste/create','MembersController@create');
 
-// Arquivo inicial como gerenciamento do projeto. A ser excluido depois
+// Arquivo inicial como gerenciamento do projeto.
 Route::get('/','ManageProject@soFar');

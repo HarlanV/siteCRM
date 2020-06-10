@@ -1,5 +1,9 @@
 <?php
-
+/**
+ * 
+ * CODIGO PEGO DA WEB (GITHUB) MAS NÃO REVISADO. ARMAZENADO PARA USO POSTERIOR
+ * 
+ */
 function validaCPF($cpf) {
  
     // Extrai somente os números
