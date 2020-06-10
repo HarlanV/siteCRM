@@ -7,7 +7,6 @@ abstract class DocumentosPF
     private $nome;
     private $RG;
 
-
     /**
      * Get the value of nome
      */ 

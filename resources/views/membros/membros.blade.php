@@ -2,7 +2,7 @@
 
 <!-- Cabeçalho a ser exibido no topo da pagina -->
 @section('cabecalho')
-Membros ativos teste
+Membros ativos (Pendente)
 @endsection
 
 <!-- Texto descritivo abaixo do cabeçalho -->
