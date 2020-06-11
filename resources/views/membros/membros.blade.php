@@ -17,9 +17,9 @@ Lista de membros atualmente cadastrados como em atividade
 
     <!--  Impressão da lista de membros  -->
     <ul class="list-group">
-        <?php foreach ($members as $member): ?>
+        @foreach($members as $member):
         <li class="list-group-item"><?=$member;?></li>
-        <?php endforeach; ?>
+        @endforeach;
     </ul>
     @endsection
 

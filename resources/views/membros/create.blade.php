@@ -12,7 +12,14 @@ Area genérica para cadastrar novos membros ou novos clientes.
 
 <!-- Conteudo principal -->
     @section('conteudo')
-    <!-- Botão esquerdo adicionar -->
-        <h4> (Aqui entra o formulário a ser preenchido!) </h4>
+    <!-- Formulario Simples para adicionar membro -->
+    <form method="post">
+        <div class="form-group">
+            <label for="nome" class="">Nome</label>
+            <input type="text" class="form-control" name="nome" id="nome">
+        </div>
+        <button class="btn btn-primary">Adicionar</button>
+    </form>
+
     @endsection
 <!-- FIM -->
