@@ -10,8 +10,20 @@ Cadastro de membros ou clientes (pendente)
 Area genérica para cadastrar novos membros ou novos clientes. 
 @endsection
 
-<!-- Conteudo principal -->
+<!-- CONTEUDO PRINCIAL -->
     @section('conteudo')
+<!-- Exibe erros capturados pelo $request->validate() -->
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
+
+
     <!-- Formulario Simples para adicionar membro -->
     <form method="post">
         @csrf

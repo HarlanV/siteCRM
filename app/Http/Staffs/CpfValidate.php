@@ -4,7 +4,7 @@
  * CODIGO PEGO DA WEB (GITHUB) MAS NÃO REVISADO. ARMAZENADO PARA USO POSTERIOR
  * 
  */
-function validaCPF($cpf) {
+function CpfValidate($cpf) {
  
     // Extrai somente os números
     $cpf = preg_replace( '/[^0-9]/is', '', $cpf );

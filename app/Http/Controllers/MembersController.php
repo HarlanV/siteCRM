@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Models\Member;
+use App\Http\Staffs\Member;
+use App\Http\Requests\MembersFormRequest;
 use Illuminate\Http\Request;
 
 class MembersController extends Controller
@@ -20,17 +21,17 @@ class MembersController extends Controller
     }
 
     // Armazenamento de membros.
-    public function store(Request $request)
+    public function store(MembersFormRequest $request)
     {
-        Member::storeMember($request);        
-        return redirect('/membro');
+        Member::storeMember($request);      
+        return redirect()->route('list_members');
     }
 
     // Deleta membro existente
     public function destroy(Request $request)
     {
         Member::deleteMember($request);
-        return redirect('/membro');    
+        return redirect()->route('list_members'); 
     }
 
 }

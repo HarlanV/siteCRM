@@ -1,9 +1,9 @@
 <?php
 
 
-namespace App\Http\Models;
+namespace App\Http\Staffs;
 
-use App\Http\Entities\Membro;
+use App\Http\Modelos\Membro;
 use Illuminate\Http\Request;
 
 class Member

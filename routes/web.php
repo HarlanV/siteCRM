@@ -6,9 +6,12 @@ use Illuminate\Support\Facades\Route;
 /** Route princial de Membros */
 
     // Listagem de membros
-    Route::get('/membro','MembersController@membros');
+    Route::get('/membro','MembersController@membros')
+    ->name('list_members');
+
     // Formulario Criar membros
-    Route::get('/membro/create','MembersController@create');
+    Route::get('/membro/create','MembersController@create')
+    ->name('form_create_member');
     // Persiste membro
     Route::post('/membro/create', 'MembersController@store');
     // Apaga membro
