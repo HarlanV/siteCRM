@@ -1,5 +1,5 @@
 <?php
-namespace App\Http\Entidades;
+namespace App\Http\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 class Membro extends Model
