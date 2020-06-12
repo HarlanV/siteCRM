@@ -4,22 +4,20 @@
 namespace App\Http\Controllers;
 
 use App\Http\Entidades\Membro;
-use App\Http\Models\Member;
 use Illuminate\Http\Request;
 
 class MembersController extends Controller
 {
-    // Lista membros salvos
+    // pesquisa de membros
     function membros(Request $request)
-    {   
+    {
         // consulta e ordena por ordem alfabetica
-        $members = Member::listarMembros($request);
+        $members = Membro::query()->orderBy('nome')->get();
 
         // view
-//        echo view('membros.membros', compact('members'));
+        echo view('membros.membros', compact('members'));
     }
-
-    // Criaçã de novo membro
+    // criaçã de novo membro
     public function create()
     {
         echo view('membros.create');

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class TentativaMYSql extends Migration
+class Createmembers extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class TentativaMYSql extends Migration
      */
     public function up()
     {
-        Schema::create('membrosTeste', function (Blueprint $table){
+        Schema::create('membros', function (Blueprint $table) {
             $table->string('nome');
         });
     }
@@ -25,6 +25,6 @@ class TentativaMYSql extends Migration
      */
     public function down()
     {
-        Schema::drop('membros');    
+        Schema::dropIfExists('membros');
     }
 }

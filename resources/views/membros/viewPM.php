@@ -18,7 +18,7 @@
 
         </div>
  <!-- Botão esquerdo adicionar -->
- <a name="" id="" class="btn btn-dark mb-2" href="teste" role="button">Pagina inicial de desenvolvimento</a>
+ <a name="" id="" class="btn btn-dark mb-2" href="membro" role="button">Pagina inicial de desenvolvimento</a>
 
 
 <!-- O TEXTO ABAIXO FOI TODO ESCRITO EM .TXT E NÃO SERÁ FORMATADO. SERVE APENAS PARA CONTROLE E USO NA FASE DE DESENVOLVIMENTO -->
@@ -83,6 +83,7 @@ Lembrando que: Tanto a estrutura de Projeto abaixo quanto o Projeto em sí não 
 8 - Observações e anotações:
    - Será utilizado o SQLite como banco de dados inicial, devido o curso da Alura ser todo baseado nele. Quando o sistema estiver 100% ok, será feito a migration para o MySQL.
    - Repensar o modo de comunicação entre os Membros e seus dados. Deveria ser ID msm ?
+   - Para fins de estudo, o modo stric do DB foi desativado. De ser reativado antes de finalizar o projeto
 </pre>
 </div>
 </body>

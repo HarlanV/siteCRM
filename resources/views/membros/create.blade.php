@@ -14,6 +14,7 @@ Area genérica para cadastrar novos membros ou novos clientes.
     @section('conteudo')
     <!-- Formulario Simples para adicionar membro -->
     <form method="post">
+        @csrf
         <div class="form-group">
             <label for="nome" class="">Nome</label>
             <input type="text" class="form-control" name="nome" id="nome">

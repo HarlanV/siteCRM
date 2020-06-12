@@ -13,13 +13,14 @@ Lista de membros atualmente cadastrados como em atividade
 <!-- Conteudo principal -->
     @section('conteudo')
     <!-- Botão esquerdo adicionar -->
-    <a name="" id="" class="btn btn-dark mb-2" href="teste/create" role="button">Adicionar</a>
+    <a name="" id="" class="btn btn-dark mb-2" href="membro/create" role="button">Adicionar</a>
 
     <!--  Impressão da lista de membros  -->
     <ul class="list-group">
-        @foreach($members as $member):
-        <li class="list-group-item"><?=$member;?></li>
-        @endforeach;
+        @foreach($members as $member)
+<!--    <li class="list-group-item"><?//=$member->nome?></li> -->
+    <li class="list-group-item">{{$member->nome}}</li>
+        @endforeach
     </ul>
     @endsection
 
