@@ -13,6 +13,8 @@
 </head>
 <body>
     <div class="container">
+        <a name="" id="" class="btn btn-dark mb-2" href="/" role="button">HOME</a>
+
         <div class="jumbotron">
             <!-- secção cabecalho -->
             <h1>@yield('cabecalho')</h1>

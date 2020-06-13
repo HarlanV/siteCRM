@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Createmembers extends Migration
+class CreateClientesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class Createmembers extends Migration
      */
     public function up()
     {
-        Schema::create('membros', function (Blueprint $table) {
-            $table->integerIncrements('id');
+        Schema::create('clientes', function (Blueprint $table) { 
+            $table->id();
             $table->string('nome');
-
         });
     }
 
@@ -27,6 +26,6 @@ class Createmembers extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('membros');
+        Schema::dropIfExists('clientes');
     }
 }

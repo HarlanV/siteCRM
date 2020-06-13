@@ -3,7 +3,7 @@
 
 namespace App\Http\Staffs;
 
-use App\Http\Modelos\Membro;
+use App\Modelos\Membro;
 use Illuminate\Http\Request;
 
 class Member
