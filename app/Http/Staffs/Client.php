@@ -38,12 +38,12 @@ class Client
         $cliente= Client_model::create(['name'=>$request->name]);
 
         // Adiciona o contato com o setor
-        $setor = $request->setor_contato;
+        $setor = $request->sector;
         $contato = $cliente->contacts()->create(['sector' =>$setor]);
 
         // Adiciona o telefone do setor à lista de telefones
 
-        $telefone = $contato->phones()->create(['phone'=>$request->telefone]);
+        $telefone = $contato->phones()->create(['phone'=>$request->phone]);
 
         $cliente->save();
         

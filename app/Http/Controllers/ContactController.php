@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Client;
+use App\ClientContact;
 
 class ContactController extends Controller
 {
@@ -13,11 +14,14 @@ class ContactController extends Controller
      * @param   contactId
      * @return  views\clients\create
      */
-    public function index(int $contactId)
+    public function index(int $clientId)
     {
-        $contacts = Client::find($contactId)->contacts;
-        echo "Teste com branch development";
+
+        $sectors = Client::find($clientId)->contacts;
+        $phone = ClientContact::query()->where('')
+        var_dump($phone);
         exit();
-        return view('contacts.index',compact($contacts));
+
+        return view('contacts.list',compact('sectors'));
     }
 }

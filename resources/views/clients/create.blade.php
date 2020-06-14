@@ -27,7 +27,6 @@ Area de cadastro de novos clientes na base de dados
     <!-- Formulario Simples para adicionar membro -->
     <form method="post">
         @csrf
-
         <div class="row">
             <div class="col col-6">
                 <label for="name" >Nome da empresa</label>
@@ -35,13 +34,13 @@ Area de cadastro de novos clientes na base de dados
             </div>
 
             <div class="col col-3">
-                <label for="setor_contato">Setor ou Nome para contato</label>
-                <input type="text" class="form-control" name="setor_contato" id="setor_contato">
+                <label for="sector">Setor ou Nome para contato</label>
+                <input type="text" class="form-control" name="sector" id="sector">
             </div>
 
             <div class="col col-3">
-                <label for="telefone" >Telefone</label>
-                <input type="text" class="form-control" name="telefone" id="telefone">
+                <label for="phone" >Telefone</label>
+                <input type="text" class="form-control" name="phone" id="phone">
             </div>
 
         </div>

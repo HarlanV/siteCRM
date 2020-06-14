@@ -36,7 +36,7 @@ use Illuminate\Support\Facades\Route;
     Route::delete('/client/{id}', 'ClientController@destroy');
     
     // Lista contatos do Cliente
-    Route::get('client/{id}/contacts', 'ContactController@index');
+    Route::get('client/{sector}/contacts', 'ContactController@index');
 
 // Index e gerenciamento de projeto(temporario) .
 Route::get('/manager','ManageProject@soFar');

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Staffs\Client as Client;
+use App\Http\Staffs\Client;
 use App\Http\Requests\ClientsFormRequest;
 use Illuminate\Http\Request;
 
