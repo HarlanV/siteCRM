@@ -23,13 +23,12 @@ Area genérica para cadastrar novos membros ou novos clientes.
     </div>
     @endif
 
-
     <!-- Formulario Simples para adicionar membro -->
     <form method="post">
         @csrf
         <div class="form-group">
-            <label for="nome" class="">Nome</label>
-            <input type="text" class="form-control" name="nome" id="nome">
+            <label for="name" class="">Nome</label>
+            <input type="text" class="form-control" name="name" id="name">
         </div>
         <button class="btn btn-primary">Adicionar</button>
     </form>

@@ -3,66 +3,62 @@
 
 namespace App\Http\Staffs;
 
-use App\Modelos\Cliente;
+use App\Client as Client_model;
 use Illuminate\Http\Request;
 
 class Client
 {
 // Methods
-    public static function listarClientes(Request $request)
+
+    /**
+     * Função responsável por criar lista de clientes
+     * @param   $App\Http\Requests\ClientsFormRequest
+     * @return  $view [editar]
+     */
+    public static function listClients(Request $request)
     {
         // consulta e ordena por ordem alfabetica
-        $clients = Cliente::query()->orderBy('nome')->get();
+        $clients = Client_model::query()->orderBy('name')->get();
+
         // Mensagem: "cliente __ adicionado com sucesso"
         $mensagem = $request->session()->get('mensagem');
-        // retorna lista
-        echo view('clientes.clientes', compact('clients','mensagem'));
-    }
-    // Criaçã de novo cliente
-    public function create()
-    {
-        echo view('clientes.create');
+
+        // Mudar de view para lista a ser exibida posteriormente [editar]
+         echo view('clients.clients', compact('clients','mensagem'));
     }
 
-    // Armazena membros
+    /**
+     * Armazena clientes no banco de dados
+     * 
+     * @param   Illuminate\Http\request $request
+     */
     public static function storeClient(Request $request)
     {
         // Nomes dos clientes
-        $cliente= Cliente::create(['nome'=>$request->nome]);
+        $cliente= Client_model::create(['name'=>$request->name]);
 
         // Adiciona o contato com o setor
         $setor = $request->setor_contato;
-        $contato = $cliente->contatos()->create(['setor' =>$setor]);
-
+        $contato = $cliente->contacts()->create(['sector' =>$setor]);
 
         // Adiciona o telefone do setor à lista de telefones
-        $telefone = $contato->telefones()->create(['telefone'=>$request->telefone]);
-/*
-        ?>
-        <pre>
-            <?php
-                var_dump($contato);
-            ?>
-        </pre>
-        <?php
 
-
-        //echo "Até aqui ok";
-        exit();
-  */      
+        $telefone = $contato->phones()->create(['phone'=>$request->telefone]);
 
         $cliente->save();
         
-
         // mensagem de confirmação. Iniciando seção.
         $request->session()->flash('mensagem',"Cliente {$cliente->nome} e seus contatos inserido com sucesso");
-
-
     }
 
+    /**
+     * Retorna/Redireciona para formulario de criação de clientes
+     * 
+     * @param   \Illuminate\Http\request    $request
+     */
     public static function deleteClient(Request $request){
-        
-        Cliente::destroy($request->id);
+
+        Client_model::destroy($request->id);
         $request->session()->flash('mensagem',"O Cliente foi excluido com sucesso");
 
     }

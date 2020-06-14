@@ -24,7 +24,7 @@ class MembersFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'nome'=>'required|min:3'
+            'name'=>'required|min:3'
         ];
     }
 
@@ -32,7 +32,7 @@ class MembersFormRequest extends FormRequest
     {
         return [
             'required'=>'O campo :attribute é obrigatorio',
-            'nome.min' => 'O campo nome precisa ter pelo menos 3 caracteres'
+            'name.min' => 'O campo nome precisa ter pelo menos 3 caracteres'
 
         ];
     }

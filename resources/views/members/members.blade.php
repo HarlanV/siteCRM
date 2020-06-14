@@ -30,10 +30,10 @@
     <ul class="list-group">
         @foreach($members as $member)
             <li class="list-group-item d-flex justify-content-between align-items-center">
-                {{$member->nome}}
+                {{$member->name}}
 
              <!-- Botão Deletar  -->
-            <form method="POST" action="/membro/{{$member->id}}"
+            <form method="POST" action="/member/{{$member->id}}"
                 onsubmit="return confirm('Tem certeza que deseja exlcuir o membro {{ addslashes($member->nome)}} ?')">
                 @csrf
                 @method('DELETE')

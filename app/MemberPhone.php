@@ -1,21 +1,22 @@
 <?php
 
-namespace App\Modelos;
+namespace App;
 
-use App\Modelos\MembroContato;
+use app\Member;
 use Illuminate\Database\Eloquent\Model;
 
-class MembroTelefone extends Model
+class MemberPhone extends Model
 {
 
     // Não adicionar data de criação ou ultima atuliação
     public $timestamps = false;
     // Informa atributos que podem ser preenchidos por create ('nome','etc')
-    protected $fillable = ['nome'];
+    protected $fillable = ['name'];
     
     // Relacionamento n:1 com Membro
-    public function membro()
+    public function member()
     {
-        return $this->belongsTo(MembroContato::class);
+        return $this->belongsTo(Member::class);
     }
+
 }

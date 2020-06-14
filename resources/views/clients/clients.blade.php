@@ -31,17 +31,17 @@
     <ul class="list-group">
         @foreach($clients as $client)
             <li class="list-group-item d-flex justify-content-between align-items-center">
-                {{$client->nome}}
+                {{$client->name}}
              <!-- Icones de cada cliente -->
                 <span class="d-flex">
 
                      <!-- icon: listar contatos -->
-                    <a href="/cliente/{{$cliente->id}}/contatos" class="btn btn-info btn-sm mr-1">
+                    <a href="/client/{{$client->id}}/contacts" class="btn btn-info btn-sm mr-1">
                         <i class="fas fa-external-link-alt"></i>
                     </a>
 
                     <!-- icon: deletar clientes-->
-                    <form method="POST" action="/cliente/{{$client->id}}"
+                    <form method="POST" action="/client/{{$client->id}}"
                         onsubmit="return confirm('Tem certeza que deseja exlcuir o cliente {{ addslashes($client->nome)}} ?')">
                         @csrf
                         @method('DELETE')

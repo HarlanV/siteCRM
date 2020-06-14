@@ -5,36 +5,39 @@ use Illuminate\Support\Facades\Route;
 /** Routes para Membros */
 
     // Listagem de membros
-    Route::get('/membro','MembersController@membros')
+    Route::get('/member','MemberController@members')
     ->name('list_members');
 
     // Formulario Criar membros
-    Route::get('/membro/create','MembersController@create')
+    Route::get('/member/create','MemberController@list')
     ->name('form_create_member');
+
     // Persiste membro
-    Route::post('/membro/create', 'MembersController@store');
+    Route::post('/member/create', 'MemberController@store');
+    
     // Apaga membro
-    Route::delete('/membro/{id}', 'MembersController@destroy');
+    Route::delete('/member/{id}', 'MemberController@destroy');
 
 
 /** Route para Clientes */
 
     // Listagem de clientes
-    Route::get('/cliente','ClientsController@clientes')
+    Route::get('/client','ClientController@clients')
     ->name('list_clients');
 
     // Formulario para inserir clientes
-    Route::get('/cliente/create','ClientsController@create')
+    Route::get('/client/create','ClientController@list')
     ->name('form_create_client');
+
     // Persiste cliente
-    Route::post('/cliente/create', 'ClientsController@store');
+    Route::post('/client/create', 'ClientController@store');
+    
     // Apaga cliente
-    Route::delete('/cliente/{id}', 'ClientsController@destroy');
+    Route::delete('/client/{id}', 'ClientController@destroy');
+    
     // Lista contatos do Cliente
-    Route::get('cliente/{id}/contatos', 'ContactsController@index');
+    Route::get('client/{id}/contacts', 'ContactController@index');
 
-
-
-// Arquivo inicial como gerenciamento do projeto.
+// Index e gerenciamento de projeto(temporario) .
 Route::get('/manager','ManageProject@soFar');
 Route::get('/','index@mainView');

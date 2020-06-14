@@ -30,8 +30,8 @@ Area de cadastro de novos clientes na base de dados
 
         <div class="row">
             <div class="col col-6">
-                <label for="nome" >Nome da empresa</label>
-                <input type="text" class="form-control" name="nome" id="nome">
+                <label for="name" >Nome da empresa</label>
+                <input type="text" class="form-control" name="name" id="nome">
             </div>
 
             <div class="col col-3">
@@ -43,7 +43,6 @@ Area de cadastro de novos clientes na base de dados
                 <label for="telefone" >Telefone</label>
                 <input type="text" class="form-control" name="telefone" id="telefone">
             </div>
-
 
         </div>
         <button class="btn btn-primary mt-2">Adicionar</button>

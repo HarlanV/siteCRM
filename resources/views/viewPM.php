@@ -81,9 +81,8 @@ Lembrando que: Tanto a estrutura de Projeto abaixo quanto o Projeto em sí não 
 7 - Etapa atual: b)
 
 8 - Observações e anotações:
-   - Será utilizado o SQLite como banco de dados inicial, devido o curso da Alura ser todo baseado nele. Quando o sistema estiver 100% ok, será feito a migration para o MySQL.
    - Repensar o modo de comunicação entre os Membros e seus dados. Deveria ser ID msm ?
-   - Para fins de estudo, o modo stric do DB foi desativado. De ser reativado antes de finalizar o projeto
+   - Banco de dados funcional
 </pre>
 </div>
 </body>

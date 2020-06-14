@@ -36,12 +36,12 @@
                 <span class="d-flex">
 
                      <!-- icon: listar contatos -->
-                    <a href="/cliente/{{$client->id}}/contatos" class="btn btn-info btn-sm mr-1">
+                    <a href="/client/{{$cliente->id}}/contacts" class="btn btn-info btn-sm mr-1">
                         <i class="fas fa-external-link-alt"></i>
                     </a>
 
                     <!-- icon: deletar clientes-->
-                    <form method="POST" action="/cliente/{{$client->id}}"
+                    <form method="POST" action="/client/{{$client->id}}"
                         onsubmit="return confirm('Tem certeza que deseja exlcuir o cliente {{ addslashes($client->nome)}} ?')">
                         @csrf
                         @method('DELETE')

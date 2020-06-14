@@ -1,27 +1,28 @@
 <?php
 
-namespace App\Modelos;
+namespace App;
 
-use App\Modelos\ClienteTelefone;
+use App\Client;
+use App\ClientPhone;
 use Illuminate\Database\Eloquent\Model;
 
-class ClienteContato extends Model
+class ClientContact extends Model
 {
     // Não adicionar data de criação ou ultima atuliação
     public $timestamps = false;
 
     // Informa atributos que podem ser preenchidos por create ('nome','etc')
-    protected $fillable = ['setor'];
+    protected $fillable = ['sector'];
 
     // Relacionamento 1:n com Telefone
-    public function telefones()
+    public function phones()
     {
-        return $this->hasMany(ClienteTelefone::class);
+        return $this->hasMany(ClientPhone::class);
     }
 
     // Rleacionamento n:1 com clientes
-    public function cliente()
+    public function client()
     {
-        return $this->belongsTo(Cliente::class);
+        return $this->belongsTo(Client::class);
     }
 }
