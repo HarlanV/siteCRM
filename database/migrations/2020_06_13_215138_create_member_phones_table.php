@@ -18,8 +18,7 @@ class CreateMemberPhonesTable extends Migration
             $table->string('phone');
             $table->foreignId('members_id')
                 ->references('id')
-                ->on('members')
-                ->onDelete('cascade');
+                ->on('members');
         });
     }
     /**

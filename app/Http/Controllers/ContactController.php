@@ -18,9 +18,6 @@ class ContactController extends Controller
     {
 
         $sectors = Client::find($clientId)->contacts;
-        $phone = ClientContact::query()->where('')
-        var_dump($phone);
-        exit();
 
         return view('contacts.list',compact('sectors'));
     }

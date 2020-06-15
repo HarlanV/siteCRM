@@ -18,8 +18,7 @@ class CreateClientPhonesTable extends Migration
             $table->string('phone');
             $table->foreignId('client_contact_id')
                 ->references('id')
-                ->on('client_contacts')
-                ->onDelete('cascade');
+                ->on('client_contacts');
         });
     }
     /**
