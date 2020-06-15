@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Staffs\Client;
 use App\Http\Requests\ClientsFormRequest;
 use Illuminate\Http\Request;
+use App\Client as ClientModel;
 
 class ClientController extends Controller
 {    
@@ -57,5 +58,39 @@ class ClientController extends Controller
         Client::deleteClient($request);
         return redirect()->route('list_clients'); 
     }
+
+     /**
+     * Recebe e armazena os contatos de um novo cliente 
+     * 
+     * @param   int $contactId
+     * @return  \views\clients\create
+     */
+    public function clientContact(int $clientId)
+    {
+        $sectors = ClientModel::find($clientId)->contacts;
+        return view('contacts.list',compact('sectors'));
+    }
+
+    /**
+     * Metodo e construção.
+     * Problema: o método aparentemente é chamado na rota   
+     * 
+     * @param Illuminate\Http\Request $request
+     */
+    public function clientEdit(Request $request){
+
+
+        // teste
+        echo (var_dump($request));
+        exit();
+        //return redirect()->route('list_members');
+        /*
+        $newName = $request->id;
+        $client = ClientModel::find($request->id);
+        $client->name = $newName;
+        $client->save();
+        */
+    }
+
 
 }

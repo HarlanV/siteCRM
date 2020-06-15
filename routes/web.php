@@ -36,7 +36,21 @@ use Illuminate\Support\Facades\Route;
     Route::delete('/client/{id}', 'ClientController@destroy');
     
     // Lista contatos do Cliente
-    Route::get('client/{sector}/contacts', 'ContactController@index');
+    Route::get('/client/{sector}/contacts', 'ClientController@clientContact');
+
+    /**
+     * ERRO NESTA ROUTE.
+     * Pela DevTools do Chrome aparenta estar entrando normal.
+     * No entanto, nenhum comando aparenta estar repondendo.
+     * A Route é acessada, por enquanto, via JavaScript armazenado na Blade (client-blade).
+     * Os Scrpits serão remanejados somente após o problema ser resolvido.
+     * 
+     * 
+     * Obs: quando foi utilizado um Redirect na function, só foi possivel 
+     * visualizar a tela pela preview da Network. Ou seja... REALMENTE ESTÁ SENDO ACESSADA.
+     * [15/06/2020]
+     */
+    Route::post('/client/{clientId}/name',  'ClientController@clientEdit');
 
 // Index e gerenciamento de projeto(temporario) .
 Route::get('/manager','ManageProject@soFar');

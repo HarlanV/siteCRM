@@ -23,7 +23,7 @@ class Client
 
         $mensagem = $request->session()->get('mensagem');
 
-         echo view('clients.clients', compact('clients','mensagem'));
+        echo view('clients.clients', compact('clients','mensagem'));
     }
 
     /**
@@ -34,12 +34,12 @@ class Client
      */
     public static function storeClient(Request $request)
     {
-
-        $name = $request->name;
-        $sector = $request->sector;
-        $phone = $request->phone;
         $clientCreator = new ClientCreator;
-        $client = $clientCreator->clientCreate($name,$sector,$phone);
+        
+        $client = $clientCreator->clientCreate(
+            $request->name,
+            $request->sector,
+            $request->phone);
 
         $request->session()->flash('mensagem',"Cliente {$client} e seus contatos inserido com sucesso");
     }
@@ -58,9 +58,6 @@ class Client
 
         $deletedClient = $deleter->clientDelete($clientId);
 
-        $request->session()->flash('mensagem',"O Cliente $deletedClient foi excluido com sucesso");
-
-//        Client_model::destroy($request->id);
         $request->session()->flash('mensagem',"O Cliente $deletedClient foi excluido com sucesso");
 
     }

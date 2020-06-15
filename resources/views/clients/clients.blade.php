@@ -31,19 +31,35 @@
     <ul class="list-group">
         @foreach($clients as $client)
             <li class="list-group-item d-flex justify-content-between align-items-center">
-                {{$client->name}}
+                <span id="client-name-{{$client->id}}">{{$client->name}} </span>
+
+                
+                <div class="input-group w-50" hidden id="input-client-name-{{ $client->id }}">
+                    <input type="text" class="form-control" value="{{ $client->name }}">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" onclick="editClient({{ $client->id }})">
+                            <i class="fas fa-check"></i>
+                        </button>
+                        @csrf
+                    </div>
+                </div>
+                
              <!-- Icones de cada cliente -->
                 <span class="d-flex">
+                    <!-- icon: listar clients ocultos-->
+                    <button class="btn btn-info btn-sm mr-1" onclick="inputClient({{ $client->id }})">
+                        <i class="fas fa-edit"></i>
+                    </button>
 
-                     <!-- icon: listar contatos -->
+                    <!-- icon: listar contatos -->
                     <a href="/client/{{$client->id}}/contacts" class="btn btn-info btn-sm mr-1">
                         <i class="fas fa-external-link-alt"></i>
                     </a>
-
                     <!-- icon: deletar clientes-->
                     <form method="POST" action="/client/{{$client->id}}"
                         onsubmit="return confirm('Tem certeza que deseja exlcuir o cliente {{ addslashes($client->nome)}} ?')">
                         @csrf
+        
                         @method('DELETE')
                         <button class="btn btn-danger btn-sm"> <i class="fas fa-trash-alt"></i> </button>
                     </form>
@@ -51,4 +67,46 @@
             </li>
         @endforeach
     </ul>
+
+    <script>
+        function inputClient ($clientId)
+        {
+            const nameOld = document.getElementById("client-name-"+$clientId);
+            const inputName = document.getElementById("input-client-name-"+$clientId);
+
+            if(nameOld.hasAttribute("hidden")){
+
+                nameOld.removeAttribute("hidden");
+                inputName.hidden = true;
+
+            } else {
+                nameOld.hidden = true;
+                inputName.removeAttribute("hidden");
+
+            }
+        }
+
+        function editClient($clientId)
+            {
+                let formData = new FormData();
+
+                const name = document.querySelector("#input-client-name-"+$clientId+" > input").value;
+                const token = document.querySelector('input[name="_token"]').value;
+
+                
+                formData.append('name',name);
+                formData.append('_token',token);
+
+                const url = `/client/${$clientId}/name`;
+
+                fetch(url,{
+                    body: formData,
+                    method: 'POST'
+                });
+            }
+
+    </script>
+
 @endsection
+
+
