@@ -36,7 +36,7 @@ class ClientController extends Controller
     }
 
     /**
-     * Método responsável por adicionar um usuário no banco de dados.
+     * Metodo de requisicao para inserir novos clientes no DB
      * 
      * @param   \App\Http\Requests\ClientsFormRequest    $request
      * @return  \views\clients\create
@@ -48,7 +48,7 @@ class ClientController extends Controller
     }
 
     /**
-     * Método responsável por deletar um usuário do banco de dados.
+     * Metodo de requisicao para deletar cliente do DB
      * 
      * @param   \Illuminate\Http\Request    $request
      * @return  \Illuminate\Routing\RedirectController
@@ -59,8 +59,8 @@ class ClientController extends Controller
         return redirect()->route('list_clients'); 
     }
 
-     /**
-     * Recebe e armazena os contatos de um novo cliente 
+    /**
+     * Metodo de requisicao de uma lista de contatos[cliente]
      * 
      * @param   int $contactId
      * @return  \views\clients\create
@@ -68,28 +68,20 @@ class ClientController extends Controller
     public function clientContact(int $clientId)
     {
         $sectors = ClientModel::find($clientId)->contacts;
+        // $phones
+        //exit();
         return view('contacts.list',compact('sectors'));
     }
 
     /**
-     * Metodo e construção.
-     * Problema: o método aparentemente é chamado na rota   
+     * Metodo edita nome do membro na base de dados 
      * 
      * @param Illuminate\Http\Request $request
      */
-    public function clientEdit(Request $request){
+    public function clientEdit(int $id, Request $request)
+    {
 
-
-        // teste
-        echo (var_dump($request));
-        exit();
-        //return redirect()->route('list_members');
-        /*
-        $newName = $request->id;
-        $client = ClientModel::find($request->id);
-        $client->name = $newName;
-        $client->save();
-        */
+        $cliente = Client::editClient($id, $request);
     }
 
 

@@ -50,7 +50,7 @@ use Illuminate\Support\Facades\Route;
      * visualizar a tela pela preview da Network. Ou seja... REALMENTE ESTÁ SENDO ACESSADA.
      * [15/06/2020]
      */
-    Route::post('/client/{clientId}/name',  'ClientController@clientEdit');
+    Route::post('/client/{id}/editName',  'ClientController@clientEdit');
 
 // Index e gerenciamento de projeto(temporario) .
 Route::get('/manager','ManageProject@soFar');

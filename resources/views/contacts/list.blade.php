@@ -23,7 +23,10 @@
                 Setor de contato: {{$sector->sector}}
              <!-- Icones de cada cliente -->
                 <span class="d-flex">
-                  
+                    @foreach($sector->phones as $phone)
+
+                    Telefone = {{$phone->phone}}
+                    @endforeach()
             </li>
         @endforeach
     </ul>

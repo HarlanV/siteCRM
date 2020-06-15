@@ -4,7 +4,7 @@
 namespace App\Http\Staffs;
 
 use Illuminate\Http\Request;
-use App\Client as Client_model;
+use App\Client as ClientModel;
 use App\services\ClientCreator;
 use App\services\ClientDeleter;
 
@@ -19,7 +19,7 @@ class Client
      */
     public static function listClients(Request $request)
     {
-        $clients = Client_model::query()->orderBy('name')->get();
+        $clients = ClientModel::query()->orderBy('name')->get();
 
         $mensagem = $request->session()->get('mensagem');
 
@@ -60,5 +60,19 @@ class Client
 
         $request->session()->flash('mensagem',"O Cliente $deletedClient foi excluido com sucesso");
 
+    }
+
+    /**
+     * Metodo de edição de clientes
+     * 
+     * @param   \Illuminate\Http\request    $request
+     * @return  void
+     */
+    public static function editClient(int $id, Request $request){
+
+        $client = ClientModel::find($id);
+        $newName = $request->name;
+        $client->name = $newName;
+        $client->save();
     }
 }
