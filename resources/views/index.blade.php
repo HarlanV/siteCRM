@@ -2,12 +2,12 @@
 
 <!-- Cabeçalho a ser exibido no topo da pagina -->
 @section('cabecalho')
-PAGINA PRINCIPAL
+PAGINA PRINCIPAL 
 @endsection
 
 <!-- Texto descritivo abaixo do cabeçalho -->
 @section('cabecalho-descrit')
-Area de acesso principal aos gerenciamentos
+Area de acesso principal aos gerenciamentos.
 @endsection
 
 <!-- CONTEUDO PRINCIAL -->

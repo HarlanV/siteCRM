@@ -23,7 +23,8 @@ Area de cadastro de novos clientes na base de dados
     </div>
     @endif
 
-
+    <!-- BOTAO PARA VOLTAR -->
+    <a name="" id="" class="btn btn-dark mb-2" href="{{ route('list_clients') }}" role="button">RETORNAR</a>
     <!-- Formulario Simples para adicionar membro -->
     <form method="post">
         @csrf
@@ -44,7 +45,7 @@ Area de cadastro de novos clientes na base de dados
             </div>
 
         </div>
-        <button class="btn btn-primary mt-2">Adicionar</button>
+        <button class="btn btn-primary mt-2">SALVAR</button>
     </form>
 
     @endsection

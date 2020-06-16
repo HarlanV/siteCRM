@@ -11,7 +11,7 @@ Area genérica para cadastrar novos membros ou novos clientes.
 @endsection
 
 <!-- CONTEUDO PRINCIAL -->
-    @section('conteudo')
+@section('conteudo')
 <!-- Exibe erros capturados pelo $request->validate() -->
     @if ($errors->any())
     <div class="alert alert-danger">
@@ -22,7 +22,7 @@ Area genérica para cadastrar novos membros ou novos clientes.
         </ul>
     </div>
     @endif
-
+    <a name="" id="" class="btn btn-dark mb-2" href="{{ route('list_members') }}" role="button">RETORNAR</a>
     <!-- Formulario Simples para adicionar membro -->
     <form method="post">
         @csrf
@@ -30,7 +30,7 @@ Area genérica para cadastrar novos membros ou novos clientes.
             <label for="name" class="">Nome</label>
             <input type="text" class="form-control" name="name" id="name">
         </div>
-        <button class="btn btn-primary">Adicionar</button>
+        <button class="btn btn-primary">SALVAR</button>
     </form>
 
     @endsection

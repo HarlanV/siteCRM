@@ -25,8 +25,8 @@
     @endif
 
     <!-- Botão para adicionar -->
-    <a name="" id="" class="btn btn-dark mb-2" href="{{ route('form_create_client') }}" role="button">Adicionar</a>
-
+    <a name="" id="" class="btn btn-dark mb-2" href="{{ route('form_create_client') }}" role="button">ADICIONAR</a>
+    
     <!--  Impressão da lista de cliente  -->
     <ul class="list-group">
         @foreach($clients as $client)

@@ -68,9 +68,9 @@ class ClientController extends Controller
     public function clientContact(int $clientId)
     {
         $sectors = ClientModel::find($clientId)->contacts;
-        // $phones
-        //exit();
-        return view('contacts.list',compact('sectors'));
+        $name = ClientModel::find($clientId)->name;
+
+        return view('contacts.list',compact('sectors','name'));
     }
 
     /**
