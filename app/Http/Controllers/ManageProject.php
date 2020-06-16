@@ -8,6 +8,6 @@ use Illuminate\Http\Request;
 class ManageProject extends Controller
 {
     function soFar(){
-        echo view('membros.viewPM');    
+        echo view('viewPM');    
     }
 }

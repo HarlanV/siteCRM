@@ -2,16 +2,13 @@
 
 <!-- Cabeçalho a ser exibido no topo da pagina -->
 @section('cabecalho')
-
-    Dados cadastrais da empresa {{$name}}
-
+    Cliente: {{$name}}
 @endsection
 
 <!-- Texto descritivo abaixo do cabeçalho -->
 @section('cabecalho-descrit')
 
-    Dados cadastrais da empresa {{$name}}
-    Cadastro dos clientes desesjado
+    Dados de contato da empresa {{$name}}
 
 @endsection
 
