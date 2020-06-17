@@ -2,8 +2,8 @@
 namespace App\services;
 
 use App\Client;
-use App\ClientPhone;
 use App\ClientContact;
+use App\ClientSector;
 use Illuminate\Support\Facades\DB;
 
 class ClientDeleter
@@ -37,7 +37,7 @@ class ClientDeleter
      */
     protected function contactDelete($client): void
     {
-        $client->contacts->each(function (ClientContact $clientContact)
+        $client->contacts->each(function (ClientSector $clientContact)
         {
             $this->phoneDelete($clientContact);
 
@@ -53,9 +53,9 @@ class ClientDeleter
      */
     protected function phoneDelete($clientContact): void
     {
-        $clientContact->phones()->each(function (ClientPhone $clientPhone)
+        $clientContact->phones()->each(function (ClientContact $ClientContact)
         {
-            $clientPhone->delete();
+            $ClientContact->delete();
         });
     }
 

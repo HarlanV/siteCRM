@@ -17,8 +17,7 @@ class ContactController extends Controller
     public function index(int $clientId)
     {
 
-        $sectors = Client::find($clientId)->contacts;
-
+        $sectors = Client::find($clientId)->sectors;
         return view('contacts.list',compact('sectors'));
     }
 }

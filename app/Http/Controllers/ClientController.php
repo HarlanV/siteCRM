@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\ClientContact;
+use App\ClientRegister;
 use App\Http\Staffs\Client;
-use App\Http\Requests\ClientsFormRequest;
 use Illuminate\Http\Request;
 use App\Client as ClientModel;
+use App\Http\Requests\ClientsFormRequest;
 
 class ClientController extends Controller
 {    
@@ -32,7 +34,8 @@ class ClientController extends Controller
      */
     public function list()
     {
-        return view('clients.create');
+        $form = 'clients.create';
+        return view('clientForm',compact('form'));
     }
 
     /**
@@ -65,12 +68,12 @@ class ClientController extends Controller
      * @param   int $contactId
      * @return  \views\clients\create
      */
-    public function clientContact(int $clientId)
+    public function ClientRegister(int $clientId)
     {
-        $sectors = ClientModel::find($clientId)->contacts;
+        $register = ClientModel::find($clientId)->registers;
         $name = ClientModel::find($clientId)->name;
 
-        return view('contacts.list',compact('sectors','name'));
+        return view('contacts.list',compact('sectors','name','clientId'));
     }
 
     /**
@@ -78,11 +81,26 @@ class ClientController extends Controller
      * 
      * @param Illuminate\Http\Request $request
      */
-    public function clientEdit(int $id, Request $request)
+    public function clientEdit(int $id, int $id_register, Request $request)
     {
-
-        $cliente = Client::editClient($id, $request);
+        $cliente = Client::editClient($id, $id_register, $request);
     }
 
+    /**
+     * Metodo edita nome do membro na base de dados 
+     * 
+     * @param int $id
+     * @param int $id_register
+     * @param Illuminate\Http\Request $request
+     */
+    public function clientEditForm(int $id, int $id_register, Request $request)
+    {
+        $client = ClientModel::find($id);
 
+        $register = ClientRegister::find($id_register);
+        $contactId = ($sector->contacts[0]->id);
+        $contact = ClientContact::find($contactId);
+        $form = 'contacts.edit';
+        return view('clientForm',compact('client','sector','contact','form'));
+    }
 }

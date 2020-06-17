@@ -5,6 +5,8 @@ namespace App\Http\Staffs;
 
 use Illuminate\Http\Request;
 use App\Client as ClientModel;
+use App\ClientSector;
+use App\ClientContact;
 use App\services\ClientCreator;
 use App\services\ClientDeleter;
 
@@ -39,7 +41,7 @@ class Client
         $client = $clientCreator->clientCreate(
             $request->name,
             $request->sector,
-            $request->phone);
+            $request->contact);
 
         $request->session()->flash('mensagem',"Cliente {$client} e seus contatos inserido com sucesso");
     }
@@ -65,14 +67,33 @@ class Client
     /**
      * Metodo de edição de clientes
      * 
+     * @param   int    $request
+     * @param   int    $request
      * @param   \Illuminate\Http\request    $request
      * @return  void
      */
-    public static function editClient(int $id, Request $request){
+    public static function editClient(int $id, int $id_Sector, Request $request){
+
 
         $client = ClientModel::find($id);
-        $newName = $request->name;
-        $client->name = $newName;
-        $client->save();
+        $client->name = $request->name;
+
+        $Sector = ClientSector::find($id_Sector);
+        $Sector->sector = $request->sector;
+        
+        $newContacts = [$request->Contact,$request->secondaryContact];
+        $i=0;
+        ?><pre><?php
+        foreach ($Sector->Contacts as $Contact) {
+            $Contact->Contact = $newContacts[$i];
+            $i++;
+        }
+        
+        
+//        $ContactId = ($Sector->Contacts[0]->id);
+//        $Contact = ClientContact::find($ContactId);
+        //$newName = 
+        
+//        $client->save();
     }
 }

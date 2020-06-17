@@ -15,10 +15,12 @@ class CreateClientContactsTable extends Migration
     {
         Schema::create('client_contacts', function (Blueprint $table) {
             $table->id();
-            $table->string('sector');
-            $table->foreignId('client_id')
+            $table->string('phone');
+            $table->string('email');
+            $table->string('correspondent');
+            $table->foreignId('client_sector_id')
                 ->references('id')
-                ->on('clients');
+                ->on('client_sectors');
         });
     }
 

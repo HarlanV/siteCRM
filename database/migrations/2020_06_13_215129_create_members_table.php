@@ -21,6 +21,7 @@ class CreateMembersTable extends Migration
             $table->string('role');
             $table->string('primaryEmail');
             $table->string('secondaryEmail');
+            $table->string('sex');
         });
     }
 

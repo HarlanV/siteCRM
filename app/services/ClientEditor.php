@@ -4,7 +4,7 @@ namespace App\services;
 use App\Client;
 use Illuminate\Support\Facades\DB;
 
-class ClientCreator
+class ClientEditor
 {
     /**
      * Service de criação de clientes e contatos
@@ -12,15 +12,14 @@ class ClientCreator
      * @param   string      $name
      * @param   string      $sector
      * @param   string      $phone
-     * @param   string      $email
-     * @param   string      $correspondent
      * @return  App\Client  $client
      */
-    public function clientCreate($name, $sector, $phone, $email, $correspondent)
+    public function clientCreate($name, $sector, $phone)
     {
         DB::beginTransaction();
+            //[ok]
             $client= Client::create(['name'=>$name]);
-            $this->createSector($client, $sector, $phone,$email,$correspondent);
+            $this->createContacts($client, $sector, $phone);
             $client->save();
             $nameclient = $client->name;
         DB::commit();   
@@ -34,14 +33,12 @@ class ClientCreator
      * @param   \App\Client $client
      * @param   string      $sector
      * @param   string      $phone
-     * @param   string      $email
-     * @param   string      $correspondent
      * @return  void
      */
-    private function createSector($client, $sector, $phone, $email,$correspondent)
+    private function createContacts($client, $sector, $phone)
     {
-        $sector = $client->sectors()->create(['sector' =>$sector]);
-        $this->createContact($sector, $phone, $email, $correspondent);
+        $contact = $client->contacts()->create(['sector' =>$sector]);
+        $this->createPhone($contact, $phone);
     }
 
         /**
@@ -51,14 +48,9 @@ class ClientCreator
      * @param   string              $phone
      * @return  void
      */
-    private function createContact($sector,$phone,$email,$correspondent)
+    private function createPhone($contact,$phone)
     {
-        $telefone = $sector->contacts()->create([
-            'phone'=>$phone,
-            'email'=>$email,
-            'correspondent'=>$correspondent
-            ]);
-        
+        $telefone = $contact->phones()->create(['phone'=>$phone]);
     }
 
 }

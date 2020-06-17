@@ -3,19 +3,21 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\ClientContact;
+use App\ClientRegister;
 
 class Client extends Model
 {   
-    // Não adicionar data de criação ou ultima atuliação
     public $timestamps = false;
 
-    // Informa atributos que podem ser preenchidos por create ('nome','etc')
     protected $fillable = ['name'];
+    protected $attributes = [
+        'comment'=>'Cliente ainda não foi entrado em contato por não existir. Default',
+        'status'=>'em prospecção',
+    ];
     
     // Relacionamento 1:n com Contatos
-    public function contacts()
+    public function registers()
     {
-        return $this->hasMany(ClientContact::class);
+        return $this->hasMany(ClientRegister::class);
     }
 }

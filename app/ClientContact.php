@@ -2,27 +2,27 @@
 
 namespace App;
 
-use App\Client;
-use App\ClientPhone;
 use Illuminate\Database\Eloquent\Model;
+use App\ClientRegister;
 
 class ClientContact extends Model
 {
-    // Não adicionar data de criação ou ultima atuliação
-    public $timestamps = false;
+   
+   // Não adicionar data de criação ou ultima atuliação
+   public $timestamps = false;
 
-    // Informa atributos que podem ser preenchidos por create ('nome','etc')
-    protected $fillable = ['sector'];
+   // Informa atributos que podem ser preenchidos por create ('nome','etc')
+   protected $fillable = ['phone','email','correspondent'];
+   protected $attributes = [
+    'correspondent'=>'Setor Comercial',
+    'email'=>'clientecomercial@gmail.com'
+];
+   
 
-    // Relacionamento 1:n com Telefone
-    public function phones()
-    {
-        return $this->hasMany(ClientPhone::class);
-    }
+   // Relacionamento n:1 com Contato
+   public function sector()
+   {
+       return $this->belongsTo(ClientRegister::class);
+   }
 
-    // Rleacionamento n:1 com clientes
-    public function client()
-    {
-        return $this->belongsTo(Client::class);
-    }
 }
