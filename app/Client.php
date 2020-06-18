@@ -9,9 +9,8 @@ class Client extends Model
 {   
     public $timestamps = false;
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name','comment'];
     protected $attributes = [
-        'comment'=>'Cliente ainda não foi entrado em contato por não existir. Default',
         'status'=>'em prospecção',
     ];
     

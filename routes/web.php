@@ -21,29 +21,31 @@ use Illuminate\Support\Facades\Route;
 
 /** Route para Clientes */
 
-    // Listagem de clientes
+    // Exibe lista de clientes
     Route::get('/client','ClientController@clients')
     ->name('list_clients');
 
-    // Formulario para inserir clientes
-    Route::get('/client/create','ClientController@list')
+    // Inserir novos clientes - Formulario
+    Route::get('/client/create','ClientController@newClient')
     ->name('form_create_client');
 
-    // Persiste cliente
+    // Persiste cliente - POST RETURN
     Route::post('/client/create', 'ClientController@store');
     
-    // Apaga cliente
+    // Apaga cliente 
     Route::delete('/client/{id}', 'ClientController@destroy');
     
-    // Lista contatos do Cliente
-    Route::get('/client/{id}/contacts', 'ClientController@clientContact');
+    // Exibe lista de contatos do Cliente 
+    Route::get('/client/{id}/contacts', 'ClientController@clientRegister');
 
-    // Editar contatos do Cliente
+    // Edita contatos do Cliente - Formulario
     Route::get("/client/{id}/edit/{id_contact}", 'ClientController@clientEditForm');
+
+    // ESTA ROUTE ESTÁ EM CONSTRUÇÃO. Persiste alterações de clientes
+    Route::post("/client/{id}/edit/{id_contact}", 'ClientController@clientEditStore');
+
+    // ESTA ROUTE ESTÁ EM CONSTRUÇÃO. Route para inserir novos CONTATOS em determinado cliente
     Route::get("/client/{id}/addContact/", 'ClientController@addNewContact');
-    
-    // Route::post('/client/{id}/editName',  'ClientController@clientEdit');
-    // Route::get("/client/{id}/edit/{id_contact}", 'ClientController@clientEdit');
 
 // Index e gerenciamento de projeto(temporario) .
 Route::get('/manager','ManageProject@soFar');

@@ -5,7 +5,7 @@ namespace App\Http\Staffs;
 
 use Illuminate\Http\Request;
 use App\Client as ClientModel;
-use App\ClientSector;
+use App\ClientRegister;
 use App\ClientContact;
 use App\services\ClientCreator;
 use App\services\ClientDeleter;
@@ -16,8 +16,9 @@ class Client
 
     /**
      * Função responsável por criar lista de clientes
-     * @param   $App\Http\Requests\ClientsFormRequest
-     * @return  $view [editar]
+     * 
+     * @param   \Illuminate\Http\request $request
+     * @return  void
      */
     public static function listClients(Request $request)
     {
@@ -38,10 +39,7 @@ class Client
     {
         $clientCreator = new ClientCreator;
         
-        $client = $clientCreator->clientCreate(
-            $request->name,
-            $request->sector,
-            $request->contact);
+        $client = $clientCreator->clientCreate($request);
 
         $request->session()->flash('mensagem',"Cliente {$client} e seus contatos inserido com sucesso");
     }
@@ -65,32 +63,34 @@ class Client
     }
 
     /**
-     * Metodo de edição de clientes
+     * Metodo de edição de clientes. Imcompleto ainda
      * 
      * @param   int    $request
      * @param   int    $request
      * @param   \Illuminate\Http\request    $request
      * @return  void
      */
-    public static function editClient(int $id, int $id_Sector, Request $request){
+    public static function editClient(int $id, int $id_Register, Request $request){
 
+        echo "Staffs->Client->editClient. Metodo incompleto";
+        exit();
 
         $client = ClientModel::find($id);
         $client->name = $request->name;
 
-        $Sector = ClientSector::find($id_Sector);
-        $Sector->sector = $request->sector;
+        $Register = ClientRegister::find($id_Register);
+        $Register->Register = $request->Register;
         
         $newContacts = [$request->Contact,$request->secondaryContact];
         $i=0;
         ?><pre><?php
-        foreach ($Sector->Contacts as $Contact) {
+        foreach ($Register->Contacts as $Contact) {
             $Contact->Contact = $newContacts[$i];
             $i++;
         }
         
         
-//        $ContactId = ($Sector->Contacts[0]->id);
+//        $ContactId = ($Register->Contacts[0]->id);
 //        $Contact = ClientContact::find($ContactId);
         //$newName = 
         

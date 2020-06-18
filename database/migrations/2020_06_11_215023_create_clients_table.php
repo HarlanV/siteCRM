@@ -16,8 +16,9 @@ class CreateClientsTable extends Migration
         Schema::create('clients', function (Blueprint $table) { 
             $table->id();
             $table->string('name');
-            $table->string('comment');
-            $table->string('status');
+            // adicionar depois a area de atuação
+            $table->string('comment')->nullable();
+            $table->string('status')->nullable();
         });
     }
 

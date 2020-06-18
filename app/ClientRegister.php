@@ -8,7 +8,7 @@ use App\ClientContact;
 use Illuminate\Database\Eloquent\Model;
 
 
-class ClientSector extends Model
+class ClientRegister extends Model
 {
     public $timestamps = false;
 

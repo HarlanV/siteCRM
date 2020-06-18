@@ -5,10 +5,9 @@
   <i class="fas fa-arrow-circle-left"></i>
 </a>
 @endsection
-
 <!-- Cabeçalho a ser exibido no topo da pagina -->
 @section('cabecalho')
-    Edição Cliente: {{$client->name ??''}}
+    Edição dados de cliente: {{$client->name ??''}}
 @endsection
 
 <!-- Texto descritivo abaixo do cabeçalho -->
@@ -18,11 +17,10 @@
 
 @endsection
 
-<!-- CCONTEUDO PRINCIAL -->
+<!-- CONTEUDO PRINCIAL -->
 @section('conteudo')
 
 <!-- Botão para adicionar -->
-
   <!-- Formulario Simples para adicionar membro -->  
   @yield('formClient')
 

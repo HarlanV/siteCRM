@@ -32,10 +32,14 @@ class ClientController extends Controller
      * @param   null
      * @return  views\clients\create
      */
-    public function list()
+    public function newClient()
     {
+        
         $form = 'clients.create';
-        return view('clientForm',compact('form'));
+        //return view('clientForm',compact('form'));
+        $viewOnly=false;
+        return view('clients.clientSection',compact('form','viewOnly'));
+        
     }
 
     /**
@@ -65,21 +69,26 @@ class ClientController extends Controller
     /**
      * Metodo de requisicao de uma lista de contatos[cliente]
      * 
-     * @param   int $contactId
+     * @param   int $clientId
      * @return  \views\clients\create
      */
-    public function ClientRegister(int $clientId)
+    public function clientRegister(int $clientId)
     {
-        $register = ClientModel::find($clientId)->registers;
+        $registers = ClientModel::find($clientId)->registers;
+        //        $registers = ClientModel::find($clientId)->registers;
+       // $contacts = ClientModel::find($clientId)->register->contacts;
         $name = ClientModel::find($clientId)->name;
 
-        return view('contacts.list',compact('sectors','name','clientId'));
+        return view('clients.listClients',compact('registers','name','clientId'));
+//        return view('clients.listClients',compact('registers','name','clientId','contacts'));
     }
 
     /**
      * Metodo edita nome do membro na base de dados 
-     * 
+     * @param int $id
+     * @param int $id_register
      * @param Illuminate\Http\Request $request
+     * @return void
      */
     public function clientEdit(int $id, int $id_register, Request $request)
     {
@@ -87,7 +96,9 @@ class ClientController extends Controller
     }
 
     /**
-     * Metodo edita nome do membro na base de dados 
+     * Metodo retorna o formulario preenchido para ser alterado [Pendente!]
+     * Será editado ainda devido a reformulação do BD. Funcionando até 18/06
+     * 
      * 
      * @param int $id
      * @param int $id_register
@@ -96,11 +107,21 @@ class ClientController extends Controller
     public function clientEditForm(int $id, int $id_register, Request $request)
     {
         $client = ClientModel::find($id);
-
         $register = ClientRegister::find($id_register);
-        $contactId = ($sector->contacts[0]->id);
-        $contact = ClientContact::find($contactId);
-        $form = 'contacts.edit';
-        return view('clientForm',compact('client','sector','contact','form'));
+        $contacts = $register->contacts;
+        // Nome do contato  = ($contact)->correspondent
+        
+
+//        $contactId = ($register->contacts[1]->id);
+//       $contact = ClientContact::find($contactId);
+
+       
+        $viewOnly = true;
+
+
+        $form = 'clients.edit';
+        $contactsCounts = $register->contacts->count();
+        //return view('clients.clientSection',compact('client','register','contact','form','contactsCounts','viewOnly'));
+        return view('clients.clientSection',compact('client','register','contacts','form','contactsCounts','viewOnly'));
     }
 }

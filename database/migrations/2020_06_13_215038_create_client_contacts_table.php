@@ -18,9 +18,9 @@ class CreateClientContactsTable extends Migration
             $table->string('phone');
             $table->string('email');
             $table->string('correspondent');
-            $table->foreignId('client_sector_id')
+            $table->foreignId('client_register_id')
                 ->references('id')
-                ->on('client_sectors');
+                ->on('client_registers');
         });
     }
 
