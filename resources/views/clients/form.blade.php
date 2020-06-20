@@ -12,16 +12,24 @@
                         <input type="text" class="form-control" name="name" id="nome" value="{{$client->name ??''}}">
                         </div>
         
-                        <!-- Nome do Setor -->
+                        <!-- Area de atuação -->
                         <div class="form-group col-md-5">
-                            <label for="sector">Setor de atuação</label>
-                            <input type="text" class="form-control" name="sector" id="sector" value="{{$register->sector ??''}}">
+                            <label for="market">Area(s) de atuação</label>
+                            <input type="text" class="form-control" name="market" id="market" value="{{$client->market ??''}}">
                         </div>
                     </div>
                 </div>
 
             <!-- CONTAINER DE REPETIÇÃO  --> 
+            
             <div class="container-fluid" id= "contactContainer" style="border:1px solid #cecece;">
+                <div class="d-flex justify-content-around">
+                    <div class="form-group col-md-5">
+                        <label for="sector">Setor de Contato</label>
+                        <input type="text" class="form-control" name="sector" id="sector" value="{{$register->sector ??''}}">
+                    </div>
+                </div>
+
                     @yield('formcontact')
             </div>
                 <input type="button"  {{$addClient ??''}} value="+" onClick="addInput('contactContainer');">

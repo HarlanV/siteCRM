@@ -6,6 +6,8 @@
 <form method="POST">
 
     <?php
+
+
         if (empty($contactsCounts)){
         $contactsCounts=1;
     }
@@ -16,6 +18,7 @@
         $emailVal = 'email'.$it;
         $phoneVal = 'phone'.$it;
         $emailVal = 'email'.$it;
+        $sectorVal= 'sector'.$it;
         $bestHourVal = 'bestHour'.$it;
 
     ?>
@@ -23,10 +26,11 @@
     <div id="contactData">
         
         <div class="form-row">
+
             <!-- Nome do Contato  -->
             <div class="form-group col-md-5">
-            <label for="{{$correspondentVal}}" >Nome do contato</label>
-            <input type="text" class="form-control" name="{{$correspondentVal}}" id="{{$correspondentVal}}" value="{{$register->contacts[$it]->correspondent ??''}}">
+            <label for="{{$correspondentVal}}" >Nome do correpondente</label>
+            <input type="text" class="form-control" name="{{$correspondentVal}}" id="{{$correspondentVal}}" value="{{$register->clientContacts[$it]->correspondent ??''}}">
             </div>
         </div>
         
@@ -34,11 +38,12 @@
             <!-- Telefone -->
             <div class="form-group col-md-5">
                 <label for="{{$phoneVal}}"> Telefone : </label>                                                       
-                <input type="text" class="form-control" name="{{$phoneVal}}" id="{{$phoneVal}}" value="{{$register->contacts[$it]->phone ??''}}">
+                <input type="text" class="form-control" name="{{$phoneVal}}" id="{{$phoneVal}}" value="{{$register->clientContacts[$it]->phone ??''}}">
             </div>
 
             <!-- Melhor periodo de contato -->
-            <!-- AINDA NÃO PREENCHIDO COM VALOR CORRETO [pendente!] -->
+            <!-- AINDA NÃO Auto-PREENCHIDO COM VALOR CORRETO [pendente!] -->
+            <!-- IDEIA: Mudar para checkbox -->
             <div class="form-group col-md-2">
                 <label for="{{$bestHourVal}}">Melhor horario</label>
                 <select id="{{$bestHourVal}}" class="form-control" name="{{$emailVal}}">
@@ -51,7 +56,7 @@
             <!-- Email -->
             <div class="form-group col-md-5">
                 <label for="{{$emailVal}}">E-mail:</label>
-                <input type="email" class="form-control" id="{{$emailVal}}" value="{{$register->contacts[$it]->email ??''}}" name="{{$emailVal}}">
+                <input type="email" class="form-control" id="{{$emailVal}}" value="{{$register->clientContacts[$it]->email ??''}}" name="{{$emailVal}}">
             </div>
         </div>
     </div>

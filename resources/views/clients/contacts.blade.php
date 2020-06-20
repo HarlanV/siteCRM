@@ -23,8 +23,8 @@
 <ul class="list-group">
     <li class="d-flex justify-content-end align-items-center">
         
-        <a name="b2" id="b2" class="btn btn-warning mt-2" href="/">
-            Relatorio
+        <a name="b2" id="b2" class="btn btn-warning mt-2" href="#">
+            Relatorio [desativado]
         </a>
     </li>
     
@@ -56,6 +56,6 @@
             </li>
         @endforeach
     </ul>
-    <a name="" id="" class="btn btn-dark mt-2" href="" role="button">Adicionar novo contato</a>
+    <a name="" id="" class="btn btn-dark mt-2" href="#" role="button">Adicionar novo contato [desativado]</a>
 
 @endsection

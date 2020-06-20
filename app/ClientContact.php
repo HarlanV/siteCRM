@@ -20,7 +20,7 @@ class ClientContact extends Model
    
 
    // Relacionamento n:1 com Contato
-   public function sector()
+   public function clientRegister()
    {
        return $this->belongsTo(ClientRegister::class);
    }

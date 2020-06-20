@@ -16,10 +16,12 @@ class CreateClientsTable extends Migration
         Schema::create('clients', function (Blueprint $table) { 
             $table->id();
             $table->string('name');
-            // adicionar depois a area de atuação
+            $table->string('market');
             $table->string('comment')->nullable();
             $table->string('status')->nullable();
         });
+
+        
     }
 
     /**

@@ -15,8 +15,10 @@ class ClientCreator
      */
     public function clientCreate(Request $request)
     {
-
-
+    $name=$request->name;
+    $comment = $request->comment;
+    $status = $request->status;
+    $market = $request->market;
     $sector = $request->sector;
     $state =$request->state;
     $city =$request->city;
@@ -39,10 +41,10 @@ class ClientCreator
 
         DB::beginTransaction();
             $client= Client::create([
-                'name'=>$request->name,
-                'comment'=>$request->comment,
-                'status'=>$request->status,
-                'market'=>$request->market
+                'name'=>$name,
+                'comment'=>$comment,
+                'status'=>$status,
+                'market'=>$market
                 ]);
 
             $this->createSector($client, $sector, $phone,$email,$correspondent, $state, $city, $adress,$counter);
@@ -75,13 +77,13 @@ class ClientCreator
         
 
 
-        $register = $client->clientRegisters()->create([
+        $register = $client->registers()->create([
             'sector' => $sector,
             'state' => $state,
             'city' => $city,
             'adress'=> $adress,
             ]);
-;
+
         $this->createContact($register, $phone, $email, $correspondent, $counter);
 
     }
@@ -97,7 +99,7 @@ class ClientCreator
     {
         $it = 0;
         while($it <= $counter){
-            $register->clientContacts()->create([
+            $register->contacts()->create([
                 'phone'=>$phone[$it],
                 'email'=>$email[$it],
                 'correspondent'=>$correspondent[$it],

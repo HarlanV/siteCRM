@@ -3,10 +3,11 @@
 
 namespace App\Http\Staffs;
 
+use App\ClientContact;
+use App\ClientRegister;
 use Illuminate\Http\Request;
 use App\Client as ClientModel;
-use App\ClientRegister;
-use App\ClientContact;
+use App\services\ClientEditor;
 use App\services\ClientCreator;
 use App\services\ClientDeleter;
 
@@ -72,28 +73,8 @@ class Client
      */
     public static function editClient(int $id, int $id_Register, Request $request){
 
-        echo "Staffs->Client->editClient. Metodo incompleto";
-        exit();
-
-        $client = ClientModel::find($id);
-        $client->name = $request->name;
-
-        $Register = ClientRegister::find($id_Register);
-        $Register->Register = $request->Register;
-        
-        $newContacts = [$request->Contact,$request->secondaryContact];
-        $i=0;
-        ?><pre><?php
-        foreach ($Register->Contacts as $Contact) {
-            $Contact->Contact = $newContacts[$i];
-            $i++;
-        }
-        
-        
-//        $ContactId = ($Register->Contacts[0]->id);
-//        $Contact = ClientContact::find($ContactId);
-        //$newName = 
-        
-//        $client->save();
+        $clientEditor = new ClientEditor;
+        $newClient = $clientEditor->clientEdite($id,$id_Register, $request);
+        $request->session()->flash('mensagem',"O Cliente $newClient foi excluido com sucesso");   
     }
 }

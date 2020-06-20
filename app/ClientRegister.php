@@ -14,7 +14,7 @@ class ClientRegister extends Model
 
     protected $fillable = ['sector','state','city','adress'];
 
-    public function contacts()
+    public function clientContacts()
     {
         return $this->hasMany(ClientContact::class);
     }

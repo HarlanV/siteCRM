@@ -20,6 +20,7 @@ class ContactCreator
     {
         
         DB::beginTransaction();
+        
         $contact = $client->contacts()->create(['sector' =>$sector]);
         $this->createPhone($contact, $phone);
         DB::commit();

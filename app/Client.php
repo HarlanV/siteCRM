@@ -9,13 +9,14 @@ class Client extends Model
 {   
     public $timestamps = false;
 
-    protected $fillable = ['name','comment'];
+    protected $fillable = ['name','comment','market'];
     protected $attributes = [
+
         'status'=>'em prospecção',
     ];
     
     // Relacionamento 1:n com Contatos
-    public function registers()
+    public function clientRegisters()
     {
         return $this->hasMany(ClientRegister::class);
     }

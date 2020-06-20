@@ -36,13 +36,14 @@ use Illuminate\Support\Facades\Route;
     Route::delete('/client/{id}', 'ClientController@destroy');
     
     // Exibe lista de contatos do Cliente 
-    Route::get('/client/{id}/contacts', 'ClientController@clientRegister');
+    Route::get('/client/{id}/contacts', 'ClientController@clientRegister')
+    ->name('list_contacts');
 
     // Edita contatos do Cliente - Formulario
     Route::get("/client/{id}/edit/{id_contact}", 'ClientController@clientEditForm');
 
     // ESTA ROUTE ESTÁ EM CONSTRUÇÃO. Persiste alterações de clientes
-    Route::post("/client/{id}/edit/{id_contact}", 'ClientController@clientEditStore');
+    Route::post("/client/{id}/edit/{id_contact}", 'ClientController@clientEdit');
 
     // ESTA ROUTE ESTÁ EM CONSTRUÇÃO. Route para inserir novos CONTATOS em determinado cliente
     Route::get("/client/{id}/addContact/", 'ClientController@addNewContact');
