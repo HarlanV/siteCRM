@@ -16,9 +16,9 @@ class CreateClientRegistersTable extends Migration
         Schema::create('client_registers', function (Blueprint $table) {
             $table->id();
             $table->string('sector');
-            $table->string('state');
-            $table->string('city');
-            $table->string('adress');
+            $table->string('state')->nullable();
+            $table->string('city')->nullable();
+            $table->string('adress')->nullable();
             $table->foreignId('client_id')
                 ->references('id')
                 ->on('clients');

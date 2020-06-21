@@ -12,7 +12,7 @@ class ClientRegister extends Model
 {
     public $timestamps = false;
 
-    protected $fillable = ['sector','state','city','adress'];
+    protected $fillable = ['sector','state','city','adress'];    
 
     public function clientContacts()
     {

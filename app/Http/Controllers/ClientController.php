@@ -7,7 +7,6 @@ use App\Http\Staffs\Client;
 use Illuminate\Http\Request;
 use App\Client as ClientModel;
 use App\Http\Requests\ClientsFormRequest;
-use App\services\ClientEditor;
 
 class ClientController extends Controller
 {    
@@ -34,12 +33,9 @@ class ClientController extends Controller
      */
     public function newClient()
     {
-        
         $form = 'clients.create';
-        //return view('clientForm',compact('form'));
         $viewOnly=false;
-        return view('clients.clientSection',compact('form','viewOnly'));
-        
+        return view('clients.clientSection',compact('form','viewOnly'));   
     }
 
     /**
@@ -49,8 +45,7 @@ class ClientController extends Controller
      * @return  \Illuminate\View\View
      */
     public function store(ClientsFormRequest $request)
-    {
-        
+    { 
         Client::storeClient($request);      
         return redirect()->route('list_clients');
     }
@@ -68,7 +63,7 @@ class ClientController extends Controller
     }
 
     /**
-     * Metodo de requisicao de uma lista de contatos[cliente]
+     * Metodo de requisicao de uma lista de contatos por setor
      * 
      * @param   int $clientId
      * @return  \Illuminate\View\View
@@ -83,7 +78,8 @@ class ClientController extends Controller
     }
 
     /**
-     * Metodo edita os dados do cliente na base de dados 
+     * Edita/Corrige dados de clientes ja armazenados
+     * 
      * @param int $id
      * @param int $id_register
      * @param Illuminate\Http\Request $request
@@ -92,7 +88,6 @@ class ClientController extends Controller
     public function clientEdit(int $id, int $id_register, ClientsFormRequest $request)
     {
       
-        $client = ClientModel::find($id);
         Client::editClient($id, $id_register, $request);
         return redirect()->route('list_contacts', array('id'=>$id)); 
     }
@@ -123,8 +118,5 @@ class ClientController extends Controller
         $contactsCounts = $contacts->count();
         return view('clients.clientSection',compact('client','register','contacts','form','contactsCounts','viewOnly'));
     }
-
-
-    
 
 }

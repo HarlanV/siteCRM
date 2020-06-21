@@ -16,9 +16,22 @@ class CreateClientsTable extends Migration
         Schema::create('clients', function (Blueprint $table) { 
             $table->id();
             $table->string('name');
-            $table->string('market');
+            $table->string('market')->nullable();
             $table->string('comment')->nullable();
-            $table->string('status')->nullable();
+            $table->string('status');
+            $table->boolean('prospect');
+            $table->integer('contactTimes');
+            /* 
+            1- Status vai para o funil de vendas, o prospect e interger
+            vai para o relatorio.
+            2 - Prealocar valores de status para facilitar
+            realatorio
+            3 - Verificar a criação de nova migration para uma tabela 
+            especifica para os relatorios de prospecção. A tabela deve
+            se comunicar com membros e clientes. Conhecimento pendente"
+            */
+
+
         });
 
         

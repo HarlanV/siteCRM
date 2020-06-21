@@ -15,9 +15,9 @@ class CreateClientContactsTable extends Migration
     {
         Schema::create('client_contacts', function (Blueprint $table) {
             $table->id();
-            $table->string('phone');
-            $table->string('email');
-            $table->string('correspondent');
+            $table->string('phone')->nullable();
+            $table->string('email')->nullable();
+            $table->string('correspondent')->nullable();
             $table->foreignId('client_register_id')
                 ->references('id')
                 ->on('client_registers');

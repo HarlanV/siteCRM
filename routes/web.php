@@ -2,8 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-/** Routes para Membros */
-
+// Routes para Membros
     // Listagem de membros
     Route::get('/member','MemberController@members')
     ->name('list_members');
@@ -19,7 +18,7 @@ use Illuminate\Support\Facades\Route;
     Route::delete('/member/{id}', 'MemberController@destroy');
 
 
-/** Route para Clientes */
+// Routes para Clientes 
 
     // Exibe lista de clientes
     Route::get('/client','ClientController@clients')
@@ -42,8 +41,11 @@ use Illuminate\Support\Facades\Route;
     // Edita contatos do Cliente - Formulario
     Route::get("/client/{id}/edit/{id_contact}", 'ClientController@clientEditForm');
 
-    // ESTA ROUTE ESTÁ EM CONSTRUÇÃO. Persiste alterações de clientes
+    // Persiste alterações de clientes
     Route::post("/client/{id}/edit/{id_contact}", 'ClientController@clientEdit');
+
+
+// Routes em contrução
 
     // ESTA ROUTE ESTÁ EM CONSTRUÇÃO. Route para inserir novos CONTATOS em determinado cliente
     Route::get("/client/{id}/addContact/", 'ClientController@addNewContact');

@@ -15,12 +15,8 @@ class Member
      */
     public static function listMembers(Request $request)
     {
-
         $members = Member_model::query()->orderBy('name')->get();
-        // Mensagem: "membro __ adicionado com sucesso"
         $mensagem = $request->session()->get('mensagem');
-        // retorna lista//
-
         echo view('members.members', compact('members','mensagem'));
     }
 
@@ -33,7 +29,6 @@ class Member
     {
         $membro= Member_model::create( $request->all());
         $membro->save();
-        // mensagem de confirmação. Iniciando seção.
         $request->session()->flash('mensagem',"Membro {$membro->name} inserido com sucesso");
     }
 

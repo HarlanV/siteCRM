@@ -20,9 +20,7 @@ class ClientDeleter
             
             $client = Client::find($clientId);
             $name = $client->name;
-
             $this->registerDelete($client);
-
             $client->delete();
         DB::commit();
 
@@ -37,7 +35,7 @@ class ClientDeleter
      */
     protected function registerDelete($client): void
     {
-        $client->registers->each(function (ClientRegister $clientRegister)
+        $client->clientRegisters->each(function (ClientRegister $clientRegister)
         {
             $this->contactDelete($clientRegister);
 
@@ -53,11 +51,9 @@ class ClientDeleter
      */
     protected function contactDelete($clientRegister): void
     {
-        $clientRegister->contacts()->each(function (ClientContact $ClientContact)
+        $clientRegister->clientContacts->each(function (ClientContact $ClientContact)
         {
             $ClientContact->delete();
         });
     }
-
-
 }

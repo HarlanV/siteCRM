@@ -1,10 +1,7 @@
 <?php
 
-
 namespace App\Http\Staffs;
 
-use App\ClientContact;
-use App\ClientRegister;
 use Illuminate\Http\Request;
 use App\Client as ClientModel;
 use App\services\ClientEditor;
@@ -13,10 +10,9 @@ use App\services\ClientDeleter;
 
 class Client
 {
-// Methods
 
     /**
-     * Função responsável por criar lista de clientes
+     * Função para criar lista de clientes
      * 
      * @param   \Illuminate\Http\request $request
      * @return  void
@@ -39,9 +35,7 @@ class Client
     public static function storeClient(Request $request)
     {
         $clientCreator = new ClientCreator;
-        
         $client = $clientCreator->clientCreate($request);
-
         $request->session()->flash('mensagem',"Cliente {$client} e seus contatos inserido com sucesso");
     }
 
@@ -51,27 +45,25 @@ class Client
      * @param   \Illuminate\Http\request    $request
      * @return  void
      */
-    public static function deleteClient(Request $request){
-
+    public static function deleteClient(Request $request)
+    {
         $deleter = new ClientDeleter;
-
         $clientId = $request->id;
-
         $deletedClient = $deleter->clientDelete($clientId);
-
         $request->session()->flash('mensagem',"O Cliente $deletedClient foi excluido com sucesso");
 
     }
 
     /**
-     * Metodo de edição de clientes. Imcompleto ainda
+     * Metodo para realizar a edição de clientes
      * 
      * @param   int    $request
      * @param   int    $request
      * @param   \Illuminate\Http\request    $request
      * @return  void
      */
-    public static function editClient(int $id, int $id_Register, Request $request){
+    public static function editClient(int $id, int $id_Register, Request $request)
+    {
 
         $clientEditor = new ClientEditor;
         $newClient = $clientEditor->clientEdite($id,$id_Register, $request);

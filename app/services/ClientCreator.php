@@ -15,28 +15,7 @@ class ClientCreator
      */
     public function clientCreate(Request $request)
     {
-
-
-    $sector = $request->sector;
-    $state =$request->state;
-    $city =$request->city;
-    $adress =$request->adress;
     $counter =(int) $request->contador;
-    $phone=[];
-    $email=[];
-    $correspondent=[];
-    $it = 0;
-
-    while($it < ($counter+1) ){
-        $phoneName='phone'.($it);
-        $emailName='email'.($it);
-        $coorepName='correspondent'.($it);
-        $phone[$it]= $request->{$phoneName};
-        $email[$it]=$request->{$emailName};
-        $correspondent[$it]=$request->{$coorepName};
-        $it++;
-    } 
-
         DB::beginTransaction();
             $client= Client::create([
                 'name'=>$request->name,
@@ -45,10 +24,8 @@ class ClientCreator
                 'market'=>$request->market
                 ]);
 
-            $this->createSector($client, $sector, $phone,$email,$correspondent, $state, $city, $adress,$counter);
-
+            $this->createRegister($client, $request,$counter);
             $client->save();
-
             $nameclient = $client->name;
         DB::commit();   
         
@@ -58,51 +35,38 @@ class ClientCreator
     /**
      * Service de criação de clientes e contatos
      * 
-     * @param   \App\Client $client
-     * @param   string      $sector
-     * @param   string      $phone
-     * @param   string      $email
-     * @param   string      $correspondent
-     * @param   string      $state
-     * @param   string      $city
-     * @param   string      $adress
+     * @param   \App\Client                 $client
+     * @param   \Illuminate\Http\Request    $request
+     * @param   int                         $counter
      * @return  void
      */
-    private function createSector($client, $sector, $phone,$email,$correspondent, $state, $city, $adress, $counter)
+    private function createRegister($client, $request, $counter)
     {
-        //$client, $sector, $state, $city, $adress, $phone, $email, $correspondent
-
-        
-
-
         $register = $client->clientRegisters()->create([
-            'sector' => $sector,
-            'state' => $state,
-            'city' => $city,
-            'adress'=> $adress,
-            ]);
-;
-        $this->createContact($register, $phone, $email, $correspondent, $counter);
-
+            'sector' => $request->sector,
+            'state' => $request->state,
+            'city' => $request->city,
+            'adress'=> $request->adress,
+        ]);
+        $this->createContact($request, $counter,$register);
     }
 
     /**
      * Service de criação de clientes e contatos
      * 
-     * @param   \App\ClientContact  $name
-     * @param   string              $phone
+     * @param   \Illuminate\Http\Request    $request
+     * @param   int                         $counter
+     * @param   \App\ClientRegister         $register
      * @return  void
      */
-    private function createContact($register,$phone,$email,$correspondent, $counter)
+    private function createContact($request, $counter, $register)
     {
         $it = 0;
         while($it <= $counter){
             $register->clientContacts()->create([
-                'phone'=>$phone[$it],
-                'email'=>$email[$it],
-                'correspondent'=>$correspondent[$it],
-                
-            
+                'phone'=>$request->{'phone'.($it)},
+                'email'=>$request->{'email'.($it)},
+                'correspondent'=>$request->{'correspondent'.($it)},           
             ]);   
             $it++;
         }  
