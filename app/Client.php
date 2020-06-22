@@ -18,7 +18,12 @@ class Client extends Model
         'prospect'=>false
     ];
     
-    // Relacionamento 1:n com Registros
+    /**
+    * Metodo de relacionamento 1:n com registro
+    *  
+    * @param    null
+    * @return   \App\ClientRegister
+    */
     public function clientRegisters()
     {
         return $this->hasMany(ClientRegister::class);

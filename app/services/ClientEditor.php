@@ -47,7 +47,7 @@ class ClientEditor
         $register->city = $request->city;
         $register->adress= $request->adress;
         $register->save();         
-        $this->editContact($id,$request,$id_Register);
+        $this->editContact($id, $id_Register, $request);
     }
 
     /**
@@ -55,9 +55,10 @@ class ClientEditor
      * 
      * @param   int                      $id
      * @param   \Illuminate\Http\Request $request
+     * @param   int $id_Register
      * @return  void
      */
-    private function editContact($id,$request,$id_Register)
+    private function editContact($id, $id_Register, $request)
     {
         $registers =Client::find($id)->clientRegisters;
         $register = $registers->find($id_Register);

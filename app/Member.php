@@ -20,7 +20,12 @@ class Member extends Model
         'secondaryEmail'=>''
     ];
  
-    // Relacionamento 1:n com Telefone
+    /**
+    * Metodo de relacionamento 1:n com registro
+    *  
+    * @param    null
+    * @return   \App\MemberPhone
+    */
     public function phones()
     {
         return $this->hasMany(MemberPhone::class);

@@ -72,13 +72,18 @@ class Client
         $request->session()->flash('mensagem',"O Cliente $newClient foi excluido com sucesso");   
     }
 
-    
+    /**
+     * Função para criar lista de clientes
+     * 
+     * @param   int $id
+     * @param   \Illuminate\Http\request $request
+     * @return  void
+     */
     public static function storeRegister(int $id, Request $request)
     {
         $registerCreator = new RegisterCreator;
         $client = $registerCreator->createRegister($id, $request);
         $request->session()->flash('mensagem',"Cliente {$client} e seus contatos inserido com sucesso");
-
     }
 
     

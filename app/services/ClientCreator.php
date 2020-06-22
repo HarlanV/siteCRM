@@ -11,7 +11,7 @@ class ClientCreator
      * Service de criação de clientes e contatos
      * 
      * @param   Illuminate\Http\Request $request
-     * @return  App\Client              $client
+     * @return  string  $nameclient
      */
     public function clientCreate(Request $request)
     {

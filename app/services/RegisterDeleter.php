@@ -33,7 +33,7 @@ class RegisterDeleter
      * @param   \App\ClientRegister  $client
      * @return  void
      */
-    protected function contactDelete($clientRegister): void
+    protected function contactDelete($clientRegister)
     {
         $clientRegister->clientContacts->each(function (ClientContact $ClientContact)
         {

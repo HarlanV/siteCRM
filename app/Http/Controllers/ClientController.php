@@ -14,6 +14,7 @@ class ClientController extends Controller
      * Método exibe lista de clientes cadastrados
      * 
      * @param   \Illuminate\Http\Request    $request
+     * @return  void
      */
     function clients(Request $request)
     {   
@@ -42,7 +43,7 @@ class ClientController extends Controller
      * Metodo de requisicao para inserir novos clientes no DB
      * 
      * @param   \App\Http\Requests\ClientsFormRequest    $request
-     * @return  \Illuminate\View\View
+     * @return  \Illuminate\Http\RedirectResponse
      */
     public function store(ClientsFormRequest $request)
     { 
@@ -80,10 +81,10 @@ class ClientController extends Controller
     /**
      * Edita/Corrige dados de clientes ja armazenados
      * 
-     * @param int $id
-     * @param int $id_register
-     * @param Illuminate\Http\Request $request
-     * @return void
+     * @param   int $id
+     * @param   int $id_register
+     * @param   \Illuminate\Http\Request $request
+     * @return  \Illuminate\Http\RedirectResponse
      */
     public function clientEdit(int $id, int $id_register, ClientsFormRequest $request)
     {
@@ -94,14 +95,12 @@ class ClientController extends Controller
     }
 
     /**
-     * Metodo retorna o formulario preenchido para ser alterado [Pendente!]
-     * Será editado ainda devido a reformulação do BD. Funcionando até18/06
+     * Metodo retorna o formulario preenchido para ser alterado
      * 
-     * 
-     * @param int $id
-     * @param int $id_register
-     * @param Illuminate\Http\Request $request
-     * @return \Illuminate\View\View
+     * @param   int $id
+     * @param   int $id_register
+     * @param   \Illuminate\Http\Request $request
+     * @return  \Illuminate\View\View
      */
     public function clientEditForm(int $id, int $id_register, Request $request)
     {
@@ -119,6 +118,14 @@ class ClientController extends Controller
         $contactsCounts = $contacts->count();
         return view('clients.clientSection',compact('client','register','contacts','form','contactsCounts','viewOnly'));
     }
+
+    /**
+     * Metodo retorna formulario pronto para novo Registro
+     * 
+     * @param   int $id
+     * @param   \Illuminate\Http\Request $request
+     * @return  \Illuminate\View\View
+     */
     public function newRegisterForm(int $id, Request $request)
     {
         $client = ClientModel::find($id);
@@ -127,6 +134,13 @@ class ClientController extends Controller
         return view('registers.registerForm',compact('client','form','viewOnly'));
     }
 
+    /**
+     * Metodo para persistencia de novo registro em DB
+     * 
+     * @param   int $id
+     * @param   \Illuminate\Http\Request $request
+     * @return  \Illuminate\Http\RedirectResponse
+     */
     public function storeRegister(int $id, Request $request){
         Client::storeRegister($id, $request);      
         return redirect()->route('list_clients');

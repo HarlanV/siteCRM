@@ -9,10 +9,9 @@ class RegisterCreator
     /**
      * Service de criação de clientes e contatos
      * 
-     * @param   \App\Client                 $client
+     * @param   int $id
      * @param   \Illuminate\Http\Request    $request
-     * @param   int                         $counter
-     * @return  string                      $registerSector
+     * @return  void
      */
     public function createRegister($id, $request)
     {
@@ -32,9 +31,8 @@ class RegisterCreator
     /**
      * Service de criação de clientes e contatos
      * 
-     * @param   \App\Client $client
-     * @param   string      $sector
-     * @param   string      $phone
+     * @param   \Illuminate\Http\Request    $request
+     * @param   \App\ClientRegister         $register
      * @return  void
      */
     private function createContact($request, $register)

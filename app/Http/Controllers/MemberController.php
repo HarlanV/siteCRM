@@ -18,7 +18,6 @@ class MemberController extends Controller
     function members(Request $request)
     {   
         Member::ListMembers($request);
-        
     }
     
     /**
