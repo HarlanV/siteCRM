@@ -12,7 +12,7 @@ class ClientContact extends Model
    public $timestamps = false;
 
    // Informa atributos que podem ser preenchidos por create ('nome','etc')
-   protected $fillable = ['phone','email','correspondent'];
+   protected $fillable = ['phone','email','correspondent','bestHour'];
    protected $attributes = [
     'correspondent'=>'Setor Comercial',
     'email'=>'clientecomercial@gmail.com'

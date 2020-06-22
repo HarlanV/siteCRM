@@ -15,6 +15,7 @@ class ClientCreator
      */
     public function clientCreate(Request $request)
     {
+
     $counter =(int) $request->contador;
         DB::beginTransaction();
             $client= Client::create([
@@ -64,9 +65,10 @@ class ClientCreator
         $it = 0;
         while($it <= $counter){
             $register->clientContacts()->create([
-                'phone'=>$request->{'phone'.($it)},
-                'email'=>$request->{'email'.($it)},
-                'correspondent'=>$request->{'correspondent'.($it)},           
+                'phone'=>$request->phone[$it],
+                'email'=>$request->email[$it],
+                'correspondent'=>$request->correspondent[$it],
+                'bestHour'=>$request->bestHour[$it],           
             ]);   
             $it++;
         }  

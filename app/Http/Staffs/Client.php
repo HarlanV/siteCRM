@@ -34,6 +34,7 @@ class Client
      */
     public static function storeClient(Request $request)
     {
+        
         $clientCreator = new ClientCreator;
         $client = $clientCreator->clientCreate($request);
         $request->session()->flash('mensagem',"Cliente {$client} e seus contatos inserido com sucesso");

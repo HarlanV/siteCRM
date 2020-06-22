@@ -23,7 +23,6 @@ class ClientEditor
             $client->comment=$request->comment;
             $client->status=$request->status;
             $client->market=$request->market;
-            $client->save();
             $this->editSector($id, $id_Register, $request);
             $client->save();
             $nameclient = $client->name;
@@ -48,7 +47,7 @@ class ClientEditor
         $register->city = $request->city;
         $register->adress= $request->adress;
         $register->save();         
-        $this->createContact($id,$request);
+        $this->editContact($id,$request);
     }
 
     /**
@@ -58,16 +57,17 @@ class ClientEditor
      * @param   \Illuminate\Http\Request $request
      * @return  void
      */
-    private function createContact($id,$request)
+    private function editContact($id,$request)
     {
         $register =Client::find($id)->clientRegisters->first();
         $it = 0;
         foreach ($register->clientContacts as $contact) {
-            $contact->phone = $request->{'phone'.($it)};
-            $contact->email = $request->{'email'.($it)};
-            $contact->correspondent = $request->{'correspondent'.($it)};           
+            $contact->phone = $request->phone[$it];
+            $contact->email = $request->email[$it];
+            $contact->correspondent = $request->correspondent[$it];
+            $contact->bestHour = $request->bestHour[$it];
+            $contact->save();           
             $it++;
-        }
-        $register->save();  
+        } 
     }
 }

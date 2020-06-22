@@ -18,9 +18,9 @@ class CreateClientsTable extends Migration
             $table->string('name');
             $table->string('market')->nullable();
             $table->string('comment')->nullable();
-            $table->string('status');
-            $table->boolean('prospect');
-            $table->integer('contactTimes');
+            $table->string('status')->nullable();
+            $table->boolean('prospect')->nullable();
+            $table->integer('contactTimes')->nullable();
             /* 
             1- Status vai para o funil de vendas, o prospect e interger
             vai para o relatorio.

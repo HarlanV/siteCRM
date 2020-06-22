@@ -87,7 +87,8 @@ class ClientController extends Controller
      */
     public function clientEdit(int $id, int $id_register, ClientsFormRequest $request)
     {
-      
+     
+
         Client::editClient($id, $id_register, $request);
         return redirect()->route('list_contacts', array('id'=>$id)); 
     }
