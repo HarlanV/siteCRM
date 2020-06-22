@@ -143,7 +143,14 @@ class ClientController extends Controller
      */
     public function storeRegister(int $id, Request $request){
         Client::storeRegister($id, $request);      
-        return redirect()->route('list_clients');
+        return redirect()->route('list_contacts', array('id'=>$id));
+    }
+
+    public function registerDestroy(int $id, int $register_Id, Request $request)
+    {
+
+        Client::deleteRegister($id, $register_Id, $request);
+        return redirect()->route('list_contacts', array('id'=>$id)); 
     }
 
 }

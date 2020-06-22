@@ -44,14 +44,15 @@
                     <a href="/client/{{ $clientId }}/edit/{{ $register->id }}" class="btn btn-outline-primary btn-sm mr-1">
                         <i class="fas fa-pencil-alt"></i>
                     </a>
-                    <!--<form method="POST" action="/client/{{$clientId}}"
-                        onsubmit="return confirm('Tem certeza que deseja exlcuir o contato de  {{ addslashes($register->sector)}} ?')">
+
+                    <form method="POST" action="/register/{{$clientId}}/{{ $register->id }}"
+                        onsubmit="return confirm('Tem certeza que deseja exlcuir o registro  {{ addslashes($register->sector)}} ?')">
                         @csrf
                         @method('DELETE')
                         <button class="btn btn-danger btn-sm">
                             <i class="fas fa-trash-alt"></i>
                         </button>
-                    -->
+                    
                     </form>
             </li>
         @endforeach

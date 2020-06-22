@@ -51,6 +51,11 @@ use Illuminate\Support\Facades\Route;
 Route::get("/client/{id}/addContact/", 'ClientController@newRegisterForm');
 // Inserir novos registros - armazenamento
 Route::post("/client/{id}/addContact/", 'ClientController@storeRegister');
+
+
+ // Apaga registro 
+Route::delete('/register/{id}/{register_Id}', 'ClientController@registerDestroy');
+
 // Index e gerenciamento de projeto(temporario) .
 Route::get('/manager','ManageProject@soFar');
 Route::get('/','index@mainView');

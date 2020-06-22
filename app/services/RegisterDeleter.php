@@ -1,7 +1,6 @@
 <?php
 namespace App\services;
 
-use App\Client;
 use App\ClientContact;
 use App\ClientRegister;
 use Illuminate\Support\Facades\DB;
@@ -11,18 +10,15 @@ class RegisterDeleter
     /**
      * Metodo para deleção de contatos de determinado cliente
      * 
-     * @param   App\Client  $client
-     * @return  string      $name
+     * @param   \App\ClientRegister $register
+     * @return  string              $name
      */
-    public function deleteRegister(Client $client): string
+    public function deleteRegister(ClientRegister $register): string
     {
-        $name = $client->name;
+        $name = $register->sector;
         DB::beginTransaction();
-            $client->clientRegisters->each(function (ClientRegister $clientRegister)
-            {
-                $this->contactDelete($clientRegister);
-                $clientRegister->delete();
-            });
+            $this->contactDelete($register);
+            $register->delete();
         DB::commit();
         return $name; 
     }

@@ -8,6 +8,7 @@ use App\services\ClientEditor;
 use App\services\ClientCreator;
 use App\services\ClientDeleter;
 use App\services\RegisterCreator;
+use App\services\RegisterDeleter;
 
 class Client
 {
@@ -86,5 +87,15 @@ class Client
         $request->session()->flash('mensagem',"Cliente {$client} e seus contatos inserido com sucesso");
     }
 
+    public static function deleteRegister(int $id, int $register_Id,Request $request)
+    {
+
+        $registers =ClientModel::find($id)->clientRegisters;
+        $register = $registers->find($register_Id);
+        $deleter = new RegisterDeleter;
+        $deletedRegister = $deleter->deleteRegister($register);
+        $request->session()->flash('mensagem',"O registro $deletedRegister foi excluido com sucesso");
+
+    }
     
 }
