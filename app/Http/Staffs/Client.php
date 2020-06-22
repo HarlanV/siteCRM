@@ -7,6 +7,7 @@ use App\Client as ClientModel;
 use App\services\ClientEditor;
 use App\services\ClientCreator;
 use App\services\ClientDeleter;
+use App\services\RegisterCreator;
 
 class Client
 {
@@ -70,4 +71,15 @@ class Client
         $newClient = $clientEditor->clientEdite($id,$id_Register, $request);
         $request->session()->flash('mensagem',"O Cliente $newClient foi excluido com sucesso");   
     }
+
+    
+    public static function storeRegister(int $id, Request $request)
+    {
+        $registerCreator = new RegisterCreator;
+        $client = $registerCreator->createRegister($id, $request);
+        $request->session()->flash('mensagem',"Cliente {$client} e seus contatos inserido com sucesso");
+
+    }
+
+    
 }

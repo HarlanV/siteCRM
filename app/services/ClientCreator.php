@@ -15,8 +15,6 @@ class ClientCreator
      */
     public function clientCreate(Request $request)
     {
-
-    $counter =(int) $request->contador;
         DB::beginTransaction();
             $client= Client::create([
                 'name'=>$request->name,
@@ -25,7 +23,7 @@ class ClientCreator
                 'market'=>$request->market
                 ]);
 
-            $this->createRegister($client, $request,$counter);
+            $this->createRegister($client, $request);
             $client->save();
             $nameclient = $client->name;
         DB::commit();   
@@ -38,10 +36,9 @@ class ClientCreator
      * 
      * @param   \App\Client                 $client
      * @param   \Illuminate\Http\Request    $request
-     * @param   int                         $counter
      * @return  void
      */
-    private function createRegister($client, $request, $counter)
+    private function createRegister($client, $request)
     {
         $register = $client->clientRegisters()->create([
             'sector' => $request->sector,
@@ -49,19 +46,19 @@ class ClientCreator
             'city' => $request->city,
             'adress'=> $request->adress,
         ]);
-        $this->createContact($request, $counter,$register);
+        $this->createContact($request,$register);
     }
 
     /**
      * Service de criação de clientes e contatos
      * 
      * @param   \Illuminate\Http\Request    $request
-     * @param   int                         $counter
      * @param   \App\ClientRegister         $register
      * @return  void
      */
-    private function createContact($request, $counter, $register)
+    private function createContact($request, $register)
     {
+        $counter =(int) $request->contador;
         $it = 0;
         while($it <= $counter){
             $register->clientContacts()->create([

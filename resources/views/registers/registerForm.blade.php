@@ -1,4 +1,4 @@
-@extends('clients.form')
+@extends('registers.form')
 
 <!-- CONTEUDO PRINCIAL -->
 @section('formcontact')

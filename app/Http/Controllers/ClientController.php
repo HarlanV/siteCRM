@@ -119,5 +119,17 @@ class ClientController extends Controller
         $contactsCounts = $contacts->count();
         return view('clients.clientSection',compact('client','register','contacts','form','contactsCounts','viewOnly'));
     }
+    public function newRegisterForm(int $id, Request $request)
+    {
+        $client = ClientModel::find($id);
+        $form = 'registers.addRegister';
+        $viewOnly=false;
+        return view('registers.registerForm',compact('client','form','viewOnly'));
+    }
+
+    public function storeRegister(int $id, Request $request){
+        Client::storeRegister($id, $request);      
+        return redirect()->route('list_clients');
+    }
 
 }

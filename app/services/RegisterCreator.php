@@ -1,9 +1,10 @@
 <?php
 namespace App\services;
 
+use App\Client;
 use Illuminate\Support\Facades\DB;
 
-class ContactCreator
+class RegisterCreator
 {
     /**
      * Service de criação de clientes e contatos
@@ -13,18 +14,19 @@ class ContactCreator
      * @param   int                         $counter
      * @return  string                      $registerSector
      */
-    public function createRegister($client, $request, $counter)
+    public function createRegister($id, $request)
     {
         DB::beginTransaction();
+        $client = Client::find($id);
         $register = $client->clientRegisters()->create([
             'sector' => $request->sector,
             'state' => $request->state,
             'city' => $request->city,
             'adress'=> $request->adress,
         ]);
-        $this->createContact($request, $counter,$register);
+
+        $this->createContact($request,$register);
         DB::commit();
-        $registerSector = $register->sector;
     }
 
     /**
@@ -35,18 +37,19 @@ class ContactCreator
      * @param   string      $phone
      * @return  void
      */
-    private function createContact($request, $counter, $register)
+    private function createContact($request, $register)
     {
-
+        $counter =(int) $request->contador;
         $it = 0;
         while($it <= $counter){
             $contact = $register->clientContacts()->create([
-                'phone'=>$request->{'phone'.($it)},
-                'email'=>$request->{'email'.($it)},
-                'correspondent'=>$request->{'correspondent'.($it)},           
+                'phone'=>$request->phone[$it],
+                'email'=>$request->email[$it],
+                'correspondent'=>$request->correspondent[$it],
+                'bestHour'=>$request->bestHour[$it],    
             ]);   
             $it++;
-        }
+        }        
         $contact->save();
 
     }

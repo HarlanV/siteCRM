@@ -47,9 +47,10 @@ use Illuminate\Support\Facades\Route;
 
 // Routes em contrução
 
-    // ESTA ROUTE ESTÁ EM CONSTRUÇÃO. Route para inserir novos CONTATOS em determinado cliente
-    Route::get("/client/{id}/addContact/", 'ClientController@addNewContact');
-
+// Inserir novos registros - Formulario
+Route::get("/client/{id}/addContact/", 'ClientController@newRegisterForm');
+// Inserir novos registros - armazenamento
+Route::post("/client/{id}/addContact/", 'ClientController@storeRegister');
 // Index e gerenciamento de projeto(temporario) .
 Route::get('/manager','ManageProject@soFar');
 Route::get('/','index@mainView');

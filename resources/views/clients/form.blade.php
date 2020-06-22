@@ -61,27 +61,26 @@
             </div>          
     </form>
 
-    <script>
+<script>
 
-        var counter = 0;
-        var limit = 3;
-        function addInput(divName){
-                if (counter == limit)  {
-                    alert("Você atingiu o limite de  " + (counter+1) + " contatos.");
-                }  
-        
-                else {
-                    var html =`
-                    <div id="contactData">
-                        @yield('formcontact')
-                    </div>
-                    <input type="hidden" id="contador" name="contador" value=${(counter+1)}>
-        `;
-                document.getElementById(divName).innerHTML += html
-                counter++;
-                    }
-                }
-        </script>
+var counter = 0;
+var limit = 3;
+function addInput(divName){
+    if (counter == limit)  {
+        alert("Você atingiu o limite de  " + (counter+1) + " contatos.");
+    }  
+
+    else {
+        var html =`
+        <div id="contactData">
+            @yield('formcontact')
+        </div>
+        <input type="hidden" id="contador" name="contador" value=${(counter+1)}>`;
+    document.getElementById(divName).innerHTML += html
+    counter++;
+        }
+}
+</script>
         
 @endsection
 <!-- FIM -->

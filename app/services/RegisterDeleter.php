@@ -6,7 +6,7 @@ use App\ClientContact;
 use App\ClientRegister;
 use Illuminate\Support\Facades\DB;
 
-class ClientDeleter
+class RegisterDeleter
 {
     /**
      * Metodo para deleção de contatos de determinado cliente
@@ -14,7 +14,7 @@ class ClientDeleter
      * @param   App\Client  $client
      * @return  string      $name
      */
-    public function registerDelete(Client $client): string
+    public function deleteRegister(Client $client): string
     {
         $name = $client->name;
         DB::beginTransaction();

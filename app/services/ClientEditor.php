@@ -41,13 +41,13 @@ class ClientEditor
     private function editSector($id,$id_Register, $request)
     {
         $registers =Client::find($id)->clientRegisters;
-        $register = $registers->first();
+        $register = $registers->find($id_Register);
         $register->sector = $request->sector;     
         $register->state = $request->state;
         $register->city = $request->city;
         $register->adress= $request->adress;
         $register->save();         
-        $this->editContact($id,$request);
+        $this->editContact($id,$request,$id_Register);
     }
 
     /**
@@ -57,9 +57,10 @@ class ClientEditor
      * @param   \Illuminate\Http\Request $request
      * @return  void
      */
-    private function editContact($id,$request)
+    private function editContact($id,$request,$id_Register)
     {
-        $register =Client::find($id)->clientRegisters->first();
+        $registers =Client::find($id)->clientRegisters;
+        $register = $registers->find($id_Register);
         $it = 0;
         foreach ($register->clientContacts as $contact) {
             $contact->phone = $request->phone[$it];
