@@ -20,6 +20,7 @@ Cadastro de novos clientes e contatos
 <!-- CONTEUDO PRINCIAL -->
 @section('conteudo')
 <!-- Exibe erros capturados pelo $request->validate() -->
+
 @if ($errors->any())
 <div class="alert alert-danger">
     <ul>

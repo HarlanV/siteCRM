@@ -39,12 +39,15 @@
 
                    
                     <!-- icon: listar contatos -->
-                    <a href="/client/{{ $client->id }}/contacts" class="btn btn-info btn-sm mr-1">
+                   
+                    <a href="{{ route('list_registers', array('id'=>$client->id))}}" class="btn btn-info btn-sm mr-1">
+     
                         <i class="fas fa-external-link-alt"></i>
                     </a>
 
                     <!-- icon: deletar clientes-->
-                    <form method="POST" action="/client/{{$client->id}}"
+                 
+                    <form method="POST" action="{{ route('delete_client', array('id'=>$client->id)) }}"
                         onsubmit="return confirm('Tem certeza que deseja exlcuir o cliente {{ addslashes($client->nome)}} ?')">
                         @csrf
                         @method('DELETE')

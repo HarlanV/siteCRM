@@ -146,6 +146,13 @@ class ClientController extends Controller
         return redirect()->route('list_contacts', array('id'=>$id));
     }
 
+    /**
+     * Metodo para deleção de registros do DB
+     * 
+     * @param   int $id
+     * @param   \Illuminate\Http\Request $request
+     * @return  \Illuminate\Http\RedirectResponse
+     */
     public function registerDestroy(int $id, int $register_Id, Request $request)
     {
 

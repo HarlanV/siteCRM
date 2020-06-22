@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('return-button')
-<a name="" id="" class="btn btn-dark mb-2" href="/client/{{ $client->id }}/contacts" role="button">
+<a name="" id="" class="btn btn-dark mb-2" href="{{ route('list_registers', array('id'=>$client->id) ) }}" role="button">
   <i class="fas fa-arrow-circle-left"></i>
 </a>
 @endsection
