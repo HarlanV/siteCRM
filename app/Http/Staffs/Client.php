@@ -53,7 +53,7 @@ class Client
         $deleter = new ClientDeleter;
         $clientId = $request->id;
         $deletedClient = $deleter->clientDelete($clientId);
-        $request->session()->flash('mensagem',"O Cliente $deletedClient foi excluido com sucesso");
+        $request->session()->flash('mensagem',"O Cliente {$deletedClient} foi excluido com sucesso");
 
     }
 
@@ -69,12 +69,13 @@ class Client
     {
 
         $clientEditor = new ClientEditor;
-        $newClient = $clientEditor->clientEdite($id,$id_Register, $request);
-        $request->session()->flash('mensagem',"O Cliente $newClient foi excluido com sucesso");   
+        $editedClient = $clientEditor->clientEdite($id,$id_Register, $request);
+//        $request->session()->flash('mensagem',"O Cliente {$editedClient} foi editado com sucesso");   
+$request->session()->flash('mensagem',"O setor '{$request->sector}' foi editado com sucesso");  
     }
 
     /**
-     * Função para criar lista de clientes
+     * Função para 
      * 
      * @param   int $id
      * @param   \Illuminate\Http\request $request
@@ -84,12 +85,11 @@ class Client
     {
         $registerCreator = new RegisterCreator;
         $client = $registerCreator->createRegister($id, $request);
-        $request->session()->flash('mensagem',"Cliente {$client} e seus contatos inserido com sucesso");
+        $request->session()->flash('mensagem',"O setor {$request->sector} foi inserido com sucesso");
     }
 
     public static function deleteRegister(int $id, int $register_Id,Request $request)
     {
-
         $registers =ClientModel::find($id)->clientRegisters;
         $register = $registers->find($register_Id);
         $deleter = new RegisterDeleter;

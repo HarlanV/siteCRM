@@ -69,13 +69,14 @@ class ClientController extends Controller
      * @param   int $clientId
      * @return  \Illuminate\View\View
      */
-    public function clientRegister(int $clientId)
+    public function clientRegister(int $clientId, Request $request)
     {
         $registers = ClientModel::find($clientId)->clientRegisters;
   
         $name = ClientModel::find($clientId)->name;
+        $mensagem = $request->session()->get('mensagem');
 
-        return view('clients.contacts',compact('registers','name','clientId'));
+        echo view('clients.contacts',compact('registers','name','clientId','mensagem'));
     }
 
     /**
@@ -89,9 +90,8 @@ class ClientController extends Controller
     public function clientEdit(int $id, int $id_register, ClientsFormRequest $request)
     {
      
-
         Client::editClient($id, $id_register, $request);
-        return redirect()->route('list_contacts', array('id'=>$id)); 
+        return redirect()->route('list_registers', array('id'=>$id)); 
     }
 
     /**
@@ -143,7 +143,7 @@ class ClientController extends Controller
      */
     public function storeRegister(int $id, Request $request){
         Client::storeRegister($id, $request);      
-        return redirect()->route('list_contacts', array('id'=>$id));
+        return redirect()->route('list_registers', array('id'=>$id));
     }
 
     /**
@@ -155,9 +155,8 @@ class ClientController extends Controller
      */
     public function registerDestroy(int $id, int $register_Id, Request $request)
     {
-
         Client::deleteRegister($id, $register_Id, $request);
-        return redirect()->route('list_contacts', array('id'=>$id)); 
+        return redirect()->route('list_registers', array('id'=>$id)); 
     }
 
 }

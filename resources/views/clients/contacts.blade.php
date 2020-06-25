@@ -19,11 +19,10 @@
 <!-- CCONTEUDO PRINCIAL -->
 @section('conteudo')
     <!-- Exibir mensagem da section apenas se existir mensagem -->
-    @if(!empty($mensagem))
-        <div class="alert alert-success">
-        {{$mensagem}}
-        </div>
-    @endif
+
+    @include('subviews.responseMessage',['message'=>$mensagem])
+
+    
 
 <ul class="list-group">
     <li class="d-flex justify-content-end align-items-center">
@@ -37,7 +36,7 @@
 
 
 <p>Lista de contatos disponiveis: <p>
-    <!--  Impressão da lista de contatos do cliente  -->
+    <!--  Impressão da lista de registros do cliente  -->
     <ul class="list-group">
         @foreach($registers as $register)
             <li class="list-group-item d-flex justify-content-between align-items-center">
