@@ -1,5 +1,11 @@
-@extends('clients.form')
-
+<?php 
+if ($form == 'registers.addRegister' ){
+    $extension = 'registers.form';
+}else{
+    $extension = 'clients.form';
+}
+?>
+@extends($extension)
 <!-- CONTEUDO PRINCIAL -->
 @section('formcontact')
 @csrf

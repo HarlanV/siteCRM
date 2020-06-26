@@ -138,7 +138,8 @@ public function __construct()
         $client = ClientModel::find($id);
         $form = 'registers.addRegister';
         $viewOnly=false;
-        return view('registers.registerForm',compact('client','form','viewOnly'));
+//        return view('registers.registerForm',compact('client','form','viewOnly'));
+        return view('clients.editRegisterForm',compact('client','form','viewOnly'));
     }
 
     /**
