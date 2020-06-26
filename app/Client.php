@@ -9,7 +9,7 @@ class Client extends Model
 {   
     public $timestamps = false;
 
-    protected $fillable = ['name','comment','market','status'];
+    protected $fillable = ['name','market','status'];
     protected $attributes = [
         'status'=>'em prospecção',
         'market'=>'Quimico e Petroquimico',

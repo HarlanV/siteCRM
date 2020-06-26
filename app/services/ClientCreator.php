@@ -18,11 +18,9 @@ class ClientCreator
         DB::beginTransaction();
             $client= Client::create([
                 'name'=>$request->name,
-                'comment'=>$request->comment,
                 'status'=>$request->status,
                 'market'=>$request->market
                 ]);
-
             $this->createRegister($client, $request);
             $client->save();
             $nameclient = $client->name;
@@ -45,6 +43,7 @@ class ClientCreator
             'state' => $request->state,
             'city' => $request->city,
             'adress'=> $request->adress,
+            'comment'=>$request->comment,
         ]);
         $this->createContact($request,$register);
     }

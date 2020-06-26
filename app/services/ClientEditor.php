@@ -46,6 +46,7 @@ class ClientEditor
         $register->state = $request->state;
         $register->city = $request->city;
         $register->adress= $request->adress;
+        $register->comment= $request->comment;
         $register->save();         
         $this->editContact($id, $id_Register, $request);
     }

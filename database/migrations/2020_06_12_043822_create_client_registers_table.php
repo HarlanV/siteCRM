@@ -19,6 +19,7 @@ class CreateClientRegistersTable extends Migration
             $table->string('state')->nullable();
             $table->string('city')->nullable();
             $table->string('adress')->nullable();
+            $table->string('comment')->nullable();
             $table->foreignId('client_id')
                 ->references('id')
                 ->on('clients');

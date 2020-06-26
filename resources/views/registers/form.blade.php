@@ -38,7 +38,7 @@
 
                     <div class="form-group">
                         <label for="comment">Comentarios</label>
-                        <textarea class="form-control" id="comment" rows="3" name="comment" >{{$client->comment ??''}}</textarea>
+                        <textarea class="form-control" id="comment" rows="3" name="comment" >{{$register->comment ??''}}</textarea>
                     </div>
                 </div>
         <button class="btn btn-primary mt-2">SALVAR</button>

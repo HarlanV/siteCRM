@@ -9,7 +9,7 @@ if ($form == 'registers.addRegister' ){
 <!-- CONTEUDO PRINCIAL -->
 @section('formcontact')
 @csrf
-<form method="POST">
+<form method="POST" >
     <?php    
         if (empty($contactsCounts)){
         $contactsCounts=1;
@@ -24,7 +24,12 @@ if ($form == 'registers.addRegister' ){
         $bestHourVal = 'bestHour'.$it;
     ?>
 
-    <div id="contactData">
+    <div id="contactData"
+    style=
+    "margin:10px -5px 10px -5px;
+    padding:10px;
+    border:1px solid #cecece"
+    >
         
         <div class="form-row">
 
@@ -59,7 +64,8 @@ if ($form == 'registers.addRegister' ){
         $it++;
         }
         if (!empty($viewOnly) || $viewOnly){
-        $addClient='hidden';
+        $editClient='hidden';
+        
     }
     $it--;    
     ?>

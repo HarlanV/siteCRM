@@ -12,7 +12,7 @@ class ClientRegister extends Model
 {
     public $timestamps = false;
 
-    protected $fillable = ['sector','state','city','adress'];    
+    protected $fillable = ['sector','state','city','adress','comment'];    
 
     /**
     * Metodo de relacionamento 1:n com contato

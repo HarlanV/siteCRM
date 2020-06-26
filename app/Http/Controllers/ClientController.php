@@ -11,10 +11,7 @@ use App\Http\Requests\ClientsFormRequest;
 class ClientController extends Controller
 {    
 
-public function __construct()
-{
-    $this->middleware('LoginDirector');
-}
+
 
     /**
      * Método exibe lista de clientes cadastrados
@@ -166,6 +163,32 @@ public function __construct()
     {
         Client::deleteRegister($id, $register_Id, $request);
         return redirect()->route('list_registers', array('id'=>$id)); 
+    }
+
+    /**
+     * Metodo retorna o formulario apenas para visualização
+     * 
+     * @param   int $id
+     * @param   int $id_register
+     * @param   \Illuminate\Http\Request $request
+     * @return  \Illuminate\View\View
+     */
+    public function registerView(int $id, int $id_register, Request $request)
+    {
+
+        $client = ClientModel::find($id);
+
+        $register = ClientRegister::find($id_register);
+
+        $contacts = $register->clientContacts;
+        
+        $viewOnly = true;
+ 
+        $form = 'clients.viewRegister';
+
+        $contactsCounts = $contacts->count();
+        
+        return view('clients.editRegisterForm',compact('client','register','contacts','form','contactsCounts','viewOnly'));
     }
 
 }

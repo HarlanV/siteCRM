@@ -33,7 +33,7 @@
                         @yield('formcontact')
                 </div>
                 
-                <input type="button"  {{$addClient ??''}} value="+" onClick="addInput('contactContainer');">
+                <input type="button"  {{$editClient ??''}} value="+" onClick="addInput('contactContainer');">
     
                 <div class="container-fluid mt-2" style="border:1px solid #cecece;">
                     <div class="form-row" >
@@ -56,10 +56,12 @@
 
                         <div class="form-group">
                             <label for="comment">Comentarios</label>
-                            <textarea class="form-control" id="comment" rows="3" name="comment" >{{$client->comment ??''}}</textarea>
+                            <textarea class="form-control" id="comment" rows="3" name="comment" >{{$register->comment ??''}}</textarea>
                         </div>
                     </div>
+         @if (empty($viewOnly) || !$viewOnly)
          <button class="btn btn-primary mt-2">SALVAR</button>
+         @endif
             </div>          
     </form>
 

@@ -21,9 +21,9 @@
     <ul class="list-group">
         @foreach($registers as $register)
             <li class="list-group-item d-flex justify-content-between align-items-center">
-                <!--a href="/client/{{ $clientId }}/show_register/"-->
+                <a href="{{ route('view_register', array('id'=>$clientId, 'id_contact'=>$register->id)) }}">
                 {{$register->sector}} 
-                <!--/a-->
+                </a>
              <!-- Icones de cada cliente -->
                 <span class="d-flex">
                      <!-- icon: listar contatos -->

@@ -17,7 +17,6 @@ class CreateClientsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('market')->nullable();
-            $table->string('comment')->nullable();
             $table->string('status')->nullable();
             $table->boolean('prospect')->nullable();
             $table->integer('contactTimes')->nullable();

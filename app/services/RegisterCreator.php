@@ -22,6 +22,7 @@ class RegisterCreator
             'state' => $request->state,
             'city' => $request->city,
             'adress'=> $request->adress,
+            'comment'=> $request->comment,
         ]);
 
         $this->createContact($request,$register);
