@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /* POST */
@@ -46,7 +47,7 @@ use Illuminate\Support\Facades\Route;
  ->name('list_clients');
 
  // Inserir novos clientes - Formulario
- Route::get('/client/create','ClientController@newClient')
+ Route::get('/client/create','ClientController@createClient')
  ->name('form_create_client');
 
  // Exibe lista de registros do Cliente 
@@ -73,5 +74,14 @@ use Illuminate\Support\Facades\Route;
 
 /* EM DESENVOLVIMENTO */
  // Login
- Route::get('login','LoginController@acessForm')->name('main_login');
- Route::post('login','LoginController@login')->name('main_login');
+ Route::get('/login','LoginController@acessForm')->name('login');
+ Route::post('/login','LoginController@login');
+ Route::get('/register','RegisterController@create')->name('create_user');
+ Route::post('/register','RegisterController@store')->name('store_user');
+ Route::get('/logout',function(){
+     Auth::logout();
+     return redirect('/');
+ }
+
+
+);

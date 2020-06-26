@@ -21,16 +21,7 @@ Cadastro de novos clientes e contatos
 @section('conteudo')
 <!-- Exibe erros capturados pelo $request->validate() -->
 
-@if ($errors->any())
-<div class="alert alert-danger">
-    <ul>
-        @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-        @endforeach
-    </ul>
-</div>
-@endif
-
+@include('subviews.responseError',['errors'=>$errors])
     
     <!-- Formulario Simples para adicionar membro -->
     @yield('formClient')

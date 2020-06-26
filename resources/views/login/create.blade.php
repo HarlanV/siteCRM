@@ -17,13 +17,19 @@ Cadastro de novos clientes e contatos
 
 <!-- CONTEUDO PRINCIAL -->
 @section('conteudo')
+
 @include('subviews.responseError',['errors'=>$errors])
 
 <form method="post">
     @csrf
     <div class="form-group">
+        <label for="name">Nome</label>
+        <input type="text" name="name" id="name" required class="form-control">
+    </div>
+
+    <div class="form-group">
         <label for="email">E-mail</label>
-   <input type="email" name="email" id="email" required class="form-control">
+        <input type="email" name="email" id="email" required class="form-control">
     </div>
 
     <div class="form-group">
@@ -32,11 +38,7 @@ Cadastro de novos clientes e contatos
     </div>
 
     <button type="submit" class="btn btn-primary mt-3">
-        Entrar
+        Salvar
     </button>
-
-<a href="{{route('create_user')}}" class="btn btn-secondary mt-3">
-        Registrar-se
-    </a>
 </form>
 @endsection

@@ -10,13 +10,19 @@ use App\Http\Requests\ClientsFormRequest;
 
 class ClientController extends Controller
 {    
+
+public function __construct()
+{
+    $this->middleware('auth');
+}
+
     /**
      * Método exibe lista de clientes cadastrados
      * 
      * @param   \Illuminate\Http\Request    $request
      * @return  void
      */
-    function clients(Request $request)
+    public function clients(Request $request)
     {   
         /**
          * É realmente necessário uma model chamada Client? 
@@ -32,7 +38,7 @@ class ClientController extends Controller
      * @param   null
      * @return  \Illuminate\View\View
      */
-    public function newClient()
+    public function createClient()
     {
         $form = 'clients.create';
         $viewOnly=false;
@@ -141,7 +147,8 @@ class ClientController extends Controller
      * @param   \Illuminate\Http\Request $request
      * @return  \Illuminate\Http\RedirectResponse
      */
-    public function storeRegister(int $id, Request $request){
+    public function storeRegister(int $id, Request $request)
+    {
         Client::storeRegister($id, $request);      
         return redirect()->route('list_registers', array('id'=>$id));
     }
