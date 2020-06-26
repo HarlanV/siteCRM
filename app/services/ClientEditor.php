@@ -20,7 +20,7 @@ class ClientEditor
         DB::beginTransaction();
             $client = Client::find($id);
             $client->name = $request->name;
-            $client->comment=$request->comment;
+           
             $client->status=$request->status;
             $client->market=$request->market;
             $this->editSector($id, $id_Register, $request);
