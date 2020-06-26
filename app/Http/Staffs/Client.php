@@ -73,7 +73,7 @@ class Client
     }
 
     /**
-     * Função para 
+     * Função para armazenar registro de clientes
      * 
      * @param   int $id
      * @param   \Illuminate\Http\request $request

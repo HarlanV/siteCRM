@@ -80,22 +80,38 @@ use Illuminate\Support\Facades\Route;
 
  
  
-/* ACESS AND SUPORT */
- // Index e gerenciamento de projeto(temporario) .
- Route::get('/manager','ManageProject@soFar');
- Route::get('/','index@mainView');
-
-
-/* EM DESENVOLVIMENTO */
- // Login
+/* ACESS AND SUPORT [GET AND POST] */
+ 
+ // Formulario de login
  Route::get('/login','LoginController@acessForm')->name('login');
+
+ // Executa login
  Route::post('/login','LoginController@login');
+
+ // Formulario novo usuario
  Route::get('/register','RegisterController@create')->name('create_user');
+
+ // Persistencia de novo usuario
  Route::post('/register','RegisterController@store')->name('store_user');
+ // Logout
  Route::get('/logout',function(){
      Auth::logout();
      return redirect('/');
- }
+ });
+
+  // PAGINA INICIAL.
+  Route::get('/','index@mainView');
 
 
-);
+/* EM DESENVOLVIMENTO E TEMPORARIOS */
+
+ // ACESSO PESSOAL TEMPORARIO
+ Route::get('/manager','ManageProject@soFar');
+
+
+
+
+
+
+
+

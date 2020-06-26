@@ -10,15 +10,20 @@
     Lista de clientes atualmente cadastrados na base de dados
 @endsection
 
-
 <!-- Conteudo principal -->
 @section('conteudo')
 
 @include('subviews.responseMessage',['message'=>$mensagem])
  
     <!-- Botão para adicionar -->
+    @auth
     <a name="" id="" class="btn btn-dark mb-2" href="{{ route('form_create_client') }}" role="button">ADICIONAR</a>
-    
+    @endauth
+
+    @guest
+    <p>Lista de clientes atualmente cadastrados: </p>
+    @endguest   
+
     <!--  Impressão da lista de cliente  -->
     <ul class="list-group">
         @foreach($clients as $client)
@@ -32,7 +37,8 @@
                     <a href="{{ route('list_registers', array('id'=>$client->id))}}" class="btn btn-info btn-sm mr-1">
                         <i class="fas fa-external-link-alt"></i>
                     </a>
-
+                    
+                    @auth
                     <!-- icon: deletar clientes-->   
                     <form method="POST" action="{{ route('delete_client', array('id'=>$client->id)) }}"
                         onsubmit="return confirm('Tem certeza que deseja exlcuir o cliente {{ addslashes($client->nome)}} ?')">
@@ -42,6 +48,8 @@
                             <i class="fas fa-trash-alt"></i>
                         </button>
                     </form>
+                    @endauth
+
                 </span>
             </li>
         @endforeach
