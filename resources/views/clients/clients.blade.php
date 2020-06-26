@@ -1,8 +1,4 @@
 @extends('layout')
-<!-- Botão de retorno -->
-@section('return-button')
-<p></p>
-@endsection
 
 <!-- Cabeçalho a ser exibido no topo da pagina -->
 @section('cabecalho')

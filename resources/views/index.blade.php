@@ -1,7 +1,5 @@
 @extends('layout')
-@section('return-button')
-<p></p>
-@endsection
+
 <!-- Cabeçalho a ser exibido no topo da pagina -->
 @section('cabecalho')
 PAGINA PRINCIPAL 
@@ -17,6 +15,8 @@ Area de acesso principal aos gerenciamentos.
 
 <a name="" id="" class="btn btn-dark mb-2" href="{{route('list_members')}}" role="button">Gerenciar Membros</a>
 <a name="" id="" class="btn btn-dark mb-2" href="{{route('list_clients')}}" role="button">Gerenciar Clientes</a>
-<a name="" id="" class="btn btn-dark mb-2" href="{{route('login')}}" role="button">Login</a>
+    @guest
+        <a name="" id="" class="btn btn-dark mb-2" href="{{route('login')}}" role="button">Login</a>    
+    @endguest
 
-    @endsection
+@endsection

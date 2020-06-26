@@ -1,18 +1,13 @@
 @extends('layout')
 
-<!-- Botao para retornar -->
-@section('return-button')  
-<p></p>
-@endsection
-
 <!-- Cabeçalho a ser exibido no topo da pagina -->
 @section('cabecalho')
-CADASTRO DE CLIENTE
+NOVO ACESSO
 @endsection
 
 <!-- Texto descritivo abaixo do cabeçalho -->
 @section('cabecalho-descrit')
-Cadastro de novos clientes e contatos
+Cadastro de novo usuario autorizado
 @endsection
 
 <!-- CONTEUDO PRINCIAL -->

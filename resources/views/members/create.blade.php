@@ -1,9 +1,5 @@
 @extends('layout')
-@section('return-button')
-<a name="" id="" class="btn btn-dark mb-2" href="{{ route('list_members') }}" role="button">
-    <i class="fas fa-arrow-circle-left"></i>
-</a>
-@endsection
+
 <!-- Cabeçalho a ser exibido no topo da pagina -->
 @section('cabecalho')
 Cadastro de membros
