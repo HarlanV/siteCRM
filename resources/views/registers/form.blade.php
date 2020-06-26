@@ -47,7 +47,7 @@
 
 <script>
 
-var counter = 0;
+var counter = 0 + <?php echo "{$it}" ?>;
 var limit = 3;
 function addInput(divName){
     if (counter == limit)  {

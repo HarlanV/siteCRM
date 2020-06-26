@@ -16,6 +16,10 @@ use Illuminate\Support\Facades\Route;
  Route::post("/client/{id}/addRegister/", 'ClientController@storeRegister')
  ->name('save_register');
 
+ // Persiste alterações de clientes
+ Route::post("/client/{id}/edit/{id_contact}", 'ClientController@clientEdit')
+ ->name('edit_client_save');
+
 /* DELETE */
 
  // Apaga membro
@@ -57,10 +61,6 @@ use Illuminate\Support\Facades\Route;
  // Edita registro do Cliente - Formulario
  Route::get("/client/{id}/edit/{id_contact}", 'ClientController@clientEditForm')
  ->name('edit_client_form');
-
- // Persiste alterações de clientes
- Route::post("/client/{id}/edit/{id_contact}", 'ClientController@clientEdit')
- ->name('edit_client_save');
  
  // Inserir novos registros - Formulario 
  Route::get("/client/{id}/addRegister/", 'ClientController@newRegisterForm')

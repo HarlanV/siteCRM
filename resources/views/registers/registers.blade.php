@@ -16,20 +16,7 @@
 
     @include('subviews.responseMessage',['message'=>$mensagem])
 
-    
-
-<ul class="list-group">
-    <li class="d-flex justify-content-end align-items-center">
-        
-        <a name="b2" id="b2" class="btn btn-warning mt-2" href="#">
-            Relatorio [desativado]
-        </a>
-    </li>
-    
-</ul class="list-group">
-
-
-<p>Lista de contatos disponiveis: <p>
+    <p>Lista de contatos disponiveis: <p>
     <!--  Impressão da lista de registros do cliente  -->
     <ul class="list-group">
         @foreach($registers as $register)
@@ -57,6 +44,6 @@
             </li>
         @endforeach
     </ul>
-<a name="" id="" class="btn btn-dark mt-2" href=" {{ route('register_form', array('id'=>$clientId)) }}" role="button">Adicionar novo contato</a>
+    <a name="" id="" class="btn btn-dark mt-2" href=" {{ route('register_form', array('id'=>$clientId)) }}" role="button">Adicionar novo contato</a>
 
 @endsection

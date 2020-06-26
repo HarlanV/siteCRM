@@ -1,6 +1,7 @@
 @extends($form)
 
 @section('formClient')
+
     <form method="POST">
         @csrf
             <div class="form">
@@ -31,8 +32,9 @@
                     </div>
                         @yield('formcontact')
                 </div>
+                
                 <input type="button"  {{$addClient ??''}} value="+" onClick="addInput('contactContainer');">
-
+    
                 <div class="container-fluid mt-2" style="border:1px solid #cecece;">
                     <div class="form-row" >
                         <!-- Estados Brasileiros -->
@@ -62,9 +64,8 @@
     </form>
 
 <script>
-
-var counter = 0;
-var limit = 3;
+var counter = 0 + <?php echo "{$it}" ?> ;
+var limit = 2;
 function addInput(divName){
     if (counter == limit)  {
         alert("Você atingiu o limite de  " + (counter+1) + " contatos.");

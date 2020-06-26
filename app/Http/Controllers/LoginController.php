@@ -31,7 +31,7 @@ class LoginController extends Controller
             ->back()
             ->withErrors('Usuario e/ou senha incorreto(s)');
         }
-        return redirect()->route('list_clients');
+        return redirect('/');
     }
     
     public function logout()

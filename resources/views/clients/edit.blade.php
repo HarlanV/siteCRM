@@ -15,8 +15,7 @@
 <!-- CONTEUDO PRINCIAL -->
 @section('conteudo')
 
-<!-- Botão para adicionar -->
-  <!-- Formulario Simples para adicionar membro -->  
+  <!-- Formulario para adicionar membro -->  
   @yield('formClient')
 
 @endsection

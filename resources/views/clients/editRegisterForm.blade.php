@@ -54,7 +54,8 @@
         }
         if (!empty($viewOnly) || $viewOnly){
         $addClient='hidden';
-    }     
+    }
+    $it--;    
     ?>
 @endsection
 

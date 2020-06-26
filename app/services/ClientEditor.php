@@ -63,6 +63,8 @@ class ClientEditor
         $registers =Client::find($id)->clientRegisters;
         $register = $registers->find($id_Register);
         $it = 0;
+
+
         foreach ($register->clientContacts as $contact) {
             $contact->phone = $request->phone[$it];
             $contact->email = $request->email[$it];
@@ -70,6 +72,23 @@ class ClientEditor
             $contact->bestHour = $request->bestHour[$it];
             $contact->save();           
             $it++;
-        } 
+        }
+
+        if (!empty($request->contador)){
+            
+            $counter =(int) $request->contador;
+            $counter += $it - 1; 
+
+            while($it <= $counter){
+                $register->clientContacts()->create([
+                    'phone'=>$request->phone[$it],
+                    'email'=>$request->email[$it],
+                    'correspondent'=>$request->correspondent[$it],
+                    'bestHour'=>$request->bestHour[$it],           
+                ]);   
+                $it++;
+            } 
+        }
+
     }
 }

@@ -67,11 +67,9 @@ class Client
      */
     public static function editClient(int $id, int $id_Register, Request $request)
     {
-
         $clientEditor = new ClientEditor;
         $editedClient = $clientEditor->clientEdite($id,$id_Register, $request);
-//        $request->session()->flash('mensagem',"O Cliente {$editedClient} foi editado com sucesso");   
-$request->session()->flash('mensagem',"O setor '{$request->sector}' foi editado com sucesso");  
+        $request->session()->flash('mensagem',"O setor '{$request->sector}' foi editado com sucesso");  
     }
 
     /**

@@ -42,7 +42,7 @@ public function __construct()
     {
         $form = 'clients.create';
         $viewOnly=false;
-        return view('clients.clientSection',compact('form','viewOnly'));   
+        return view('clients.editRegisterForm',compact('form','viewOnly'));   
     }
 
     /**
@@ -82,7 +82,7 @@ public function __construct()
         $name = ClientModel::find($clientId)->name;
         $mensagem = $request->session()->get('mensagem');
 
-        echo view('clients.contacts',compact('registers','name','clientId','mensagem'));
+        echo view('registers.registers',compact('registers','name','clientId','mensagem'));
     }
 
     /**
@@ -117,12 +117,13 @@ public function __construct()
 
         $contacts = $register->clientContacts;
         
-        $viewOnly = true;
+          //        $viewOnly = true;
+        $viewOnly = false;
 
         $form = 'clients.edit';
 
         $contactsCounts = $contacts->count();
-        return view('clients.clientSection',compact('client','register','contacts','form','contactsCounts','viewOnly'));
+        return view('clients.editRegisterForm',compact('client','register','contacts','form','contactsCounts','viewOnly'));
     }
 
     /**
