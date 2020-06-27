@@ -17,8 +17,11 @@ class CreateRolesTable extends Migration
             $table->id();
             $table->string('roleName');
             $table->boolean('director');
-            $table->integer('clientLevel');
-            $table->integer('memberLevel');
+            $table->boolean('viewClient');
+            $table->boolean('editClient');
+            $table->boolean('editMember');
+            $table->boolean('viewMember');
+            $table->boolean('createLogin');
         });
     }
 

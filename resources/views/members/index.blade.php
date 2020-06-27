@@ -13,6 +13,7 @@ Area de acesso principal aos gerenciamentos.
 <!-- CONTEUDO PRINCIAL -->
     @section('conteudo')
 
-<a name="" id="" class="btn btn-dark mb-2" href="{{route('intern')}}" role="button">Gestão Interna</a>
-    <a name="" id="" class="btn btn-dark mb-2" href="{{route('list_clients')}}" role="button">Gestão de Clientes</a>
-@endsection
+    <a name="" id="" class="btn btn-dark mb-2" href="{{route('list_members')}}" role="button">Gerenciar Membros</a>
+    <a name="" id="" class="btn btn-dark mb-2" href="{{route('list_roles')}}" role="button">Gerenciar Cargos</a>
+
+    @endsection

@@ -28,6 +28,10 @@ use Illuminate\Support\Facades\Route;
  ->name('edit_client_save')
  ->middleware('LoginDirector');
 
+ // persiste novo cargo
+ Route::post('/intern/role/create','RoleController@store')
+ ->name('store_role');
+
 /* DELETE */
 
  // Apaga membro
@@ -111,7 +115,21 @@ use Illuminate\Support\Facades\Route;
  // ACESSO PESSOAL TEMPORARIO
  Route::get('/manager','ManageProject@soFar');
 
+ // Area de Gestão Interna
+ Route::get('/intern','MemberController@internService')->name('intern');
 
+// Lista de cargos
+Route::get('/intern/role','RoleController@roleList')->name('list_roles');
+
+// Formulario novo cargo
+Route::get('/intern/role/create','RoleController@create')
+->name('form_create_role');
+
+
+
+ // Apaga novo cargo
+ Route::delete('/intern/role/{id}', 'RoleController@destroy')
+ ->name('delete_role');
 
 
 

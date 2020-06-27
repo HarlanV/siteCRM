@@ -10,7 +10,10 @@ class Role extends Model
     protected $fillable = [
         'roleName',
         'director',
-        'clientLevel',
-        'memberLevel',
+        'viewClient',
+        'editClient',
+        'editMember',
+        'viewMember',
+        'createLogin',
     ];
 }

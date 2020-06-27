@@ -56,4 +56,9 @@ class MemberController extends Controller
         Member::deleteMember($request);
         return redirect()->route('list_members'); 
     }
+
+    public function internService(Request $request)
+    {
+        return view('members.index'); 
+    }
 }
