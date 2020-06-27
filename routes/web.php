@@ -5,6 +5,10 @@ use Illuminate\Support\Facades\Route;
 
 /* POST */
 
+// todas as suas rotas devem ser protegidas por middlewares.
+// isso impede de que usuários maliciosos acessem rotas que não deveriam.
+
+
  // Persiste membro
  Route::post('/member/create', 'MemberController@store');
     

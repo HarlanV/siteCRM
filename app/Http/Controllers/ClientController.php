@@ -37,6 +37,7 @@ class ClientController extends Controller
      */
     public function createClient()
     {
+        // nâo entendi a função dessas variáveis
         $form = 'clients.create';
         $viewOnly=false;
         return view('clients.editRegisterForm',compact('form','viewOnly'));   
@@ -74,6 +75,13 @@ class ClientController extends Controller
      */
     public function clientRegister(int $clientId, Request $request)
     {
+        // Nome do método seria apenas store. Método responsável por armazenar um cliente no banco
+        // de dados. Para mais informações vide a documentação do laravel.
+        // nomes corretos store, update, edit, create, destroy. qualquer coisa explico no whats.
+        // mas aconselho a ver a documentação do laravel.
+        // Não é função do controller fazer consultas no banco de dados. Crie um método na model
+        // que execute esta tarefa.
+        // Não é necessario o nome model no fim na model o nome correto seria apenas Client.
         $registers = ClientModel::find($clientId)->clientRegisters;
   
         $name = ClientModel::find($clientId)->name;
@@ -92,7 +100,7 @@ class ClientController extends Controller
      */
     public function clientEdit(int $id, int $id_register, ClientsFormRequest $request)
     {
-     
+        // Esses id's não poderiam vir no request?
         Client::editClient($id, $id_register, $request);
         return redirect()->route('list_registers', array('id'=>$id)); 
     }
@@ -131,7 +139,8 @@ class ClientController extends Controller
      * @return  \Illuminate\View\View
      */
     public function newRegisterForm(int $id, Request $request)
-    {
+    { 
+        // vc já tem um método que cria um cliente, qual a necessidade de outro?
         $client = ClientModel::find($id);
         $form = 'registers.addRegister';
         $viewOnly=false;
@@ -148,6 +157,7 @@ class ClientController extends Controller
      */
     public function storeRegister(int $id, Request $request)
     {
+        // outro metodo para registrar o cliente?
         Client::storeRegister($id, $request);      
         return redirect()->route('list_registers', array('id'=>$id));
     }

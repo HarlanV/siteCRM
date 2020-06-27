@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
+// Esse controller já existe dentro da pasta Auth!!
 class RegisterController extends Controller
 {
     public function create()

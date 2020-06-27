@@ -5,6 +5,8 @@ use App\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+// Nós adotamos os métodos que acessam o banco de dados, que criam, que editam ou destroem na model.
+// Isso é algo que a alura confunde no curso que ela ministra. Services não são responsáveis por isso.
 class ClientCreator
 {
     /**

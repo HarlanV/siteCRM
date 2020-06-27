@@ -17,6 +17,7 @@ class MemberController extends Controller
      */
     function members(Request $request)
     {   
+        //se esse método mostra a lista de membros ele deve se chamar index!
         Member::ListMembers($request);
     }
     
@@ -27,6 +28,7 @@ class MemberController extends Controller
      */
     public function list()
     {
+        // esse método deve se chamar create
         return view('members.create');
     }
 
@@ -50,6 +52,7 @@ class MemberController extends Controller
      */
     public function destroy(Request $request)
     {
+        // também escrevemos o Forme Request para o método delete
         Member::deleteMember($request);
         return redirect()->route('list_members'); 
     }
