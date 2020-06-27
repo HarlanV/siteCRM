@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMemberPhonesTable extends Migration
+class CreateRolesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,15 @@ class CreateMemberPhonesTable extends Migration
      */
     public function up()
     {
-        Schema::create('member_phones', function (Blueprint $table) {
+        Schema::create('roles', function (Blueprint $table) {
             $table->id();
-            $table->string('phone');
-            $table->foreignId('members_id')
-                ->references('id')
-                ->on('members');
+            $table->string('roleName');
+            $table->boolean('director');
+            $table->integer('clientLevel');
+            $table->integer('memberLevel');
         });
     }
+
     /**
      * Reverse the migrations.
      *
@@ -28,6 +29,6 @@ class CreateMemberPhonesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('member_phones');
+        Schema::dropIfExists('roles');
     }
 }

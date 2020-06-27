@@ -13,11 +13,8 @@ class Member extends Model
 
     protected $attributes = [
         'sex'=>'F',
-        'login'=>'login01',
-        'password'=>'14324adfasdfp',
         'role'=>'Analista',
-        'primaryEmail'=>'teste01@gmail.com',
-        'secondaryEmail'=>''
+        'comment'=>'Nenhum comentario. Default'
     ];
  
     /**
@@ -26,8 +23,10 @@ class Member extends Model
     * @param    null
     * @return   \App\MemberPhone
     */
+    /*
     public function phones()
     {
         return $this->hasMany(MemberPhone::class);
     }
+    */
 }
