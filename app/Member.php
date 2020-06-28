@@ -1,32 +1,54 @@
 <?php
 
 namespace App;
-use App\MemberPhone;
+use App\Role;
 
+use App\MemberContact;
+use App\MemberRegister;
 use Illuminate\Database\Eloquent\Model;
 
 class Member extends Model
 {
-    public $timestamps = false;
+     public $timestamps = false;
     
-    protected $fillable = ['name'];
+     protected $fillable = ['name','sexId','comment','active'];
 
-    protected $attributes = [
-        'sex'=>'F',
-        'role'=>'Analista',
-        'comment'=>'Nenhum comentario. Default'
-    ];
- 
+     protected $attributes = [
+        'comment'=>'Nenhum comentario. Default',
+        'active'=> true
+     ];
+
     /**
-    * Metodo de relacionamento 1:n com registro
-    *  
-    * @param    null
-    * @return   \App\MemberPhone
-    */
-    /*
-    public function phones()
+     * Metodo de relacionamento n:1 com registro
+     *  
+     * @param    null
+     * @return   \App\Role
+     */
+    public function role()
     {
-        return $this->hasMany(MemberPhone::class);
+        return $this->belongsTo(Role::class);
     }
-    */
+
+    /**
+     * Metodo de relacionamento 1:n com registro
+     *  
+     * @param    null
+     * @return   \App\MemberRegister
+     */
+    public function MemberRegisters()
+    {
+        return $this->hasMany(MemberRegister::class);
+    }
+
+    /**
+     * Metodo de relacionamento 1:n com contato
+     *  
+     * @param    null
+     * @return   \App\MemberContact
+     */
+    public function MemberContacts()
+    {
+        return $this->hasMany(MemberContact::class);
+    }
+
 }

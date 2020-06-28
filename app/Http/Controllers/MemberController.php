@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Staffs\Member;
 use App\Http\Requests\MembersFormRequest;
+use App\Role;
 use Illuminate\Http\Request;
 
 class MemberController extends Controller
@@ -26,7 +27,7 @@ class MemberController extends Controller
      * 
      * @return  view\membro\create
      */
-    public function list()
+    public function create()
     {
         // esse método deve se chamar create
         return view('members.create');
@@ -57,6 +58,10 @@ class MemberController extends Controller
         return redirect()->route('list_members'); 
     }
 
+    /**
+     * Retorna a view de serviçoes internos. Temporario [pendente!]
+     * 
+     */
     public function internService(Request $request)
     {
         return view('members.index'); 

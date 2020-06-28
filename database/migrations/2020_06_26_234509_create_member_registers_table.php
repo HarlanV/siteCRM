@@ -17,14 +17,17 @@ class CreateMemberRegistersTable extends Migration
             $table->id();
             $table->string('cpf')->unique();
             $table->string('rg')->unique();
+            $table->string('name');
+            $table->string('birthdate');
             $table->string('traineeStart')->nullable();
             $table->string('traineeFinish')->nullable();
             $table->string('effectivated')->nullable();
             $table->string('disconected')->nullable();
-/*            $table->foreignId('members_id')
+
+            $table->foreignId('member_id')
                 ->references('id')
                 ->on('members');
-*/        });
+        });
     }
 
     /**

@@ -21,13 +21,12 @@ class CreateMemberContactsTable extends Migration
             $table->string('primaryPhone');
             $table->string('secondaryPhone')->nullable();
             $table->string('adress')->nullable();
-            $table->string('state')->nullable();
-            $table->string('city')->nullable();
-
-/*            $table->foreignId('members_id')
+            $table->string('state');
+            $table->string('city');
+            $table->foreignId('member_id')
             ->references('id')
             ->on('members');
-*/        });
+        });
     }
 
     /**

@@ -54,7 +54,7 @@ use Illuminate\Support\Facades\Route;
  ->name('list_members');
 
  // Formulario Criar membros
- Route::get('/member/create','MemberController@list')
+ Route::get('/member/create','MemberController@create')
  ->name('form_create_member')
  ->middleware('LoginDirector');
 

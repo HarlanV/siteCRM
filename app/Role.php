@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Member;
 
 class Role extends Model
 { 
@@ -16,4 +17,16 @@ class Role extends Model
         'viewMember',
         'createLogin',
     ];
+
+    /**
+     * Metodo de relacionamento 1:n com membros
+     *  
+     * @param    null
+     * @return   \App\MemberPhone
+     */
+    public function members()
+    {
+        return $this->hasMany(Member::class);
+    }
+
 }
