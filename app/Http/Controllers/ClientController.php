@@ -7,11 +7,10 @@ use App\Http\Staffs\Client;
 use Illuminate\Http\Request;
 use App\Client as ClientModel;
 use App\Http\Requests\ClientsFormRequest;
+use App\Http\Staffs\Register;
 
 class ClientController extends Controller
 {    
-
-
 
     /**
      * Método exibe lista de clientes cadastrados
@@ -21,12 +20,7 @@ class ClientController extends Controller
      */
     public function clients(Request $request)
     {   
-        /**
-         * É realmente necessário uma model chamada Client? 
-         * Um cliente é um usuário do seu projeto, aconselho a utilizar a model User e não Client.
-         * [pendente de resolução]
-         */
-        Client::listClients($request);
+        Client::list($request);
     }
     
     /**
@@ -37,8 +31,10 @@ class ClientController extends Controller
      */
     public function createClient()
     {
-        // nâo entendi a função dessas variáveis
+        // variavel de direcionamento para blade final
         $form = 'clients.create';
+
+        // variavel auxiliar para remover botões de edição no form
         $viewOnly=false;
         return view('clients.editRegisterForm',compact('form','viewOnly'));   
     }
@@ -51,7 +47,7 @@ class ClientController extends Controller
      */
     public function store(ClientsFormRequest $request)
     { 
-        Client::storeClient($request);      
+        Client::store($request);      
         return redirect()->route('list_clients');
     }
 
@@ -63,7 +59,7 @@ class ClientController extends Controller
      */
     public function destroy(Request $request)
     {
-        Client::deleteClient($request);
+        Client::delete($request);
         return redirect()->route('list_clients'); 
     }
 
@@ -73,21 +69,9 @@ class ClientController extends Controller
      * @param   int $clientId
      * @return  \Illuminate\View\View
      */
-    public function clientRegister(int $clientId, Request $request)
+    public function registers(Request $request)
     {
-        // Nome do método seria apenas store. Método responsável por armazenar um cliente no banco
-        // de dados. Para mais informações vide a documentação do laravel.
-        // nomes corretos store, update, edit, create, destroy. qualquer coisa explico no whats.
-        // mas aconselho a ver a documentação do laravel.
-        // Não é função do controller fazer consultas no banco de dados. Crie um método na model
-        // que execute esta tarefa.
-        // Não é necessario o nome model no fim na model o nome correto seria apenas Client.
-        $registers = ClientModel::find($clientId)->clientRegisters;
-  
-        $name = ClientModel::find($clientId)->name;
-        $mensagem = $request->session()->get('mensagem');
-
-        echo view('registers.registers',compact('registers','name','clientId','mensagem'));
+        Register::list($request);
     }
 
     /**
@@ -98,37 +82,21 @@ class ClientController extends Controller
      * @param   \Illuminate\Http\Request $request
      * @return  \Illuminate\Http\RedirectResponse
      */
-    public function clientEdit(int $id, int $id_register, ClientsFormRequest $request)
+    public function clientEdit(ClientsFormRequest $request)
     {
-        // Esses id's não poderiam vir no request?
-        Client::editClient($id, $id_register, $request);
-        return redirect()->route('list_registers', array('id'=>$id)); 
+        Client::edit($request);
+        return redirect()->route('list_registers', array('id'=>$request->id)); 
     }
 
     /**
      * Metodo retorna o formulario preenchido para ser alterado
      * 
-     * @param   int $id
-     * @param   int $id_register
      * @param   \Illuminate\Http\Request $request
      * @return  \Illuminate\View\View
      */
-    public function clientEditForm(int $id, int $id_register, Request $request)
+    public function clientEditForm(Request $request)
     {
-
-        $client = ClientModel::find($id);
-
-        $register = ClientRegister::find($id_register);
-
-        $contacts = $register->clientContacts;
-        
-          //        $viewOnly = true;
-        $viewOnly = false;
-
-        $form = 'clients.edit';
-
-        $contactsCounts = $contacts->count();
-        return view('clients.editRegisterForm',compact('client','register','contacts','form','contactsCounts','viewOnly'));
+        Client::editableForm($request);
     }
 
     /**
@@ -144,7 +112,6 @@ class ClientController extends Controller
         $client = ClientModel::find($id);
         $form = 'registers.addRegister';
         $viewOnly=false;
-//        return view('registers.registerForm',compact('client','form','viewOnly'));
         return view('clients.editRegisterForm',compact('client','form','viewOnly'));
     }
 
@@ -157,9 +124,10 @@ class ClientController extends Controller
      */
     public function storeRegister(int $id, Request $request)
     {
-        // outro metodo para registrar o cliente?
-        Client::storeRegister($id, $request);      
-        return redirect()->route('list_registers', array('id'=>$id));
+        Register::store($request); 
+
+        return redirect()->route('list_registers', array('id'=>$request->id));
+
     }
 
     /**
@@ -169,10 +137,10 @@ class ClientController extends Controller
      * @param   \Illuminate\Http\Request $request
      * @return  \Illuminate\Http\RedirectResponse
      */
-    public function registerDestroy(int $id, int $register_Id, Request $request)
+    public function registerDestroy(Request $request)
     {
-        Client::deleteRegister($id, $register_Id, $request);
-        return redirect()->route('list_registers', array('id'=>$id)); 
+        Register::delete($request);
+        return redirect()->route('list_registers', array('id'=>$request->id)); 
     }
 
     /**

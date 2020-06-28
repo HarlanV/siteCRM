@@ -5,9 +5,10 @@ use Illuminate\Support\Facades\Route;
 
 /* POST */
 
-// todas as suas rotas devem ser protegidas por middlewares.
-// isso impede de que usuários maliciosos acessem rotas que não deveriam.
-
+/* todas as suas rotas devem ser protegidas por middlewares.
+ isso impede de que usuários maliciosos acessem rotas que não deveriam.
+[pensente!]
+*/
 
  // Persiste membro
  Route::post('/member/create', 'MemberController@store');
@@ -81,8 +82,6 @@ use Illuminate\Support\Facades\Route;
  // Exibir registro selecionado
  Route::get("/client/{id}/view/{id_contact}", 'ClientController@registerView')
  ->name('view_register');
-
- 
  
 /* ACESS AND SUPORT [GET AND POST] */
  

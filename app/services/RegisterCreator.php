@@ -13,8 +13,9 @@ class RegisterCreator
      * @param   \Illuminate\Http\Request    $request
      * @return  void
      */
-    public function createRegister($id, $request)
+    public function createRegister($request)
     {
+        $id = $request->id;
         DB::beginTransaction();
         $client = Client::find($id);
         $register = $client->clientRegisters()->create([

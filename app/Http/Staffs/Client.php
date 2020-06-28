@@ -2,6 +2,7 @@
 
 namespace App\Http\Staffs;
 
+use App\ClientRegister;
 use Illuminate\Http\Request;
 use App\Client as ClientModel;
 use App\services\ClientEditor;
@@ -19,7 +20,7 @@ class Client
      * @param   \Illuminate\Http\request $request
      * @return  void
      */
-    public static function listClients(Request $request)
+    public static function list(Request $request)
     {
         $clients = ClientModel::query()->orderBy('name')->get();
 
@@ -34,11 +35,12 @@ class Client
      * @param   \Illuminate\Http\request $request
      * @return  void
      */
-    public static function storeClient(Request $request)
-    {
-        
+    public static function store(Request $request)
+    {     
         $clientCreator = new ClientCreator;
+
         $client = $clientCreator->clientCreate($request);
+
         $request->session()->flash('mensagem',"Cliente {$client} e seus contatos inserido com sucesso");
     }
 
@@ -48,11 +50,14 @@ class Client
      * @param   \Illuminate\Http\request    $request
      * @return  void
      */
-    public static function deleteClient(Request $request)
+    public static function delete(Request $request)
     {
         $deleter = new ClientDeleter;
+
         $clientId = $request->id;
+
         $deletedClient = $deleter->clientDelete($clientId);
+
         $request->session()->flash('mensagem',"O Cliente {$deletedClient} foi excluido com sucesso");
 
     }
@@ -65,35 +70,30 @@ class Client
      * @param   \Illuminate\Http\request    $request
      * @return  void
      */
-    public static function editClient(int $id, int $id_Register, Request $request)
+    public static function edit(Request $request)
     {
         $clientEditor = new ClientEditor;
-        $editedClient = $clientEditor->clientEdite($id,$id_Register, $request);
-        $request->session()->flash('mensagem',"O setor '{$request->sector}' foi editado com sucesso");  
-    }
 
-    /**
-     * Função para armazenar registro de clientes
-     * 
-     * @param   int $id
-     * @param   \Illuminate\Http\request $request
-     * @return  void
-     */
-    public static function storeRegister(int $id, Request $request)
-    {
-        $registerCreator = new RegisterCreator;
-        $client = $registerCreator->createRegister($id, $request);
-        $request->session()->flash('mensagem',"O setor {$request->sector} foi inserido com sucesso");
-    }
+        $editedClient = $clientEditor->clientEdite($request->id, $request->id_Register, $request);
 
-    public static function deleteRegister(int $id, int $register_Id,Request $request)
-    {
-        $registers =ClientModel::find($id)->clientRegisters;
-        $register = $registers->find($register_Id);
-        $deleter = new RegisterDeleter;
-        $deletedRegister = $deleter->deleteRegister($register);
-        $request->session()->flash('mensagem',"O registro $deletedRegister foi excluido com sucesso");
-
+        $request->session()->flash('mensagem',"O setor '{$request->sector}' do cliente {$editedClient} foi editado com sucesso");  
     }
     
+    public static function editableForm(Request $request)
+    {
+        $client = ClientModel::find($request->id);
+
+        $register = ClientRegister::find($request->id_register);
+
+        $contacts = $register->clientContacts;
+        
+        $viewOnly = false;
+
+        $form = 'clients.edit';
+
+        $contactsCounts = $contacts->count();
+
+        echo view('clients.editRegisterForm',compact('client','register','contacts','form','contactsCounts','viewOnly'));
+    }
+
 }
