@@ -11,6 +11,7 @@
 @section('cabecalho-descrit')
 
     Relação de  contatos conhecidos com a empresa {{$name}}
+$sector
 
 @endsection
 
@@ -24,24 +25,24 @@
 
     <!--  Impressão da lista de registros do cliente  -->
     <ul class="list-group">
-        @foreach($registers as $register)
+        @foreach($sectors as $sector)
             <li class="list-group-item d-flex justify-content-between align-items-center">
-                <a href="{{ route('view_register', array('id'=>$clientId, 'id_contact'=>$register->id)) }}">
-                {{$register->sector}} 
+                <a href="{{ route('view_sector', array('id'=>$clientId, 'id_contact'=>$sector->id)) }}">
+                {{$sector->sector}} 
                 </a>
             @auth
              <!-- Icones de cada cliente -->
                 <span class="d-flex">
 
                      <!-- icon: editar registro -->
-                    <a href="{{ route('edit_client_form', array('id'=>$clientId, 'id_contact'=>$register->id)) }}" class="btn btn-outline-primary btn-sm mr-1">
+                    <a href="{{ route('edit_sector_form', array('id'=>$clientId, 'id_sector'=>$sector->id)) }}" class="btn btn-outline-primary btn-sm mr-1">
                         <i class="fas fa-pencil-alt"></i>
                     </a>
 
                     
                     <!-- icon: deletar registro -->
-                    <form method="POST" action="{{ route('delete_register', array('id'=>$clientId,'register_Id'=>$register->id)) }}"
-                        onsubmit="return confirm('Tem certeza que deseja exlcuir o registro  {{ addslashes($register->sector)}} ?')">
+                    <form method="POST" action="{{ route('delete_sector', array('id'=>$clientId,'id_sector'=>$sector->id)) }}"
+                        onsubmit="return confirm('Tem certeza que deseja exlcuir o registro  {{ addslashes($sector->sector)}} ?')">
                         @csrf
                         @method('DELETE')
                         <button class="btn btn-danger btn-sm">
@@ -55,6 +56,6 @@
         @endforeach
     </ul>
     @auth
-    <a name="" id="" class="btn btn-dark mt-2" href=" {{ route('register_form', array('id'=>$clientId)) }}" role="button">Adicionar novo contato</a>
+    <a name="" id="" class="btn btn-dark mt-2" href=" {{ route('sector_form', array('id'=>$clientId)) }}" role="button">Adicionar novo contato</a>
     @endauth
 @endsection

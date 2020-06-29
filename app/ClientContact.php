@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\ClientRegister;
+use App\ClientSector;
 
 class ClientContact extends Model
 {
@@ -22,9 +22,9 @@ class ClientContact extends Model
     * @param    null
     * @return   \App\ClientRegister
     */
-   public function clientRegister()
+   public function clientSectors()
    {
-       return $this->belongsTo(ClientRegister::class);
+       return $this->belongsTo(ClientSector::class);
    }
 
 }

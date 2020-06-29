@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateClientRegistersTable extends Migration
+class CreateClientSectorsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateClientRegistersTable extends Migration
      */
     public function up()
     {
-        Schema::create('client_registers', function (Blueprint $table) {
+        Schema::create('client_sectors', function (Blueprint $table) {
             $table->id();
             $table->string('sector');
             $table->string('state')->nullable();
@@ -34,6 +34,6 @@ class CreateClientRegistersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('client_registers');
+        Schema::dropIfExists('client_sectors');
     }
 }

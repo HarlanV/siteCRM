@@ -2,14 +2,13 @@
 
 namespace App\Http\Staffs;
 
-use App\ClientRegister;
+use App\ClientSector;
 use Illuminate\Http\Request;
 use App\Client as ClientModel;
 use App\services\ClientEditor;
 use App\services\ClientCreator;
 use App\services\ClientDeleter;
-use App\services\RegisterCreator;
-use App\services\RegisterDeleter;
+
 
 class Client
 {
@@ -74,7 +73,7 @@ class Client
     {
         $clientEditor = new ClientEditor;
 
-        $editedClient = $clientEditor->clientEdite($request->id, $request->id_Register, $request);
+        $editedClient = $clientEditor->clientEdite($request->id, $request->id_sector, $request);
 
         $request->session()->flash('mensagem',"O setor '{$request->sector}' do cliente {$editedClient} foi editado com sucesso");  
     }
@@ -83,9 +82,9 @@ class Client
     {
         $client = ClientModel::find($request->id);
 
-        $register = ClientRegister::find($request->id_register);
+        $sector = ClientSector::find($request->id_sector);
 
-        $contacts = $register->clientContacts;
+        $contacts = $sector->clientContacts;
         
         $viewOnly = false;
 
@@ -93,7 +92,7 @@ class Client
 
         $contactsCounts = $contacts->count();
 
-        echo view('clients.editRegisterForm',compact('client','register','contacts','form','contactsCounts','viewOnly'));
+        echo view('clients.editSectorForm',compact('client','sector','contacts','form','contactsCounts','viewOnly'));
     }
 
 }

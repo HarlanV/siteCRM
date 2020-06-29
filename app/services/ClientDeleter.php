@@ -3,7 +3,7 @@ namespace App\services;
 
 use App\Client;
 use App\ClientContact;
-use App\ClientRegister;
+use App\ClientSector;
 use Illuminate\Support\Facades\DB;
 
 class ClientDeleter
@@ -20,7 +20,7 @@ class ClientDeleter
             
             $client = Client::find($clientId);
             $name = $client->name;
-            $this->registerDelete($client);
+            $this->SectorDelete($client);
             $client->delete();
         DB::commit();
 
@@ -33,25 +33,25 @@ class ClientDeleter
      * @param   \App\Client  $client
      * @return  void
      */
-    protected function registerDelete($client): void
+    protected function SectorDelete($client): void
     {
-        $client->clientRegisters->each(function (ClientRegister $clientRegister)
+        $client->clientSectors->each(function (ClientSector $clientSector)
         {
-            $this->contactDelete($clientRegister);
+            $this->contactDelete($clientSector);
 
-            $clientRegister->delete();
+            $clientSector->delete();
         }); 
     }
 
     /**
      * Metodo complementar para deletear clients em cascata.
      * 
-     * @param   \App\ClientRegister  $client
+     * @param   \App\ClientSector  $client
      * @return  void
      */
-    protected function contactDelete($clientRegister): void
+    protected function contactDelete($clientSector): void
     {
-        $clientRegister->clientContacts->each(function (ClientContact $ClientContact)
+        $clientSector->clientContacts->each(function (ClientContact $ClientContact)
         {
             $ClientContact->delete();
         });

@@ -34,7 +34,7 @@
                 <span class="d-flex">
 
                     <!-- icon: listar contatos -->                   
-                    <a href="{{ route('list_registers', array('id'=>$client->id))}}" class="btn btn-info btn-sm mr-1">
+                    <a href="{{ route('list_sectors', array('id'=>$client->id))}}" class="btn btn-info btn-sm mr-1">
                         <i class="fas fa-external-link-alt"></i>
                     </a>
                     

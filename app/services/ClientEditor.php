@@ -11,11 +11,11 @@ class ClientEditor
      * Service de criação de clientes e contatos
      * 
      * @param   int                      $id
-     * @param   int                      $id_Register
+     * @param   int                      $id_Sector
      * @param   \Illuminate\Http\Request $request
      * @return  string                   $client
      */
-    public function clientEdite($id ,$id_Register, Request $request)
+    public function clientEdite($id ,$id_Sector, Request $request)
     {
         DB::beginTransaction();
             $client = Client::find($id);
@@ -23,7 +23,7 @@ class ClientEditor
            
             $client->status=$request->status;
             $client->market=$request->market;
-            $this->editSector($id, $id_Register, $request);
+            $this->editSector($id, $id_Sector, $request);
             $client->save();
             $nameclient = $client->name;
         DB::commit();        
@@ -34,21 +34,21 @@ class ClientEditor
      * Service de criação de clientes e contatos
      * 
      * @param   int                      $id
-     * @param   int                      $id_Register
+     * @param   int                      $id_Sector
      * @param   \Illuminate\Http\Request $request
      * @return  void
      */
-    private function editSector($id,$id_Register, $request)
+    private function editSector($id,$id_Sector, $request)
     {
-        $registers =Client::find($id)->clientRegisters;
-        $register = $registers->find($id_Register);
-        $register->sector = $request->sector;     
-        $register->state = $request->state;
-        $register->city = $request->city;
-        $register->adress= $request->adress;
-        $register->comment= $request->comment;
-        $register->save();         
-        $this->editContact($id, $id_Register, $request);
+        $sectors =Client::find($id)->clientSectors;
+        $sector = $sectors->find($id_Sector);
+        $sector->sector = $request->sector;     
+        $sector->state = $request->state;
+        $sector->city = $request->city;
+        $sector->adress= $request->adress;
+        $sector->comment= $request->comment;
+        $sector->save();         
+        $this->editContact($id, $id_Sector, $request);
     }
 
     /**
@@ -56,17 +56,17 @@ class ClientEditor
      * 
      * @param   int                      $id
      * @param   \Illuminate\Http\Request $request
-     * @param   int $id_Register
+     * @param   int $id_Sector
      * @return  void
      */
-    private function editContact($id, $id_Register, $request)
+    private function editContact($id, $id_Sector, $request)
     {
-        $registers =Client::find($id)->clientRegisters;
-        $register = $registers->find($id_Register);
+        $sectors =Client::find($id)->clientSectors;
+        $sector = $sectors->find($id_Sector);
         $it = 0;
 
 
-        foreach ($register->clientContacts as $contact) {
+        foreach ($sector->clientContacts as $contact) {
             $contact->phone = $request->phone[$it];
             $contact->email = $request->email[$it];
             $contact->correspondent = $request->correspondent[$it];
@@ -81,7 +81,7 @@ class ClientEditor
             $counter += $it - 1; 
 
             while($it <= $counter){
-                $register->clientContacts()->create([
+                $sector->clientContacts()->create([
                     'phone'=>$request->phone[$it],
                     'email'=>$request->email[$it],
                     'correspondent'=>$request->correspondent[$it],

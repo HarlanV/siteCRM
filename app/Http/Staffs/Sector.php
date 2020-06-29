@@ -2,13 +2,13 @@
 
 namespace App\Http\Staffs;
 
-use App\ClientRegister;
+use App\ClientSector;
 use Illuminate\Http\Request;
 use App\Client as ClientModel;
-use App\services\RegisterCreator;
-use App\services\RegisterDeleter;
+use App\services\SectorCreator;
+use App\services\SectorDeleter;
 
-class Register
+class Sector
 {
 
     /**
@@ -19,13 +19,15 @@ class Register
      */
     public static function list(Request $request)
     {
-        $registers = ClientModel::find($request->id)->clientRegisters;
+        $sectors = ClientModel::find($request->id)->clientSectors;
 
         $name = ClientModel::find($request->id)->name;
 
+        $clientId = $request->id;
+
         $mensagem = $request->session()->get('mensagem');
 
-        echo view('registers.registers',compact('registers','name','clientId','mensagem'));  
+        echo view('sectors.Sectors',compact('sectors','name','clientId','mensagem'));  
    
     }
     
@@ -37,9 +39,9 @@ class Register
      */
     public static function store(Request $request)
     {
-        $registerCreator = new RegisterCreator;
+        $sectorCreator = new SectorCreator;
 
-        $client = $registerCreator->createRegister($request);
+        $client = $sectorCreator->createSector($request);
 
         $request->session()->flash('mensagem',"O setor {$request->sector} foi inserido com sucesso");
   
@@ -53,15 +55,15 @@ class Register
      */
     public static function delete(Request $request)
     {
-        $registers =ClientModel::find($request->id)->clientRegisters;
+        $sectors =ClientModel::find($request->id)->clientSectors;
 
-        $register = $registers->find($request->register_Id);
+        $sector = $sectors->find($request->id_sector);
 
-        $deleter = new RegisterDeleter;
+        $deleter = new SectorDeleter;
 
-        $deletedRegister = $deleter->deleteRegister($register);
+        $deletedSector = $deleter->deleteSector($sector);
 
-        $request->session()->flash('mensagem',"O registro $deletedRegister foi excluido com sucesso");
+        $request->session()->flash('mensagem',"O registro $deletedSector foi excluido com sucesso");
 
     }
 
@@ -75,9 +77,9 @@ class Register
     {
         $client = ClientModel::find($request->id);
 
-        $register = ClientRegister::find($request->id_register);
+        $sector = ClientSector::find($request->id_Sector);
 
-        $contacts = $register->clientContacts;
+        $contacts = $sector->clientContacts;
         
         $viewOnly = false;
 
@@ -85,7 +87,7 @@ class Register
 
         $contactsCounts = $contacts->count();
 
-        echo view('clients.editRegisterForm',compact('client','register','contacts','form','contactsCounts','viewOnly'));
+        echo view('clients.editSectorForm',compact('client','Sector','contacts','form','contactsCounts','viewOnly'));
     }
 
 

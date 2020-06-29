@@ -6,10 +6,10 @@
         'Indiferente'=>'Indiferente'        
     ];
     
-if (empty($register->clientContacts[$it]->bestHour)) {
+if (empty($sector->clientContacts[$it]->bestHour)) {
     $stored = 'valor inexistente';
 }else{
-    $stored = $register->clientContacts[$it]->bestHour;
+    $stored = $sector->clientContacts[$it]->bestHour;
 }
 
 ?>

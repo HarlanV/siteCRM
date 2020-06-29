@@ -19,9 +19,9 @@ class CreateClientContactsTable extends Migration
             $table->string('email')->nullable();
             $table->string('bestHour')->nullable();
             $table->string('correspondent')->nullable();
-            $table->foreignId('client_register_id')
+            $table->foreignId('client_sector_id')
                 ->references('id')
-                ->on('client_registers');
+                ->on('client_sectors');
         });
     }
 

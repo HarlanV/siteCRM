@@ -1,10 +1,11 @@
 <?php 
-if ($form == 'registers.addRegister' ){
-    $extension = 'registers.form';
+if ($form == 'sectors.addSector' ){
+    $extension = 'sectors.form';
 }else{
     $extension = 'clients.form';
 }
 ?>
+
 @extends($extension)
 <!-- CONTEUDO PRINCIAL -->
 @section('formcontact')
@@ -36,7 +37,7 @@ if ($form == 'registers.addRegister' ){
             <!-- Nome do Contato  -->
             <div class="form-group col-md-5">
             <label for="{{$correspondentVal}}" >Nome do correpondente</label>
-            <input type="text" class="form-control" name="correspondent[]" id="{{$correspondentVal}}" value="{{$register->clientContacts[$it]->correspondent ??''}}">
+            <input type="text" class="form-control" name="correspondent[]" id="{{$correspondentVal}}" value="{{$sector->clientContacts[$it]->correspondent ??''}}">
             </div>
         </div>
         
@@ -44,7 +45,7 @@ if ($form == 'registers.addRegister' ){
             <!-- Telefone -->
             <div class="form-group col-md-5">
                 <label for="{{$phoneVal}}"> Telefone : </label>                                                       
-                <input type="text" class="form-control" name="phone[]" id="{{$phoneVal}}" value="{{$register->clientContacts[$it]->phone ??''}}">
+                <input type="text" class="form-control" name="phone[]" id="{{$phoneVal}}" value="{{$sector->clientContacts[$it]->phone ??''}}">
             </div>
 
             <!-- Melhor periodo de contato -->
@@ -54,7 +55,7 @@ if ($form == 'registers.addRegister' ){
             <!-- Email -->
             <div class="form-group col-md-5">
                 <label for="{{$emailVal}}">E-mail:</label>
-                <input type="email" class="form-control" id="{{$emailVal}}" value="{{$register->clientContacts[$it]->email ??''}}" name="email[]">
+                <input type="email" class="form-control" id="{{$emailVal}}" value="{{$sector->clientContacts[$it]->email ??''}}" name="email[]">
             </div>
         </div>
     </div>

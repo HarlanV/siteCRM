@@ -9,7 +9,6 @@ NOVO ACESSO
 @section('cabecalho-descrit')
 Cadastro de novo usuario autorizado
 @endsection
-
 <!-- CONTEUDO PRINCIAL -->
 @section('conteudo')
 

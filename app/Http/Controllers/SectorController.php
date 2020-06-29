@@ -9,59 +9,10 @@ use App\Client as ClientModel;
 use App\Http\Requests\ClientsFormRequest;
 use App\Http\Staffs\Sector;
 
-class ClientController extends Controller
+class SectorController extends Controller
 {    
 
-    /**
-     * Método exibe lista de clientes cadastrados
-     * 
-     * @param   \Illuminate\Http\Request    $request
-     * @return  void
-     */
-    public function clients(Request $request)
-    {   
-        Client::list($request);
-    }
-    
-    /**
-     * Retorna/Redireciona para formulario de criação de clientes
-     * 
-     * @param   null
-     * @return  \Illuminate\View\View
-     */
-    public function createClient()
-    {
-        // variavel de direcionamento para blade final
-        $form = 'clients.create';
 
-        // variavel auxiliar para remover botões de edição no form
-        $viewOnly=false;
-        return view('clients.editSectorForm',compact('form','viewOnly'));   
-    }
-
-    /**
-     * Metodo de requisicao para inserir novos clientes no DB
-     * 
-     * @param   \App\Http\Requests\ClientsFormRequest    $request
-     * @return  \Illuminate\Http\RedirectResponse
-     */
-    public function store(ClientsFormRequest $request)
-    { 
-        Client::store($request);      
-        return redirect()->route('list_clients');
-    }
-
-    /**
-     * Metodo de requisicao para deletar cliente do DB
-     * 
-     * @param   \Illuminate\Http\Request    $request
-     * @return  \Illuminate\Routing\RedirectController
-     */
-    public function destroy(Request $request)
-    {
-        Client::delete($request);
-        return redirect()->route('list_clients'); 
-    }
 
     /**
      * Metodo de requisicao de uma lista de contatos por setor
@@ -69,7 +20,7 @@ class ClientController extends Controller
      * @param   int $clientId
      * @return  \Illuminate\View\View
      */
-    public function Sectors(Request $request)
+    public function sectors(Request $request)
     {
         Sector::list($request);
     }
@@ -85,7 +36,7 @@ class ClientController extends Controller
     public function clientEdit(ClientsFormRequest $request)
     {
         Client::edit($request);
-        return redirect()->route('list_sectors', array('id'=>$request->id)); 
+        return redirect()->route('list_Sectors', array('id'=>$request->id)); 
     }
 
     /**
@@ -94,7 +45,7 @@ class ClientController extends Controller
      * @param   \Illuminate\Http\Request $request
      * @return  \Illuminate\View\View
      */
-    public function clientEditForm(Request $request)
+    public function sectorEditForm(Request $request)
     {
         Client::editableForm($request);
     }
@@ -106,7 +57,7 @@ class ClientController extends Controller
      * @param   \Illuminate\Http\Request $request
      * @return  \Illuminate\View\View
      */
-    public function newSectorForm(int $id, Request $request)
+    public function createSectorForm(int $id, Request $request)
     { 
         // vc já tem um método que cria um cliente, qual a necessidade de outro?
         $client = ClientModel::find($id);
@@ -126,7 +77,7 @@ class ClientController extends Controller
     {
         Sector::store($request); 
 
-        return redirect()->route('list_Sectors', array('id'=>$request->id));
+        return redirect()->route('list_sectors', array('id'=>$request->id));
 
     }
 
@@ -137,10 +88,10 @@ class ClientController extends Controller
      * @param   \Illuminate\Http\Request $request
      * @return  \Illuminate\Http\RedirectResponse
      */
-    public function SectorDestroy(Request $request)
+    public function destroy(Request $request)
     {
         Sector::delete($request);
-        return redirect()->route('list_Sectors', array('id'=>$request->id)); 
+        return redirect()->route('list_sectors', array('id'=>$request->id)); 
     }
 
     /**

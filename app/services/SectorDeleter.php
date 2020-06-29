@@ -2,23 +2,23 @@
 namespace App\services;
 
 use App\ClientContact;
-use App\ClientRegister;
+use App\ClientSector;
 use Illuminate\Support\Facades\DB;
 
-class RegisterDeleter
+class SectorDeleter
 {
     /**
      * Metodo para deleção de contatos de determinado cliente
      * 
-     * @param   \App\ClientRegister $register
+     * @param   \App\ClientSector $sector
      * @return  string              $name
      */
-    public function deleteRegister(ClientRegister $register): string
+    public function deleteSector(ClientSector $sector): string
     {
-        $name = $register->sector;
+        $name = $sector->sector;
         DB::beginTransaction();
-            $this->contactDelete($register);
-            $register->delete();
+            $this->contactDelete($sector);
+            $sector->delete();
         DB::commit();
         return $name; 
     }
@@ -26,12 +26,12 @@ class RegisterDeleter
     /**
      * Metodo complementar para deletear clients em cascata.
      * 
-     * @param   \App\ClientRegister  $client
+     * @param   \App\ClientSector  $client
      * @return  void
      */
-    protected function contactDelete($clientRegister)
+    protected function contactDelete($clientSector)
     {
-        $clientRegister->clientContacts->each(function (ClientContact $ClientContact)
+        $clientSector->clientContacts->each(function (ClientContact $ClientContact)
         {
             $ClientContact->delete();
         });

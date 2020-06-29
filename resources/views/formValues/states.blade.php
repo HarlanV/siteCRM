@@ -29,15 +29,15 @@
         "TO"=>'Tocantins',
         "EX"=>'Estrangeiro'
     ];
- if (empty($register->state)) {
+ if (empty($sector->state)) {
     $stored = 'valor inexistente';
 }else{
-    $stored = $register->state;
+    $stored = $sector->state;
 }
 ?>
 
 <label for="state">Estado</label>
-<select id="state" class="form-control" value="{{$register->state ??''}}" name="state">
+<select id="state" class="form-control" value="{{$sector->state ??''}}" name="state">
 
     @foreach ($estados as $st=>$state)
     @if($stored == $st)
