@@ -11,7 +11,6 @@
 @section('cabecalho-descrit')
 
     Relação de  contatos conhecidos com a empresa {{$name}}
-$sector
 
 @endsection
 
@@ -27,7 +26,7 @@ $sector
     <ul class="list-group">
         @foreach($sectors as $sector)
             <li class="list-group-item d-flex justify-content-between align-items-center">
-                <a href="{{ route('view_sector', array('id'=>$clientId, 'id_contact'=>$sector->id)) }}">
+                <a href="{{ route('view_sector', array('id'=>$clientId, 'id_sector'=>$sector->id)) }}">
                 {{$sector->sector}} 
                 </a>
             @auth

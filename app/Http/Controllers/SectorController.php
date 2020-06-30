@@ -2,22 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\ClientSector;
 use App\Http\Staffs\Client;
 use Illuminate\Http\Request;
-use App\Client as ClientModel;
 use App\Http\Requests\ClientsFormRequest;
 use App\Http\Staffs\Sector;
 
 class SectorController extends Controller
 {    
 
-
-
     /**
-     * Metodo de requisicao de uma lista de contatos por setor
+     * Return a list of sector of the selected client
      * 
-     * @param   int $clientId
+     * @param   \Illuminate\Http\Request $request
      * @return  \Illuminate\View\View
      */
     public function sectors(Request $request)
@@ -26,21 +22,19 @@ class SectorController extends Controller
     }
 
     /**
-     * Edita/Corrige dados de clientes ja armazenados
+     * Edit data from an already saved client
      * 
-     * @param   int $id
-     * @param   int $id_Sector
-     * @param   \Illuminate\Http\Request $request
+     * @param   \Http\Requests\ClientsFormRequest $request
      * @return  \Illuminate\Http\RedirectResponse
      */
-    public function clientEdit(ClientsFormRequest $request)
+    public function edit(ClientsFormRequest $request)
     {
         Client::edit($request);
-        return redirect()->route('list_Sectors', array('id'=>$request->id)); 
+        return redirect()->route('list_sectors', array('id'=>$request->id)); 
     }
 
     /**
-     * Metodo retorna o formulario preenchido para ser alterado
+     * Return an already filled form which can be edited
      * 
      * @param   \Illuminate\Http\Request $request
      * @return  \Illuminate\View\View
@@ -51,29 +45,23 @@ class SectorController extends Controller
     }
 
     /**
-     * Metodo retorna formulario pronto para novo Registro
+     * Return a new Sector form, tha will be stored inside a specific client
      * 
-     * @param   int $id
      * @param   \Illuminate\Http\Request $request
      * @return  \Illuminate\View\View
      */
-    public function createSectorForm(int $id, Request $request)
+    public function createSector(Request $request)
     { 
-        // vc já tem um método que cria um cliente, qual a necessidade de outro?
-        $client = ClientModel::find($id);
-        $form = 'Sectors.addSector';
-        $viewOnly=false;
-        return view('clients.editSectorForm',compact('client','form','viewOnly'));
+        Sector::createForm($request);
     }
 
     /**
-     * Metodo para persistencia de novo registro em DB
+     * Store new Register inside a client on DB
      * 
-     * @param   int $id
      * @param   \Illuminate\Http\Request $request
      * @return  \Illuminate\Http\RedirectResponse
      */
-    public function storeSector(int $id, Request $request)
+    public function store(Request $request)
     {
         Sector::store($request); 
 
@@ -84,7 +72,6 @@ class SectorController extends Controller
     /**
      * Metodo para deleção de registros do DB
      * 
-     * @param   int $id
      * @param   \Illuminate\Http\Request $request
      * @return  \Illuminate\Http\RedirectResponse
      */
@@ -95,29 +82,16 @@ class SectorController extends Controller
     }
 
     /**
-     * Metodo retorna o formulario apenas para visualização
+     * Return an already filled form, which won't affect DB data. Just to visualisation.
      * 
-     * @param   int $id
-     * @param   int $id_Sector
      * @param   \Illuminate\Http\Request $request
      * @return  \Illuminate\View\View
      */
-    public function SectorView(int $id, int $id_Sector, Request $request)
+    public function SectorView(Request $request)
     {
 
-        $client = ClientModel::find($id);
+        Sector::exhibition($request);
 
-        $sector = ClientSector::find($id_Sector);
-
-        $contacts = $sector->clientContacts;
-        
-        $viewOnly = true;
- 
-        $form = 'clients.viewSector';
-
-        $contactsCounts = $contacts->count();
-        
-        return view('clients.editSectorForm',compact('client','Sector','contacts','form','contactsCounts','viewOnly'));
-    }
+     }
 
 }

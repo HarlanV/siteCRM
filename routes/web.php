@@ -19,12 +19,12 @@ use Illuminate\Support\Facades\Route;
  ->middleware('LoginDirector');
 
  // Inserir novos setores - armazenamento
- Route::post("/client/{id}/addSector/", 'SectorController@storeSector')
+ Route::post("/client/{id}/addSector/", 'SectorController@store')
  ->name('save_sector')
  ->middleware('LoginDirector');
 
  // Persiste alterações de clientes
- Route::post("/client/{id}/edit/{id_sector}", 'ClientController@clientEdit')
+ Route::post("/client/{id}/edit/{id_sector}", 'SectorController@edit')
  ->name('edit_client_save')
  ->middleware('LoginDirector');
 
@@ -75,12 +75,12 @@ use Illuminate\Support\Facades\Route;
  ->middleware('LoginDirector');
  
  // Inserir novos setors - Formulario 
- Route::get("/client/{id}/addSector/", 'ClientController@newSectorForm')
+ Route::get("/client/{id}/addSector/", 'SectorController@createSector')
  ->name('sector_form')
  ->middleware('LoginDirector');
 
  // Exibir setor selecionado
- Route::get("/client/{id}/view/{id_contact}", 'ClientController@sectorView')
+ Route::get("/client/{id}/view/{id_sector}", 'SectorController@sectorView')
  ->name('view_sector');
  
 /* ACESS AND SUPORT [GET AND POST] */

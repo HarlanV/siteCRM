@@ -90,6 +90,34 @@ class Sector
         echo view('clients.editSectorForm',compact('client','Sector','contacts','form','contactsCounts','viewOnly'));
     }
 
+    public static function exhibition(Request $request)
+    {
 
+        $client = ClientModel::find($request->id);
+
+        $sector = ClientSector::find($request->id_sector);
+
+        $contacts = $sector->clientContacts;
+        
+        $viewOnly = true;
+ 
+        $form = 'clients.viewSector';
+
+        $contactsCounts = $contacts->count();
+        
+        echo view('clients.editSectorForm',compact('client','sector','contacts','form','contactsCounts','viewOnly'));
+
+    }
+    
+    public static function createForm(Request $request)
+    {
+        $client = ClientModel::find($request->id);
+        
+        $form = 'Sectors.addSector';
+
+        $viewOnly=false;
+        
+        echo view('clients.editSectorForm',compact('client','form','viewOnly'));
+    }
     
 }
