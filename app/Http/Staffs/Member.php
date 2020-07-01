@@ -6,6 +6,7 @@ namespace App\Http\Staffs;
 use App\Member as Member_model;
 use App\services\MemberCreator;
 use App\services\MemberDeleter;
+use App\services\MemberEditor;
 use Illuminate\Http\Request;
 
 class Member
@@ -18,8 +19,7 @@ class Member
     public static function listMembers(Request $request)
     {
         $members = Member_model::query()->orderBy('name')->get();
-        $mensagem = $request->session()->get('mensagem');
-        echo view('members.members', compact('members','mensagem'));
+        return $members;
     }
 
     /**
@@ -46,5 +46,32 @@ class Member
         $deleted = $deleter->memberDelete($request->id);
         $request->session()->flash('mensagem',"O membro {$deleted} foi excluido com sucesso");
         
+    }
+
+    public static function editableForm($request)
+    {
+        $member = Member_model::find($request->id);
+
+        $documents = $member->MemberDocuments;
+
+        $contacts = $member->MemberContacts;
+
+        $roles = Role::listRoles();
+
+        $viewOnly = false;
+
+        $form = 'members.create';
+
+        echo view('members.form',compact('member','documents','contacts','form','viewOnly','roles'));
+    }
+
+    public static function edit($request)
+    {
+        $editor = new MemberEditor;
+
+        $editedClient = $editor->editMember($request->id, $request);
+
+        $request->session()->flash('mensagem',"Informações do membro '{$request->sector}' do cliente {$editedClient} alteradas com sucesso");  
+
     }
 }

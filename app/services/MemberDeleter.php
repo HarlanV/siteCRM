@@ -3,7 +3,7 @@ namespace App\services;
 
 use App\Member;
 use App\MemberContact;
-use App\MemberRegister;
+use App\MemberDocument;
 use Illuminate\Support\Facades\DB;
 
 class MemberDeleter
@@ -20,7 +20,7 @@ class MemberDeleter
             
             $member = Member::find($memberId);
             $name = $member->name;
-            $this->registerDelete($member);
+            $this->documentDelete($member);
             $this->contactDelete($member);
             $member->delete();
 
@@ -34,12 +34,12 @@ class MemberDeleter
      * @param   \App\Member  $member
      * @return  void
      */
-    protected function registerDelete($member): void
+    protected function documentDelete($member): void
     {
 
-        $member->MemberRegisters->each(function (MemberRegister $memberRegister)
+        $member->MemberDocuments->each(function (MemberDocument $memberDocument)
         {
-            $memberRegister->delete();
+            $memberDocument->delete();
         }); 
     }
 

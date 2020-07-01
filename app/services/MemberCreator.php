@@ -21,9 +21,10 @@ class MemberCreator
         $member = $role->members()->create([
             'name' => $request->name,
             'sexId' => $request->sexId,
+            'comment' => $request->comment,
         ]);
 
-        $this->createRegister($member, $request);
+        $this->createDocument($member, $request);
         $this->createContact($member,$request);
         $member->save();
 
@@ -37,28 +38,29 @@ class MemberCreator
      * @param   \Illuminate\Http\Request    $request
      * @return  void
      */
-    private function createRegister($member,Request $request)
+    private function createDocument($member,Request $request)
     {
-        $register = $member->memberRegisters()->create([
+        $document = $member->memberDocuments()->create([
             'cpf'=> $request->cpf,
             'rg'=> $request->rg,
+            'rgEntity' => $request->rgEntity,
             'name' => $request->documentName,
             'birthdate'=> $request->birthdate,
             'traineeStart'=> $request->traineeStart,
             'traineeFinish'=> $request->traineeFinish,
             'effectivated'=> $request->effectivated,
             'disconected'=> $request->disconected,
-            'active' =>true
+            
         ]);
         
-        $register->save();
+        $document->save();
     }
 
     /**
      * Service para armazenar contatos de membros
      * 
      * @param   \Illuminate\Http\Request    $request
-     * @param   \App\ClientRegister         $register
+     * @param   \App\ClientDocument         $document
      * @return  void
      */
     private function createContact($member,Request $request)
@@ -71,6 +73,7 @@ class MemberCreator
         'adress'=> $request->adress,
         'state'=> $request->state,
         'city'=> $request->city,
+        'cep'=> $request->cep,
         ]);
         $contact->save();
     }

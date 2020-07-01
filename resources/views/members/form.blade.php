@@ -11,17 +11,12 @@
                 <!-- Nome do membro -->
                 <div class="form-group col-md-7">
                     <label for="name" >Nome Social do membro</label>
-                    <input type="text" class="form-control" name="name" id="name">
+                    <input type="text" class="form-control" name="name" id="name" value="{{$member->name ??''}}" >
                 </div>
 
                 <!-- Cargo Atual -->
                 <div class="form-group col-md-5">
-                    <label for="id_role">Cargo atual</label>
-                    <select id="id_role" class="form-control" name="id_role">
-                        @foreach ($roles as $role)
-                            <option value="{{$role->id}}">{{$role->roleName}}</option>                            
-                        @endforeach
-                    </select>
+                   @include('formValues.roleSelect')
                 </div>
             </div>
         </div>
@@ -33,19 +28,19 @@
                 <!-- RG do membro -->
                 <div class="form-group col-md-5">
                     <label for="rg"> Documento de Identidade: </label>
-                    <input type="text" class="form-control" id="rg" name="rg">
-                </div>
+                    <input type="text" class="form-control" id="rg" name="rg" value="{{$documents->rg ??''}}">
+                </div>                                                               
 
                 <!-- Orgão emissor do RG -->
                 <div class="form-group col-md-2">
-                    <label for="emissor"> Emissor: </label>
-                    <input type="text" class="form-control" id="emissor" name="emissor">
+                    <label for="rgEntity"> Emissor: </label>
+                    <input type="text" class="form-control" id="rgEntity" name="rgEntity" value="{{$documents->rgEntity ??''}}" >
                 </div>
 
                 <!-- CPF do Membro-->
                 <div class="form-group col-md-5">
                     <label for="cpf">CPF</label>
-                    <input type="text" class="form-control" id="cpf" name="cpf">
+                    <input type="text" class="form-control" id="cpf" name="cpf" value="{{$documents->cpf ??''}}">
                 </div>
 
             </div>
@@ -55,18 +50,18 @@
                 <!-- Nome no Documento -->
                 <div class="form-group col-md-7">
                     <label for="documentName" > Nome Completo </label>
-                    <input type="text" class="form-control" name="documentName" id="documentName">
+                    <input type="text" class="form-control" name="documentName" id="documentName" value="{{$documents->name ??''}}">
                 </div>
 
                 <!-- Data de Nascimento -->
-                <div class="form-group col-md-2">
+                <div class="form-group col-md-3">
                     <label for="birthdate"> Data de Nascimento </label>
-                    <input type="text" class="form-control" name="birthdate" id="birthdate">
+                    <input type="text" class="form-control" name="birthdate" id="birthdate" value="{{$documents->birthdate ??''}}">
                 </div>
 
                 <!-- Sexo -->
-                <div class="form-group col-md-3">
-                    @include('formValues.sexIdentity')
+                <div class="form-group col-md-2">
+                    @include('formValues.sexIdentity' )
                 </div>
 
             </div>
@@ -79,40 +74,28 @@
                 <!-- Email principal -->
                 <div class="form-group col-md-6">
                     <label for="email">Email principal:</label>
-                    <input type="email" class="form-control" id="email" name="email[]">
+                    <input type="email" class="form-control" id="email" name="email[]" value="{{$contacts->primaryEmail ??''}}">
                 </div>
 
                 <!-- Email secundario-->
                 <div class="form-group col-md-6">
                     <label for="secondaryEmail">Email alternativo:</label>
-                    <input type="email" class="form-control" id="secondaryEmail" name ="email[]">
+                    <input type="email" class="form-control" id="secondaryEmail" name ="email[]" value="{{$contacts->secondaryEmail ??''}}">
                 </div>
             </div>
 
             <div class="form-row">
 
-                <!-- DDD 1 -->
-                <div class="form-group col-md-1">
-                    <label for="ddd1"> DDD: </label>
-                    <input type="text" class="form-control" name="ddd[]" id="ddd1">
-                </div>
-
                 <!-- Telefone -->
-                <div class="form-group col-md-5">
+                <div class="form-group col-md-6">
                     <label for="phone"> Telefone: </label>
-                    <input type="text" class="form-control" name="phone[]" id="phone">
+                    <input type="text" class="form-control" name="phone[]" id="phone" value= "{{$contacts->primaryPhone ??''}}">
                 </div>
-
-                <!-- DDD 2 -->
-                <div class="form-group col-md-1">
-                    <label for="ddd2"> DDD: </label>
-                    <input type="text" class="form-control" name="ddd[]" id="ddd2">
-                </div>   
 
                  <!-- Telefone Secundário -->
-                <div class="form-group col-md-5">
+                <div class="form-group col-md-6">
                     <label for="secondaryPhone"> Telefone alternativo: </label>
-                    <input type="text" class="form-control" name="phone[]" id="secondaryPhone">
+                    <input type="text" class="form-control" name="phone[]" id="secondaryPhone" value="{{$contacts->secondaryPhone ??''}}">
                 </div>
 
             </div>
@@ -127,19 +110,19 @@
                 <!-- Cidade -->
                 <div class="col col-6">
                     <label for="city" >Cidade</label>
-                    <input type="text" class="form-control" name="city" id="city">  
+                    <input type="text" class="form-control" name="city" id="city" value="{{$contacts->city ??''}}" >  
                 </div>
 
                 <!-- CEP -->
                 <div class="col col-3">
                     <label for="cep" >CEP</label>
-                    <input type="text" class="form-control" name="cep" id="cep">  
+                    <input type="text" class="form-control" name="cep" id="cep" value="{{$contacts->cep ??''}}" >  
                 </div>
 
                 <!-- Endereco -->
                 <div class="form-group col-md-12">
                     <label for="adress" >Endereço completo [Rua, Bairro, etc]</label>
-                    <input type="text" class="form-control" name="adress" id="adress">
+                    <input type="text" class="form-control" name="adress" id="adress" value="{{$contacts->adress ??''}}" >
                 </div>
             </div>
         </div>
@@ -151,32 +134,32 @@
                 <!-- Inicio do Trainee -->
                 <div class="form-group col-md-3">
                     <label for="traineeStart">Inicio do Trainee</label>
-                    <input type="text" class="form-control" id="traineeStart" name="traineeStart">
+                    <input type="text" class="form-control" id="traineeStart" name="traineeStart" value="{{$documents->traineeStart ??''}}" >
                 </div>
 
                 <!-- Fim do Trainee -->
                 <div class="form-group col-md-3">
                     <label for="traineeFinish">Fim do Trainee</label>
-                    <input type="text" class="form-control" id="traineeFinish" name="traineeFinish">
+                    <input type="text" class="form-control" id="traineeFinish" name="traineeFinish" value="{{$documents->traineeFinish ??''}}" >
                 </div>
 
                 <!-- Efetivação -->
                 <div class="form-group col-md-3">
                     <label for="effectivated">Efetivação</label>
-                    <input type="text" class="form-control" id="effectivated" name="effectivated">
+                    <input type="text" class="form-control" id="effectivated" name="effectivated" value="{{$documents->effectivated ??''}}">
                 </div>
 
                 <!-- Desligamento -->
                 <div class="form-group col-md-3">
                     <label for="disconected">Desligamento</label>
-                    <input type="text" class="form-control" id="disconected" name="disconected">
+                    <input type="text" class="form-control" id="disconected" name="disconected" value="{{$documents->disconected ??''}}">
                 </div>
             </div>
         </div>
 
         <div class="form-group">
-            <label for="clientCommit">Comentarios</label>
-            <textarea class="form-control" id="clientCommit" rows="3"></textarea>
+            <label for="comment">Comentarios</label>
+            <textarea class="form-control" id="comment" rows="3" name="comment">{{$member->comment ??''}}</textarea>
         </div>
 
     @if (empty($viewOnly) || !$viewOnly)

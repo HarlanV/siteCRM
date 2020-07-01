@@ -23,6 +23,7 @@ class CreateMemberContactsTable extends Migration
             $table->string('adress')->nullable();
             $table->string('state');
             $table->string('city');
+            $table->string('cep');
             $table->foreignId('member_id')
             ->references('id')
             ->on('members');

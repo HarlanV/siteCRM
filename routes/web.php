@@ -32,6 +32,9 @@ use Illuminate\Support\Facades\Route;
  Route::post('/intern/role/create','RoleController@store')
  ->name('store_role');
 
+ // Editar membros
+ Route::post('/member/edit/{id}','MemberController@edit');
+
 /* DELETE */
 
  // Apaga membro
@@ -50,13 +53,17 @@ use Illuminate\Support\Facades\Route;
 /* MEMBERS GET */
 
  // Listagem de membros
- Route::get('/member','MemberController@members')
+ Route::get('/member','MemberController@index')
  ->name('list_members');
 
  // Formulario Criar membros
  Route::get('/member/create','MemberController@create')
  ->name('form_create_member')
  ->middleware('LoginDirector');
+
+ // Editar membros
+ Route::get('/member/edit/{id}','MemberController@editForm')
+ ->name('edit_member');
 
 /* CLIENTS GET */
     
@@ -96,10 +103,10 @@ use Illuminate\Support\Facades\Route;
  Route::post('/login','LoginController@login');
 
  // Formulario novo usuario
- Route::get('/sector','SectorController@create')->name('create_user');
+ Route::get('/register','RegisterController@create')->name('create_user');
 
  // Persistencia de novo usuario
- Route::post('/sector','SectorController@store')->name('store_user');
+ Route::post('/register','RegisterController@store')->name('store_user');
  // Logout
  Route::get('/logout',function(){
      Auth::logout();
@@ -118,12 +125,12 @@ use Illuminate\Support\Facades\Route;
  // Area de Gestão Interna
  Route::get('/intern','MemberController@internService')->name('intern');
 
-// Lista de cargos
-Route::get('/intern/role','RoleController@roleList')->name('list_roles');
+ // Lista de cargos
+ Route::get('/intern/role','RoleController@index')->name('list_roles');
 
-// Formulario novo cargo
-Route::get('/intern/role/create','RoleController@create')
-->name('form_create_role');
+ // Formulario novo cargo
+ Route::get('/intern/role/create','RoleController@create')
+ ->name('form_create_role');
 
 
 

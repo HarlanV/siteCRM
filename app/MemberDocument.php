@@ -4,13 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class MemberRegister extends Model
+class MemberDocument extends Model
 {
     public $timestamps = false;
     
     protected $fillable = [
         'cpf',
         'rg',
+        'rgEntity',
         'birthdate',
         'traineeStart',
         'traineeFinish',

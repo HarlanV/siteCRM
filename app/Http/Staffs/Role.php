@@ -2,6 +2,7 @@
 
 namespace App\Http\Staffs;
 
+use App\Role as AppRole;
 use App\services\RoleCreator;
 use App\services\RoleDeleter;
 use Illuminate\Http\Request;
@@ -15,8 +16,10 @@ class Role
      * @param   \Illuminate\Http\request $request
      * @return  void
      */
-    public static function listRole(Request $request)
+    public static function listRoles()
     {
+        $roles = AppRole::query()->orderBy('roleName')->get();
+        return $roles;
        
     }
 

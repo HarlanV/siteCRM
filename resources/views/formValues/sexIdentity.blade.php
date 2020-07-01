@@ -1,29 +1,32 @@
 <?php
     $sexIds = [
-        "HC"=>'Homem',
-        "MC"=>'Mulher',
+        "HC"=>'Masculino',
+        "MC"=>'Feminino',
         "NB"=>'Não Binário',
     ];
- if (empty($register->sexId)) {
+ if (empty($member->sexId)) {
     $stored = 'valor inexistente';
 }else{
-    $stored = $register->sexId;
+    $stored = $member->sexId;
 }
+
 ?>
 
 <label for="sexId">Sexo: </label>
-<select id="sexId" class="form-control" value="{{$register->sexId ??''}}" name="sexId">
+<select id="sexId" class="form-control" name="sexId">
 
-    @foreach ($sexIds as $sex=>$sexId)
-    @if($stored == $sexId)
-        <option value={{$sex}} selected>
-            {{$sexId}}
-        </option>
-    @else()
-    <option value={{$sex}}>
-        {{$sexId}}
-    </option>
-    @endif
+    @foreach ($sexIds as $value=>$valor)
+        @if($stored == $value)
+            <option value ="{{$value}}" selected>
+                {{$valor}}
+            </option>
+        @else()
+            <option value="{{$value}}">
+                {{$valor}}
+            </option>
+        @endif
     @endforeach
 
 </select>
+
+

@@ -4,22 +4,25 @@ namespace App\Http\Controllers;
 
 use App\Http\Staffs\Member;
 use App\Http\Requests\MembersFormRequest;
-use App\Role;
+use App\Http\Staffs\Role;
 use Illuminate\Http\Request;
 
 class MemberController extends Controller
 {
-    // Lista membros salvos
-
     /**
      * Metodos exibe lista de membros cadastados
      * 
      * @param   Illuminate\Http\Request 
      */
-    function members(Request $request)
+    function index(Request $request)
     {   
-        //se esse método mostra a lista de membros ele deve se chamar index!
-        Member::ListMembers($request);
+
+        $members = Member::listMembers($request);
+
+        $mensagem = $request->session()->get('mensagem');
+
+        return view('members.members', compact('members','mensagem'));
+       
     }
     
     /**
@@ -29,8 +32,9 @@ class MemberController extends Controller
      */
     public function create()
     {
-        // esse método deve se chamar create
-        return view('members.create');
+        $roles = Role::listRoles();
+        $form = 'members.create';
+        return view('members.form', compact('form','roles'));
     }
 
     /**
@@ -62,8 +66,22 @@ class MemberController extends Controller
      * Retorna a view de serviçoes internos. Temporario [pendente!]
      * 
      */
-    public function internService(Request $request)
+    public function internService()
     {
         return view('members.index'); 
     }
+
+    public function editForm(Request $request)
+    {   
+        Member::editableForm($request);
+        
+    }
+
+    public function edit(Request $request)
+    {
+        Member::edit($request);
+        return redirect()->route('list_members', array('id'=>$request->id)); 
+    }
+
+
 }

@@ -16,6 +16,7 @@ class MemberContact extends Model
         'adress',
         'state',
         'city',
+        'cep',
     ];
 
     /**

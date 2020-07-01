@@ -4,14 +4,14 @@ namespace App;
 use App\Role;
 
 use App\MemberContact;
-use App\MemberRegister;
+use App\MemberDocument;
 use Illuminate\Database\Eloquent\Model;
 
 class Member extends Model
 {
      public $timestamps = false;
     
-     protected $fillable = ['name','sexId','comment','active'];
+     protected $fillable = ['name','sexId','comment','active','role_id'];
 
      protected $attributes = [
         'comment'=>'Nenhum comentario. Default',
@@ -19,7 +19,7 @@ class Member extends Model
      ];
 
     /**
-     * Metodo de relacionamento n:1 com registro
+     * Metodo de relacionamento n:1 com cargos
      *  
      * @param    null
      * @return   \App\Role
@@ -30,14 +30,14 @@ class Member extends Model
     }
 
     /**
-     * Metodo de relacionamento 1:n com registro
+     * Metodo de relacionamento 1:n com documentos
      *  
      * @param    null
-     * @return   \App\MemberRegister
+     * @return   \App\MemberDocument
      */
-    public function MemberRegisters()
+    public function MemberDocuments()
     {
-        return $this->hasMany(MemberRegister::class);
+        return $this->hasOne(MemberDocument::class);
     }
 
     /**
@@ -48,7 +48,7 @@ class Member extends Model
      */
     public function MemberContacts()
     {
-        return $this->hasMany(MemberContact::class);
+        return $this->hasOne(MemberContact::class);
     }
 
 }

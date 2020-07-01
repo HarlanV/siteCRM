@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Staffs\Role;
-use App\Role as AppRole;
 use Illuminate\Http\Request;
 
 class RoleController extends Controller
@@ -13,13 +12,13 @@ class RoleController extends Controller
      * 
      * 
      */
-    public function roleList(Request $request)
+    public function index(Request $request)
     {
-        $roles = AppRole::query()->orderBy('roleName')->get();
+        $roles = Role::listRoles();
 
         $mensagem = $request->session()->get('mensagem');
 
-        echo view('roles.index', compact('roles','mensagem'));
+        return view('roles.index', compact('roles','mensagem'));
     }
 
     /**
@@ -30,7 +29,9 @@ class RoleController extends Controller
     public function create()
     {
         $form = 'roles.create';
+
         $viewOnly=false;
+
         return view('roles.form',compact('form','viewOnly'));
         
     }
@@ -38,13 +39,15 @@ class RoleController extends Controller
     public function store(Request $request)
     {
 
-        Role::storeRole($request);      
+        Role::storeRole($request);  
+            
         return redirect()->route('list_roles');
     }
 
     public function destroy(Request $request)
     {
         Role::deleteRole($request);
+
         return redirect()->route('list_roles'); 
     }
 

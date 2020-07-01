@@ -32,13 +32,20 @@
             <li class="list-group-item d-flex justify-content-between align-items-center">
                 {{$member->name}}
 
-             <!-- Botão Deletar  -->
-            <form method="POST" action="/member/{{$member->id}}"
-                onsubmit="return confirm('Tem certeza que deseja exlcuir o membro {{ addslashes($member->nome)}} ?')">
-                @csrf
-                @method('DELETE')
-                <button class="btn btn-danger btn-sm"> <i class="fas fa-trash-alt"></i> </button>
-                </form>
+                <!-- Icones de cada cliente -->
+                <span class="d-flex">
+                    <!-- icon: editar registro -->
+                    <a href="{{route('edit_member', array('id'=>$member->id))}}" class="btn btn-outline-primary btn-sm mr-1">
+                        <i class="fas fa-pencil-alt"></i>
+                    </a>
+                    <!-- Botão Deletar  -->
+                    <form method="POST" action="/member/{{$member->id}}"
+                        onsubmit="return confirm('Tem certeza que deseja exlcuir o membro {{ addslashes($member->nome)}} ?')">
+                        @csrf
+                        @method('DELETE')
+                        <button class="btn btn-danger btn-sm"> <i class="fas fa-trash-alt"></i> </button>
+                    </form>
+                </span>
             </li>
         @endforeach
     </ul>
