@@ -107,20 +107,17 @@ use Illuminate\Support\Facades\Route;
 
  // Persistencia de novo usuario
  Route::post('/register','RegisterController@store')->name('store_user');
+ 
  // Logout
- Route::get('/logout',function(){
-     Auth::logout();
-     return redirect('/');
- });
+ Route::get('/logout','LoginController@logout');
 
-  // PAGINA INICIAL.
-  Route::get('/','index@mainView');
+ // PAGINA INICIAL.
+ Route::get('/',function(){
+   return view('index');
+ });
 
 
 /* EM DESENVOLVIMENTO E TEMPORARIOS */
-
- // ACESSO PESSOAL TEMPORARIO
- Route::get('/manager','ManageProject@soFar');
 
  // Area de Gestão Interna
  Route::get('/intern','MemberController@internService')->name('intern');
@@ -131,8 +128,6 @@ use Illuminate\Support\Facades\Route;
  // Formulario novo cargo
  Route::get('/intern/role/create','RoleController@create')
  ->name('form_create_role');
-
-
 
  // Apaga novo cargo
  Route::delete('/intern/role/{id}', 'RoleController@destroy')

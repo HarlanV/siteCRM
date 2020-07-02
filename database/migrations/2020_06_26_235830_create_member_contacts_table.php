@@ -16,7 +16,7 @@ class CreateMemberContactsTable extends Migration
         Schema::create('member_contacts', function (Blueprint $table) {
             $table->id();
             
-            $table->string('primaryEmail');
+            $table->string('primaryEmail')->unique();
             $table->string('secondaryEmail')->nullable();
             $table->string('primaryPhone')->nullable();
             $table->string('secondaryPhone')->nullable();
