@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Staffs\Client;
+use App\Client;
 use Illuminate\Http\Request;
 use App\Http\Requests\ClientsFormRequest;
 use App\Http\Staffs\Sector;
@@ -18,7 +18,17 @@ class SectorController extends Controller
      */
     public function sectors(Request $request)
     {
-        Sector::list($request);
+        $clientId = $request->id;
+
+        $name = Client::client($request->id)->name;
+
+        $sectors = Sector::list($request);
+  
+        $mensagem = $request->session()->get('mensagem');
+
+        return view('sectors.sectors',compact('sectors','name','clientId','mensagem'));
+
+
     }
 
     /**
@@ -63,7 +73,9 @@ class SectorController extends Controller
      */
     public function store(Request $request)
     {
-        Sector::store($request); 
+        Sector::store($request);
+        
+        $request->session()->flash('mensagem',"O setor {$request->sector} foi inserido com sucesso");
 
         return redirect()->route('list_sectors', array('id'=>$request->id));
 
@@ -77,7 +89,7 @@ class SectorController extends Controller
      */
     public function destroy(Request $request)
     {
-        Sector::delete($request);
+        Sector::del($request);
         return redirect()->route('list_sectors', array('id'=>$request->id)); 
     }
 

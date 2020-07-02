@@ -17,7 +17,7 @@ class MemberController extends Controller
     function index(Request $request)
     {   
 
-        $members = Member::listMembers($request);
+        $members = Member::listMembers();
 
         $mensagem = $request->session()->get('mensagem');
 

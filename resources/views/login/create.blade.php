@@ -16,15 +16,20 @@ Cadastro de novo usuario autorizado
 
 <form method="post">
     @csrf
-    <div class="form-group">
-        <label for="name">Nome</label>
-        <input type="text" name="name" id="name" required class="form-control">
-    </div>
 
     <div class="form-group">
+        <label for="email">Membro</label>
+        <select id="email" class="form-control" name="email">
+            @foreach ($members as $member)
+                <option value ="{{$member->id}}"> {{$member->name}} </option>
+            @endforeach()
+        </select>
+    </div >
+
+    <!--div class="form-group">
         <label for="email">E-mail</label>
         <input type="email" name="email" id="email" required class="form-control">
-    </div>
+    </div-->
 
     <div class="form-group">
         <label for="password">Senha</label>
@@ -35,4 +40,5 @@ Cadastro de novo usuario autorizado
         Salvar
     </button>
 </form>
+
 @endsection

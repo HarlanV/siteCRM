@@ -17,10 +17,10 @@ class CreateMemberDocumentsTable extends Migration
         Schema::create('member_documents', function (Blueprint $table) {
             $table->id();
             $table->string('cpf')->unique();
-            $table->string('rg')->unique();
-            $table->string('rgEntity')->unique();
-            $table->string('name');
-            $table->string('birthdate');
+            $table->string('rg')->nullable();
+            $table->string('rgEntity')->unique()->nullable();
+            $table->string('name')->nullable();
+            $table->string('birthdate')->nullable();
             $table->string('traineeStart')->nullable();
             $table->string('traineeFinish')->nullable();
             $table->string('effectivated')->nullable();

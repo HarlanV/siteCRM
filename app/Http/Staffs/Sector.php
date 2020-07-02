@@ -20,11 +20,8 @@ class Sector
     public static function list(Request $request)
     {
         $sectors = ClientModel::find($request->id)->clientSectors;
-
-        $sectors = ClientModel::query()->orderBy('roleName')->get();
+        
         return $sectors;
-
-
     }
     
     /**
@@ -38,8 +35,6 @@ class Sector
         $sectorCreator = new SectorCreator;
 
         $client = $sectorCreator->createSector($request);
-
-        $request->session()->flash('mensagem',"O setor {$request->sector} foi inserido com sucesso");
   
     }
 
@@ -49,7 +44,7 @@ class Sector
      * @param   \Illuminate\Http\request $request
      * @return  void
      */
-    public static function delete(Request $request)
+    public static function del(Request $request)
     {
         $sectors =ClientModel::find($request->id)->clientSectors;
 

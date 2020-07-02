@@ -30,8 +30,7 @@
     <ul class="list-group">
         @foreach($members as $member)
             <li class="list-group-item d-flex justify-content-between align-items-center">
-                {{$member->name}}
-
+                {{$member->name}} -> {{$member->role->roleName}} 
                 <!-- Icones de cada cliente -->
                 <span class="d-flex">
                     <!-- icon: editar registro -->

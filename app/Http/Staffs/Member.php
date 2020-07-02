@@ -16,7 +16,7 @@ class Member
      * 
      * @param   \Illuminate\Http\Request    $request
      */
-    public static function listMembers(Request $request)
+    public static function listMembers()
     {
         $members = Member_model::query()->orderBy('name')->get();
         return $members;

@@ -1,8 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Http\Staffs\Client;
+use App\Client as ClientModel;
 use Illuminate\Http\Request;
 use App\Http\Requests\ClientsFormRequest;
 
@@ -18,7 +17,11 @@ class ClientController extends Controller
      */
     public function clients(Request $request)
     {   
-        Client::list($request);
+        $clients = ClientModel::list();
+
+        $mensagem = $request->session()->get('mensagem');
+
+        return view('clients.clients', compact('clients','mensagem'));
     }
     
     /**
@@ -34,6 +37,7 @@ class ClientController extends Controller
 
         // variable to hide "save" and "add" button
         $viewOnly=false;
+
         return view('clients.editSectorForm',compact('form','viewOnly'));   
     }
 
@@ -45,7 +49,8 @@ class ClientController extends Controller
      */
     public function store(ClientsFormRequest $request)
     { 
-        Client::store($request);      
+        ClientModel::store($request);
+
         return redirect()->route('list_clients');
     }
 
@@ -57,7 +62,8 @@ class ClientController extends Controller
      */
     public function destroy(Request $request)
     {
-        Client::delete($request);
+        ClientModel::del($request);
+
         return redirect()->route('list_clients'); 
     }
 

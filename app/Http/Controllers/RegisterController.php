@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Staffs\Member;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,7 +13,8 @@ class RegisterController extends Controller
 {
     public function create()
     {
-        echo view('login.create');
+        $members = Member::listMembers();
+        echo view('login.create',compact('members'));
        
     }
 

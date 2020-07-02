@@ -16,8 +16,8 @@ class CreateMembersTable extends Migration
         Schema::create('members', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('sexId');
-            $table->boolean('active');
+            $table->string('sexId')->nullable();
+            $table->boolean('active')->nullable();
             $table->string('comment')->nullable();
             $table->foreignId('role_id')
             ->references('id')
