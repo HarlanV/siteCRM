@@ -29,9 +29,10 @@ class Member
      */
     public static function storeMember(Request $request)
     {
-
         $creator = new MemberCreator;
+        
         $member = $creator->createMember($request);
+        
         $request->session()->flash('mensagem',"Membro {$member} inserido com sucesso");
     }
 
@@ -43,7 +44,9 @@ class Member
     public static function deleteMember(Request $request){
         
         $deleter = new MemberDeleter;
+
         $deleted = $deleter->memberDelete($request->id);
+
         $request->session()->flash('mensagem',"O membro {$deleted} foi excluido com sucesso");
         
     }

@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Member extends Model
 {
+
+    // 
      public $timestamps = false;
     
      protected $fillable = ['name','sexId','comment','active','role_id'];

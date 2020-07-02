@@ -12,7 +12,7 @@ class Sector
 {
 
     /**
-     * Função para listar os registros de cada cliente
+     * Função para listar os setores de cada cliente
      * 
      * @param   \Illuminate\Http\request $request
      * @return  void
@@ -21,14 +21,10 @@ class Sector
     {
         $sectors = ClientModel::find($request->id)->clientSectors;
 
-        $name = ClientModel::find($request->id)->name;
+        $sectors = ClientModel::query()->orderBy('roleName')->get();
+        return $sectors;
 
-        $clientId = $request->id;
 
-        $mensagem = $request->session()->get('mensagem');
-
-        echo view('sectors.Sectors',compact('sectors','name','clientId','mensagem'));  
-   
     }
     
     /**
