@@ -11,6 +11,7 @@ class LoginController extends Controller
     /**
      * Redireciona para tela de login
      * 
+     * @return  \Illuminate\Http\RedirectResponse 
      */
     public function acessForm()
     {
@@ -25,7 +26,7 @@ class LoginController extends Controller
      * 
      * 
      * @param   \Illuminate\Http\Client\Request
-     * @return 
+     * @return  \Illuminate\Http\RedirectResponse 
      */
     public function login(Request $request)
     {
@@ -38,6 +39,12 @@ class LoginController extends Controller
         return redirect('/');
     }
     
+    /**
+     * Current user logout
+     * 
+     * @return  \Illuminate\Http\RedirectResponse
+     * 
+     */
     public function logout()
     {
         Auth::logout();

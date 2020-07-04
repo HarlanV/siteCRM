@@ -18,18 +18,13 @@ Cadastro de novo usuario autorizado
     @csrf
 
     <div class="form-group">
-        <label for="email">Membro</label>
-        <select id="email" class="form-control" name="email">
+        <label for="id">Membro</label>
+        <select id="id" class="form-control" name="id">
             @foreach ($members as $member)
                 <option value ="{{$member->id}}"> {{$member->name}} </option>
             @endforeach()
         </select>
     </div >
-
-    <!--div class="form-group">
-        <label for="email">E-mail</label>
-        <input type="email" name="email" id="email" required class="form-control">
-    </div-->
 
     <div class="form-group">
         <label for="password">Senha</label>

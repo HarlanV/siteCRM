@@ -13,12 +13,11 @@ class CreateMemberDocumentsTable extends Migration
      */
     public function up()
     {
-//        Schema::create('member_registers', function (Blueprint $table) {
         Schema::create('member_documents', function (Blueprint $table) {
             $table->id();
             $table->string('cpf')->unique();
             $table->string('rg')->nullable();
-            $table->string('rgEntity')->unique()->nullable();
+            $table->string('rgEntity')->nullable();
             $table->string('name')->nullable();
             $table->string('birthdate')->nullable();
             $table->string('traineeStart')->nullable();

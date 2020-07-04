@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Staffs\Member;
+use App\Member;
 use App\Http\Requests\MembersFormRequest;
-use App\Http\Staffs\Role;
+use App\Role;
 use Illuminate\Http\Request;
 
 class MemberController extends Controller

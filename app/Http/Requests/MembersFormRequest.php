@@ -24,7 +24,13 @@ class MembersFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=>'required|min:3'
+            'name'=>'required|min:3',
+            'rg'=>'required|min:3',
+            'rgEntity'=>'required|min:2',
+            'cpf'=>'required|min:3',
+            'documentName'=>'required|min:3',
+            'birthdate'=>'required|min:3',
+            'email[]'=>'unique:App\MemberContact,primaryEmail'
         ];
     }
 
@@ -32,8 +38,12 @@ class MembersFormRequest extends FormRequest
     {
         return [
             'required'=>'O campo :attribute é obrigatorio',
+            'rgEntity.required' => 'O a entidade emissoria do RG é obrigatória',
+            'documentName.required' => 'O nome oficial no documento é obrigatorio',
+            'birthdate.required' => 'A data de nascimento é obrigatória',
+            'cpf.required' => 'O CPF é obrigatorio',
+            'email.unique' => 'O email já foi cadastrado como sendo de outro membro. Por favor, escolha outro email',
             'name.min' => 'O campo nome precisa ter pelo menos 3 caracteres'
-
         ];
     }
 

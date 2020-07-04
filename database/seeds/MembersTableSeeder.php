@@ -23,7 +23,7 @@ class MembersTableSeeder extends Seeder
         ]);
 
         $member->memberContacts()->create([
-            'primaryEmail' => 'presidencia@exemplo.com.br',
+            'primaryEmail' => 'presidencia@exemplo.com',
         ]);
     }
 }

@@ -19,7 +19,7 @@
 
         <a class="btn btn-dark mb-2" href="/"><i class="fas fa-home"></i></a>
         @auth
-        <h1 class='welcome'> OlÁ {{Auth::user()->name}}, tenha um bom trabalho! </h1>
+        <h1 class='welcome'> Olá {{Auth::user()->name}}, tenha um bom trabalho! </h1>
 
         <a class="btn btn-outline-danger" href="/logout">Sair</a>    
         @endauth

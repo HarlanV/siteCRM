@@ -3,9 +3,8 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Illuminate\Support\Facades\Auth;
 
-class LoginDirector
+class AdminAcess
 {
     /**
      * Handle an incoming request.
@@ -16,14 +15,6 @@ class LoginDirector
      */
     public function handle($request, Closure $next)
     {
-        if (!Auth::check()){
-            return redirect('/login');
-        }
-
-        // botar aqui um conferência do CARGO Logado
-
         return $next($request);
-
-        // colocar aqui um armazenamento do evento feito
     }
 }
