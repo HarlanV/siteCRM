@@ -19,6 +19,7 @@ class MemberDocument extends Model
         'disconected',
         'name',
     ];
+    
     /**
      * Metodo de relacionamento 1:n com membro
      *  

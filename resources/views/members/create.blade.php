@@ -23,9 +23,7 @@
     </div>
     @endif
    
-<!-- FORMULARIO ALTERNATIVO -->
-
-    @yield('formMember')
-
+<!-- formulario com dados de membros -->
+    @include('members.form')
+    
 @endsection
-<!-- FIM -->

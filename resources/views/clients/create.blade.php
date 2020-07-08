@@ -17,6 +17,6 @@
     @include('subviews.responseError',['errors'=>$errors])
     
     <!-- Formulario Simples para adicionar membro -->
-    @yield('formClient')
+    @include('clients.form')
 
 @endsection

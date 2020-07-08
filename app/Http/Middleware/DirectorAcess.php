@@ -19,7 +19,7 @@ class DirectorAcess
     {
 
 
-        $authorized = array('Presidente','admin');
+        $authorized = array('Presidente','Admin');
 
         $roles = Role::listRoles();
 
@@ -33,7 +33,6 @@ class DirectorAcess
         {
             echo "Desculple, você não possui altorização para acessar esta pagina.";
             exit();
-        //return new Response(view(‘unauthorized’)->with(‘role’, ‘ADMIN’));
         }
 
         if (!Auth::check()){

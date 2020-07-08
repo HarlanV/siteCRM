@@ -32,13 +32,10 @@ class ClientController extends Controller
      */
     public function createClient()
     {
-        // variable to redirect to correct blade at the end
-        $form = 'clients.create';
 
         // variable to hide "save" and "add" button
         $viewOnly=false;
-
-        return view('clients.editSectorForm',compact('form','viewOnly'));   
+        return view('clients.create',compact('viewOnly'));   
     }
 
     /**

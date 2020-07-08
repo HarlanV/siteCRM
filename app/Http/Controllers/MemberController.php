@@ -9,12 +9,13 @@ use Illuminate\Http\Request;
 
 class MemberController extends Controller
 {
+
     /**
      * Metodos exibe lista de membros cadastados
      * 
      * @param   Illuminate\Http\Request 
      */
-    function index(Request $request)
+    public function index(Request $request)
     {   
 
         $members = Member::listMembers();
@@ -33,8 +34,8 @@ class MemberController extends Controller
     public function create()
     {
         $roles = Role::listRoles();
-        $form = 'members.create';
-        return view('members.form', compact('form','roles'));
+        return view('members.create', compact('roles'));
+
     }
 
     /**
@@ -72,8 +73,18 @@ class MemberController extends Controller
     }
 
     public function editForm(Request $request)
-    {   
-        Member::editableForm($request);
+    { 
+        $member =Member::member($request);
+
+        $documents = $member->MemberDocuments;
+
+        $contacts = $member->MemberContacts;
+
+        $roles = Role::listRoles();
+
+        $viewOnly = false;
+
+        return view('members.create',compact('member','documents','contacts','viewOnly','roles'));
         
     }
 

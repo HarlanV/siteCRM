@@ -17,6 +17,6 @@
 <!-- CONTEUDO PRINCIAL -->
 @section('conteudo')
 
-  @yield('formClient')
+  @include('sectors.form')
 
 @endsection

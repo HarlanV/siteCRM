@@ -15,7 +15,7 @@
 <!-- CONTEUDO PRINCIAL -->
 @section('conteudo')
 
-  <!-- Formulario para adicionar membro -->  
-  @yield('formClient')
-
+  <!-- Formulario para adicionar membro --> 
+  @include('clients.form')
+  
 @endsection

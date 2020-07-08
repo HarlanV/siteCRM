@@ -1,7 +1,4 @@
-@extends($form)
 
-
-@section('formClient')
 <form method="POST">
     @csrf
         <div class="form">
@@ -13,8 +10,8 @@
                 </div>
             </div>
             <div class="container-fluid" id= "contactContainer" style="border:1px solid #cecece;">
-               
-                    @yield('formcontact')
+                @include('clients.editSectorForm')
+                
             </div>
             <input type="button"  {{$addClient ??''}} value="+" onClick="addInput('contactContainer');">
 
@@ -46,26 +43,4 @@
         </div>          
 </form>
 
-<script>
-
-var counter = 0 + <?php echo "{$it}" ?>;
-var limit = 3;
-function addInput(divName){
-    if (counter == limit)  {
-        alert("Você atingiu o limite de  " + (counter+1) + " contatos.");
-    }  
-
-    else {
-        var html =`
-        <div id="contactData">
-            @yield('formcontact')
-        </div>
-        <input type="hidden" id="contador" name="contador" value=${(counter+1)}>`;
-    document.getElementById(divName).innerHTML += html
-    counter++;
-        }
-}
-</script>
-        
-@endsection
-<!-- FIM -->
+@include('formValues.formScript')

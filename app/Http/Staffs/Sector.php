@@ -59,7 +59,7 @@ class Sector
     }
 
     /**
-     * Função para armazenar registro de clientes
+     * Método para exibir dados e ALTERAR dados do setor em formulario
      * 
      * @param   \Illuminate\Http\request $request
      * @return  void
@@ -81,6 +81,10 @@ class Sector
         echo view('clients.editSectorForm',compact('client','Sector','contacts','form','contactsCounts','viewOnly'));
     }
 
+    /**
+     * Formulario para EXBIBIÇÃO dos dados dos clientes.
+     * 
+     */
     public static function exhibition(Request $request)
     {
 
@@ -100,15 +104,18 @@ class Sector
 
     }
     
+    /**
+     * Retorna um formulario de criação de um novo setor do cliente
+     * 
+     */
     public static function createForm(Request $request)
     {
         $client = ClientModel::find($request->id);
         
-        $form = 'Sectors.addSector';
-
         $viewOnly=false;
         
-        echo view('clients.editSectorForm',compact('client','form','viewOnly'));
+        echo view('Sectors.addSector',compact('client','viewOnly'));
+
     }
     
 }

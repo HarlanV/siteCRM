@@ -37,7 +37,7 @@ class MemberDeleter
     protected function documentDelete($member): void
     {
 
-        $member->MemberDocuments->each(function (MemberDocument $memberDocument)
+        $member->MemberDocuments()->each(function (MemberDocument $memberDocument)
         {
             $memberDocument->delete();
         }); 
@@ -51,7 +51,8 @@ class MemberDeleter
      */
     protected function contactDelete($member): void
     {
-        $member->MemberContacts->each(function (MemberContact $memberContact)
+
+        $member->MemberContacts()->each(function (MemberContact $memberContact)
         {
             $memberContact->delete();
         });

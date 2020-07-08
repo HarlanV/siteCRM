@@ -26,11 +26,11 @@ class Client extends Model
     ];
     
     /**
-    * Metodo de relacionamento 1:n com registro
-    *  
-    * @param    null
-    * @return   \App\ClientSector
-    */
+     * Metodo de relacionamento 1:n com registro
+     *  
+     * @param    null
+     * @return   \App\ClientSector
+     */
     public function clientSectors()
     {
         return $this->hasMany(ClientSector::class);
@@ -100,6 +100,10 @@ class Client extends Model
         $request->session()->flash('mensagem',"O setor '{$request->sector}' do cliente {$editedClient} foi editado com sucesso");  
     }
     
+    /**
+     * Retorna um formulário para edição de clientes
+     * 
+     */
     public static function editableForm(Request $request)
     {
         $client = self::find($request->id);
@@ -110,13 +114,17 @@ class Client extends Model
         
         $viewOnly = false;
 
-        $form = 'clients.edit';
-
         $contactsCounts = $contacts->count();
 
-        echo view('clients.editSectorForm',compact('client','sector','contacts','form','contactsCounts','viewOnly'));
+        echo view('clients.edit',compact('client','sector','contacts','contactsCounts','viewOnly'));
+
     }
 
+    /**
+     * Retorna um cliente dado o Id. GETClient
+     * Deve ser renomeado para getClient ? Pensando...[pendente!]
+     * 
+     */
     public static function client(int $id)
     {
         $client = Client::find($id);

@@ -1,10 +1,16 @@
 <?php
+/**
+ * Temporariamente está extendendo Diretor.
+ * Será evoluido no futuro para um admin real.
+ * 
+ * 
+ */
 
 namespace App\Http\Middleware;
 
 use Closure;
 
-class AdminAcess
+class AdminAcess extends DirectorAcess
 {
     /**
      * Handle an incoming request.

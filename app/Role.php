@@ -57,7 +57,11 @@ class Role extends Model
         $role = $roleCreator->roleCreate($request);
         $request->session()->flash('mensagem',"Cargo {$role} inserido com sucesso");
     }
-
+    
+    /**
+     * Metodo para deleteção de cliente
+     * 
+     */
     public static function deleteRole(Request $request)
     {
         $deleter = new RoleDeleter;

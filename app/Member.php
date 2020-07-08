@@ -1,8 +1,8 @@
 <?php
 
 namespace App;
-use App\Role;
 
+use App\Role;
 use App\MemberContact;
 use App\MemberDocument;
 use Illuminate\Database\Eloquent\Model;
@@ -97,21 +97,12 @@ class Member extends Model
         
     }
 
-    public static function editableForm($request)
+    public static function member($request)
     {
         $member = self::find($request->id);
 
-        $documents = $member->MemberDocuments;
+        return $member;
 
-        $contacts = $member->MemberContacts;
-
-        $roles = Role::listRoles();
-
-        $viewOnly = false;
-
-        $form = 'members.create';
-
-        echo view('members.form',compact('member','documents','contacts','form','viewOnly','roles'));
     }
 
     public static function edit($request)

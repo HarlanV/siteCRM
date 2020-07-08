@@ -74,7 +74,8 @@ use Illuminate\Support\Facades\Route;
 
  // Listagem de membros
  Route::get('/member','MemberController@index')
- ->name('list_members');
+ ->name('list_members')
+ ->middleware('MemberAcess');;
 
  // Formulario Criar membros
  Route::get('/member/create','MemberController@create')
@@ -83,23 +84,29 @@ use Illuminate\Support\Facades\Route;
 
  // Editar membros
  Route::get('/member/edit/{id}','MemberController@editForm')
- ->name('edit_member');
+ ->name('edit_member')
+ ->middleware('DirectorAcess');
 
  // Lista de cargos
- Route::get('/intern/role','RoleController@index')->name('list_roles');
+ Route::get('/intern/role','RoleController@index')
+ ->name('list_roles')
+ ->middleware('MemberAcess');
 
  // Formulario novo cargo
  Route::get('/intern/role/create','RoleController@create')
- ->name('form_create_role');
+ ->name('form_create_role')
+ ->middleware('DirectorAcess');
  
 /* DELETE */
 
  // Apaga novo cargo
  Route::delete('/intern/role/{id}', 'RoleController@destroy')
- ->name('delete_role');
+ ->name('delete_role')
+ ->middleware('DirectorAcess');
 
  // Apaga membro
- Route::delete('/member/{id}', 'MemberController@destroy');
+ Route::delete('/member/{id}', 'MemberController@destroy')
+ ->middleware('DirectorAcess');;
 
  // Apaga cliente 
  Route::delete('/client/{id}', 'ClientController@destroy')
@@ -115,16 +122,19 @@ use Illuminate\Support\Facades\Route;
 /* ACESS */
  
  // Formulario de login
- Route::get('/login','LoginController@acessForm')->name('login');
+ Route::get('/login','LoginController@acessForm')
+ ->name('login');
 
  // Executa login
  Route::post('/login','LoginController@login');
 
  // Formulario novo usuario
- Route::get('/register','RegisterController@create')->name('create_user');
+ Route::get('/register','RegisterController@create')
+ ->name('create_user');
 
  // Persistencia de novo usuario
- Route::post('/register','RegisterController@store')->name('store_user');
+ Route::post('/register','RegisterController@store')
+ ->name('store_user');
  
  // Logout
  Route::get('/logout','LoginController@logout');
@@ -141,7 +151,9 @@ use Illuminate\Support\Facades\Route;
 /* EM DESENVOLVIMENTO E TEMPORARIOS */
 
  // Area de Gestão Interna da Empresa contratante
- Route::get('/intern','MemberController@internService')->name('intern');
+ Route::get('/intern','MemberController@internService')
+ ->name('intern')
+ ->middleware('MemberAcess');;
 
 
 
