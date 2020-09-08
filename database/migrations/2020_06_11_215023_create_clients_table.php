@@ -28,6 +28,7 @@ class CreateClientsTable extends Migration
             3 - Verificar a criação de nova migration para uma tabela 
             especifica para os relatorios de prospecção. A tabela deve
             se comunicar com membros e clientes. Conhecimento pendente"
+            4- teste
             */
 
 
