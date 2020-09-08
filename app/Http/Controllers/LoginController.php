@@ -21,10 +21,6 @@ class LoginController extends Controller
     /**
      * Metodo de login de Clientes. Deve ser editado para Membros no futuro [pendente!]
      * 
-     * Interessante que vc construa um sistema de login próprio! parabens!
-     * O laravel já tras um pronto para vc. aconselho a olhar a documentação do laravel
-     * 
-     * 
      * @param   \Illuminate\Http\Client\Request
      * @return  \Illuminate\Http\RedirectResponse 
      */
